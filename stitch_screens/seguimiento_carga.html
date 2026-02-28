@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Logística Crítica &amp; Carga Industrial - Ventas en USA</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0A192F", // Navy Deep
+                        "primary-light": "#112240", // Navy Light
+                        "accent": "#00BFA6", // Teal
+                        "accent-hover": "#00a08b",
+                        "background-light": "#F6F8FA", // Cool Gray
+                        "surface": "#FFFFFF",
+                        "text-main": "#1F2937", // Dark Charcoal
+                        "text-muted": "#6B7280", // Metallic Gray
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["DM Sans", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: {
+                        "sm": "2px",
+                        "md": "4px",
+                        "lg": "8px",
+                        "full": "9999px",
+                    },
+                    boxShadow: {
+                        "card": "0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06)",
+                        "lift": "0 10px 15px -3px rgba(10, 25, 47, 0.1)",
+                    },
+                    animation: {
+                        'pulse-ring': 'pulse-ring 2s cubic-bezier(0.24, 0, 0.38, 1) infinite',
+                    },
+                    keyframes: {
+                        'pulse-ring': {
+                            '0%': { transform: 'scale(0.8)', opacity: '0.6' },
+                            '50%': { transform: 'scale(1.2)', opacity: '0' },
+                            '100%': { transform: 'scale(0.8)', opacity: '0' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F6F8FA;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94A3B8;
+        }
+        
+        /* Map pattern background */
+        .bg-map-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-background-light text-text-main font-body min-h-screen flex flex-col antialiased bg-map-pattern relative overflow-x-hidden">
+<!-- Abstract Map Overlay Vector (Decorative) -->
+<div aria-hidden="true" class="absolute inset-0 pointer-events-none opacity-[0.03] z-0 overflow-hidden">
+<svg class="absolute top-0 right-0 w-full h-full transform translate-x-1/4 -translate-y-1/4 scale-150" fill="none" viewbox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+<path d="M100,500 Q400,100 800,500 T1500,500" fill="none" stroke="#0A192F" stroke-dasharray="10 10" stroke-width="2"></path>
+<path d="M-100,700 Q300,300 700,700 T1400,700" fill="none" stroke="#0A192F" stroke-dasharray="5 5" stroke-width="1"></path>
+</svg>
+</div>
+<!-- Navigation -->
+<nav class="sticky top-0 z-50 bg-surface/90 backdrop-blur-md border-b border-gray-200">
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16 items-center">
+<div class="flex items-center gap-3">
+<div class="bg-primary text-white p-1.5 rounded-sm shadow-sm">
+<span class="material-symbols-outlined text-[20px]">local_shipping</span>
+</div>
+<span class="font-display font-bold text-xl tracking-tight text-primary">Carga Crítica &amp; Activos</span>
+</div>
+<div class="flex items-center gap-6">
+<a class="text-sm font-medium text-text-muted hover:text-primary transition-colors hidden sm:block" href="#">Dashboard</a>
+<div class="h-8 w-[1px] bg-gray-200 hidden sm:block"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-primary">Maria Perez</p>
+<p class="text-[10px] text-text-muted font-mono">ID: CRIT-921</p>
+</div>
+<div class="size-9 rounded-full bg-primary-light bg-cover bg-center border-2 border-white shadow-sm" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCMDTPXoxuCI7gDGcYD7rTxF6cOi46-Bo1rdHaOTMEHmXpD9sobLAFDtLh3Ww2Z9giG2U11kvZ94M1xh-STeZ265xyd8HlC6SV69n-mBXwym9Ro80PwKOKdbtR_sV6FYs2vrvCS3h5KGy07r2txP0ZEyah4DhwUgHWx2_v9CffzfIouo1SyAiRu0EtKoZXpLy1SEYWI9ultdomSqcrONMDbBT4iAUbO9biQb9P4xgOQ60161SI0rlx1ZGJlEcfHWyVfYFTKPsMTv_il");'></div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow z-10 py-8 px-4 sm:px-6 lg:px-8">
+<div class="max-w-3xl mx-auto">
+<!-- Breadcrumb -->
+<div class="flex items-center gap-2 text-sm text-text-muted mb-6 font-medium">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                    Volver al Dashboard
+                </a>
+</div>
+<!-- Shipment Summary Card -->
+<div class="bg-surface rounded-sm shadow-card border border-gray-100 p-6 mb-8 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-accent"></div>
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-gray-100 text-text-muted px-2 py-0.5 rounded text-[11px] font-mono uppercase tracking-wider font-bold">Carga Sobredimensionada</span>
+<span class="flex items-center gap-1 text-[11px] font-bold text-accent uppercase tracking-wider bg-accent/10 px-2 py-0.5 rounded">
+<span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+                                En Tránsito
+                            </span>
+</div>
+<h1 class="font-display font-bold text-2xl text-primary leading-tight">Turbina Hidráulica Siemens SGT-800</h1>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 pt-4 border-t border-gray-100"><div class="flex flex-col"><span class="text-[10px] uppercase tracking-wider text-text-muted font-bold">BOL Number</span><span class="font-mono text-primary font-bold text-sm">MSCU-882910-B</span></div><div class="flex flex-col"><span class="text-[10px] uppercase tracking-wider text-text-muted font-bold">Container ID</span><span class="font-mono text-primary font-bold text-sm">MSKU 928371-4</span></div><div class="flex flex-col"><span class="text-[10px] uppercase tracking-wider text-text-muted font-bold">Total Weight</span><span class="font-mono text-primary font-bold text-sm">24,500 KG</span></div><div class="flex flex-col"><span class="text-[10px] uppercase tracking-wider text-text-muted font-bold">Volume</span><span class="font-mono text-primary font-bold text-sm">115.00 m³</span></div></div>
+</div>
+<div class="flex gap-3 mt-2 sm:mt-0">
+<button class="flex items-center gap-2 px-4 py-2 bg-background-light hover:bg-gray-100 text-primary rounded-sm text-sm font-medium transition-colors border border-gray-200">
+<span class="material-symbols-outlined text-[18px]">support_agent</span>
+                            Reportar
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary-light text-white rounded-sm text-sm font-medium transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">share</span>
+                            Compartir
+                        </button>
+</div>
+</div>
+</div><div class="bg-white rounded-sm shadow-card border border-gray-100 p-5 mb-8"><h4 class="font-display font-bold text-sm text-primary uppercase tracking-wider mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">description</span> Documentación de Embarque</h4><div class="grid grid-cols-1 sm:grid-cols-3 gap-3"><div class="flex items-center justify-between p-3 bg-gray-50 rounded-sm border border-gray-200"><span class="text-xs font-medium text-text-main">Commercial Invoice</span><span class="material-symbols-outlined text-accent text-[18px]">check_circle</span></div><div class="flex items-center justify-between p-3 bg-gray-50 rounded-sm border border-gray-200"><span class="text-xs font-medium text-text-main">Packing List</span><span class="material-symbols-outlined text-accent text-[18px]">check_circle</span></div><div class="flex items-center justify-between p-3 bg-gray-50 rounded-sm border border-gray-200"><span class="text-xs font-medium text-text-main">Bill of Lading (BL)</span><span class="material-symbols-outlined text-accent text-[18px]">check_circle</span></div></div></div>
+<!-- Timeline Container -->
+<div class="relative pl-4 sm:pl-8 py-4">
+<!-- STEP 1 (Current/Active) -->
+<div class="relative pb-12 group">
+<!-- Connector Line (Dotted for next step) -->
+<div aria-hidden="true" class="absolute top-10 left-[19px] w-[2px] h-full bg-gray-200 border-l-[2px] border-dotted border-gray-300 -ml-[1px]"></div>
+<div class="flex gap-6 sm:gap-8 relative">
+<!-- Icon Node -->
+<div class="relative flex-shrink-0 z-10">
+<!-- Pulse Ring for active state -->
+<div class="absolute -inset-2 rounded-full border border-accent opacity-40 animate-ping"></div>
+<div class="absolute -inset-4 rounded-full bg-accent/10 animate-pulse"></div>
+<div class="size-10 rounded-full bg-primary flex items-center justify-center text-white shadow-lg ring-4 ring-white relative z-20">
+<span class="material-symbols-outlined text-[20px]">flight_takeoff</span>
+</div>
+</div>
+<!-- Content Card -->
+<div class="flex-1 bg-surface rounded-sm shadow-card border border-gray-100 p-5 relative transition-all duration-300 hover:shadow-lift hover:-translate-y-0.5">
+<div class="absolute left-[-6px] top-6 w-3 h-3 bg-surface border-l border-t border-gray-100 transform -rotate-45"></div>
+<div class="flex flex-col sm:flex-row justify-between sm:items-start gap-2 mb-2">
+<h3 class="font-display font-bold text-lg text-primary">Orden de Servicio Industrial</h3>
+<div class="flex items-center gap-1.5 bg-accent/10 text-accent px-2 py-1 rounded-sm">
+<span class="material-symbols-outlined text-[14px]">radar</span>
+<span class="text-xs font-bold uppercase tracking-wide">Status Actual</span>
+</div>
+</div>
+<p class="text-text-muted text-sm mb-4 leading-relaxed">Logística de carga crítica configurada y aprobada por el departamento técnico.</p>
+<div class="flex items-center gap-3 pt-3 border-t border-gray-100">
+<div class="flex items-center gap-1.5 text-xs font-mono text-primary">
+<span class="material-symbols-outlined text-[14px] text-text-muted">calendar_today</span>
+                                    Oct 20, 2023
+                                </div>
+<div class="flex items-center gap-1.5 text-xs font-mono text-primary">
+<span class="material-symbols-outlined text-[14px] text-text-muted">schedule</span>
+                                    14:30 EST
+                                </div>
+<div class="flex items-center gap-1.5 text-xs font-mono text-primary ml-auto"><span class="material-symbols-outlined text-[14px] text-text-muted">directions_boat</span> Port of Miami &gt; La Guaira</div>
+</div>
+</div>
+</div>
+</div>
+<!-- STEP 2 (Completed) -->
+<div class="relative pb-12 group">
+<!-- Connector Line (Solid for completed) -->
+<div aria-hidden="true" class="absolute top-10 left-[19px] w-[2px] h-full bg-accent -ml-[1px]"></div>
+<div class="flex gap-6 sm:gap-8 relative">
+<!-- Icon Node -->
+<div class="relative flex-shrink-0 z-10">
+<div class="size-10 rounded-full bg-surface border-2 border-accent flex items-center justify-center text-accent shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[20px]">local_shipping</span>
+</div>
+</div>
+<!-- Content Card -->
+<div class="flex-1 opacity-80 hover:opacity-100 transition-opacity">
+<div class="flex flex-col sm:flex-row justify-between sm:items-center gap-1 mb-1">
+<h3 class="font-display font-semibold text-lg text-primary">Orden de Servicio Industrial</h3>
+</div>
+<p class="text-text-muted text-sm mb-2">Logística de carga crítica configurada y aprobada por el departamento técnico.</p>
+<div class="flex items-center gap-3 text-xs font-mono text-text-muted">
+<span>Oct 19, 09:15 EST</span>
+<span>•</span>
+<span>Miami Warehouse</span>
+</div>
+</div>
+</div>
+</div>
+<!-- STEP 3 (Completed) -->
+<div class="relative pb-12 group">
+<!-- Connector Line (Solid for completed) -->
+<div aria-hidden="true" class="absolute top-10 left-[19px] w-[2px] h-full bg-accent -ml-[1px]"></div>
+<div class="flex gap-6 sm:gap-8 relative">
+<!-- Icon Node -->
+<div class="relative flex-shrink-0 z-10">
+<div class="size-10 rounded-full bg-surface border-2 border-accent flex items-center justify-center text-accent shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+</div>
+</div>
+<!-- Content Card -->
+<div class="flex-1 opacity-70 hover:opacity-100 transition-opacity">
+<div class="flex flex-col sm:flex-row justify-between sm:items-center gap-1 mb-1">
+<h3 class="font-display font-semibold text-lg text-primary">Orden de Servicio Industrial</h3>
+</div>
+<p class="text-text-muted text-sm mb-2">Logística de carga crítica configurada y aprobada por el departamento técnico.</p>
+<div class="flex items-center gap-3 text-xs font-mono text-text-muted">
+<span>Oct 18, 16:45 EST</span>
+<span>•</span>
+<span>Miami Warehouse</span>
+</div>
+</div>
+</div>
+</div>
+<!-- STEP 4 (Start) -->
+<div class="relative group">
+<div class="flex gap-6 sm:gap-8 relative">
+<!-- Icon Node -->
+<div class="relative flex-shrink-0 z-10">
+<div class="size-10 rounded-full bg-surface border-2 border-accent flex items-center justify-center text-accent shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+</div>
+</div>
+<!-- Content Card -->
+<div class="flex-1 opacity-60 hover:opacity-100 transition-opacity">
+<div class="flex flex-col sm:flex-row justify-between sm:items-center gap-1 mb-1">
+<h3 class="font-display font-semibold text-lg text-primary">Orden de Servicio Industrial</h3>
+</div>
+<p class="text-text-muted text-sm mb-2">Logística de carga crítica configurada y aprobada por el departamento técnico.</p>
+<div class="flex items-center gap-3 text-xs font-mono text-text-muted">
+<span>Oct 15, 10:20 EST</span>
+<span>•</span>
+<span>User Dashboard</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Future Steps Preview (Bottom) -->
+<div class="mt-8 pt-8 border-t border-gray-200">
+<h4 class="font-display font-bold text-sm text-text-muted uppercase tracking-wider mb-4">Próximos Pasos</h4>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4"><div class="flex items-center gap-3 p-4 border border-dashed border-gray-300 rounded-sm bg-gray-50/50"><div class="size-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-400"><span class="material-symbols-outlined text-[18px]">anchor</span></div><div><p class="font-display font-medium text-text-muted text-sm">Llegada Pto. La Guaira</p><p class="text-[10px] text-gray-400 uppercase">Pendiente Atranque</p></div></div><div class="flex items-center gap-3 p-4 border border-dashed border-gray-300 rounded-sm bg-gray-50/50"><div class="size-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-400"><span class="material-symbols-outlined text-[18px]">gavel</span></div><div><p class="font-display font-medium text-text-muted text-sm">Nacionalización (Aduana)</p><p class="text-[10px] text-gray-400 uppercase">Proceso Legal</p></div></div><div class="flex items-center gap-3 p-4 border border-dashed border-gray-300 rounded-sm bg-gray-50/50"><div class="size-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-400"><span class="material-symbols-outlined text-[18px]">factory</span></div><div><p class="font-display font-medium text-text-muted text-sm">Entrega en Planta</p><p class="text-[10px] text-gray-400 uppercase">Sidor, Puerto Ordaz</p></div></div></div>
+</div>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="border-t border-gray-200 bg-white py-8 mt-auto">
+<div class="max-w-5xl mx-auto px-4 text-center">
+<p class="text-sm text-text-muted">Need help? <a class="text-primary font-medium underline decoration-accent decoration-2 underline-offset-2" href="#">Contact Support</a></p>
+<p class="text-xs text-gray-400 mt-2 font-mono">ID: SESS-29910-X</p>
+</div>
+</footer>
+</body></html>

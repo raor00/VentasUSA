@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ventas Admin - Logistics Control</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0A192F", // Navy Deep
+                        "primary-light": "#112240", // Navy Light
+                        "accent": "#00BFA6", // Teal
+                        "background-light": "#F6F8FA", // Cool Gray
+                        "background-dark": "#101722",
+                        "surface": "#FFFFFF",
+                        "text-main": "#1F2937",
+                        "text-muted": "#6B7280",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["DM Sans", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: {
+                        "sm": "2px",
+                        "DEFAULT": "4px",
+                        "md": "4px",
+                        "lg": "8px",
+                        "xl": "12px",
+                    },
+                    boxShadow: {
+                        "card": "0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06)",
+                        "lift": "0 10px 15px -3px rgba(10, 25, 47, 0.1)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for dense data tables */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8; 
+        }
+    </style>
+</head>
+<body class="bg-background-light text-text-main font-body antialiased min-h-screen overflow-hidden flex">
+<!-- Sidebar Navigation -->
+<aside class="w-64 bg-surface border-r border-gray-200 hidden md:flex flex-col h-screen z-20 shadow-card">
+<!-- Logo Area -->
+<div class="h-16 flex items-center px-6 border-b border-gray-100">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded-sm flex items-center justify-center text-white font-display font-bold text-lg">V</div>
+<span class="font-display font-bold text-lg text-primary tracking-tight">Ventas Admin</span>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 overflow-y-auto py-6 px-3 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-text-muted hover:bg-gray-50 rounded-md group transition-colors" href="#">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary/5 text-primary rounded-md group transition-colors" href="#">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">warehouse</span>
+<span class="text-sm font-medium">Almacén</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-muted hover:bg-gray-50 rounded-md group transition-colors" href="#">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary">local_shipping</span>
+<span class="text-sm font-medium">Envíos</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-muted hover:bg-gray-50 rounded-md group transition-colors" href="#">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary">group</span>
+<span class="text-sm font-medium">Usuarios</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-muted hover:bg-gray-50 rounded-md group transition-colors" href="#">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary">settings</span>
+<span class="text-sm font-medium">Configuración</span>
+</a>
+</nav>
+<!-- User Profile -->
+<div class="p-4 border-t border-gray-100">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-gray-200 bg-cover bg-center" data-alt="Admin user profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD6J_0dz-AWxbvJ14DHGmLYPVI3ZFFw3fhHKA2VDY-9KxFlQ6Ige8F6gCsAw5DGY5g-OdwIt9N6XmDhR9kky8-6dHZ01Afcx6v8K5LL_EkAENPn6UDgpxmeeowCneyQX0V5WCx_UWv5Qew2P5XoOdLHOiMpbAii2EH9e2ciW2tn4oyUBTBI_OG61NIpkQR_WROWjcLCU0qPet1UGNjACms6YVJukxcEcZZfnkXvKFOezW1dVBpO6cDnx-gOHxVPAYiO-8kKOQBoGCug');"></div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-primary">Carlos M.</span>
+<span class="text-[10px] text-text-muted">Jefe de Logística</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+<!-- Top Header -->
+<header class="bg-surface h-16 border-b border-gray-200 flex items-center justify-between px-6 shrink-0 z-10">
+<div class="flex items-center gap-4">
+<h1 class="font-display font-bold text-xl text-primary tracking-tight">Centro de Control de Carga Industrial</h1>
+<div class="h-6 w-px bg-gray-200 mx-2"></div>
+<div class="flex gap-2">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-100 text-xs font-mono font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                        Miami: En línea
+                    </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 text-xs font-mono font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                        Scanner: Activo
+                    </span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="relative">
+<input class="pl-9 pr-4 py-1.5 text-sm bg-background-light border border-gray-200 rounded-md focus:ring-1 focus:ring-primary focus:border-primary w-64 transition-all" placeholder="Buscar tracking, usuario..." type="text"/>
+<span class="material-symbols-outlined absolute left-2.5 top-1.5 text-gray-400 text-[18px]">search</span>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-md hover:bg-gray-100 text-text-muted transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-md hover:bg-gray-100 text-text-muted transition-colors">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</button>
+</div>
+</header>
+<!-- Quick Ingest Bar (Sticky) -->
+<div class="bg-surface border-b border-gray-200 p-4 shadow-sm shrink-0 z-10">
+<div class="flex items-center justify-between mb-2">
+<h2 class="text-xs font-bold uppercase tracking-wider text-text-muted flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">conveyor_belt</span> Ingreso de Manifiesto</h2>
+<div class="text-xs text-text-muted font-mono">Presiona [Enter] para guardar</div>
+</div>
+<div class="flex gap-3 items-end">
+<div class="flex-1 min-w-[200px]">
+<label class="block text-[10px] font-bold text-text-muted mb-1">ID DE MANIFIESTO / BOL</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-gray-400 text-[18px]">barcode_reader</span>
+<input autofocus="" class="w-full pl-9 pr-3 py-2 text-sm font-mono border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Escanea aquí..." type="text"/>
+</div>
+</div>
+<div class="w-24">
+<label class="block text-[10px] font-bold text-text-muted mb-1">CLIENTE (ENTREPRISE)</label>
+<input class="w-full px-3 py-2 text-sm font-mono border border-gray-300 rounded focus:ring-primary focus:border-primary" placeholder="V-1234" type="text"/>
+</div>
+<div class="w-20">
+<label class="block text-[10px] font-bold text-text-muted mb-1">PESO BRUTO (KG)</label>
+<input class="w-full px-3 py-2 text-sm font-mono border border-gray-300 rounded focus:ring-primary focus:border-primary" placeholder="0.0" type="number"/>
+</div>
+<div class="flex gap-1 items-end">
+<div class="w-16">
+<label class="block text-[10px] font-bold text-text-muted mb-1">LARGO</label>
+<input class="w-full px-3 py-2 text-sm font-mono border border-gray-300 rounded focus:ring-primary focus:border-primary" placeholder='L"' type="number"/>
+</div>
+<span class="text-gray-400 pb-2">x</span>
+<div class="w-16">
+<label class="block text-[10px] font-bold text-text-muted mb-1">ANCHO</label>
+<input class="w-full px-3 py-2 text-sm font-mono border border-gray-300 rounded focus:ring-primary focus:border-primary" placeholder='W"' type="number"/>
+</div>
+<span class="text-gray-400 pb-2">x</span>
+<div class="w-16">
+<label class="block text-[10px] font-bold text-text-muted mb-1">ALTO</label>
+<input class="w-full px-3 py-2 text-sm font-mono border border-gray-300 rounded focus:ring-primary focus:border-primary" placeholder='H"' type="number"/>
+</div>
+</div><div class="w-32"><label class="block text-[10px] font-bold text-text-muted mb-1">TIPO DE CARGA</label><select class="w-full px-2 py-2 text-xs border border-gray-300 rounded focus:ring-primary focus:border-primary bg-white"><option>Pallet</option><option>Huacal</option><option>Maquinaria</option><option>Contenedor</option></select></div>
+<button class="bg-primary hover:bg-primary-light text-white px-6 py-2 rounded shadow-sm font-bold text-sm flex items-center gap-2 h-[38px] transition-colors ml-auto">
+<span class="material-symbols-outlined text-[18px]">add_box</span>
+                    Ingresar
+                </button>
+</div>
+</div>
+<!-- Filters & Data Toolbar -->
+<div class="bg-background-light px-6 py-3 flex items-center justify-between shrink-0">
+<div class="flex items-center gap-2">
+<div class="relative">
+<select class="appearance-none bg-white border border-gray-300 text-text-main py-1.5 pl-3 pr-8 rounded text-sm focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer shadow-sm">
+<option>Todos los estados</option>
+<option>En Almacén</option>
+<option>En Tránsito</option>
+<option>Entregado</option>
+<option>Retenido</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
+<span class="material-symbols-outlined text-[16px]">expand_more</span>
+</div>
+</div>
+<div class="h-6 w-px bg-gray-300 mx-2"></div>
+<label class="flex items-center gap-2 cursor-pointer group select-none">
+<input class="rounded border-gray-300 text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="text-sm font-medium text-text-muted group-hover:text-primary transition-colors">Modo Consolidación</span>
+</label>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs text-text-muted font-mono"><span class="font-bold text-text-main">142</span> Paquetes</span>
+<button class="p-1.5 text-text-muted hover:text-primary hover:bg-white rounded border border-transparent hover:border-gray-200 transition-all">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+</button>
+<button class="p-1.5 text-text-muted hover:text-primary hover:bg-white rounded border border-transparent hover:border-gray-200 transition-all">
+<span class="material-symbols-outlined text-[20px]">print</span>
+</button>
+<button class="p-1.5 text-text-muted hover:text-primary hover:bg-white rounded border border-transparent hover:border-gray-200 transition-all">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</div>
+</div>
+<!-- High Density Data Grid -->
+<div class="flex-1 overflow-auto bg-white border-t border-gray-200">
+<table class="w-full text-left border-collapse">
+<thead class="bg-gray-50 sticky top-0 z-0 shadow-sm">
+<tr><th class="px-4 py-3 border-b border-gray-200 w-10"><input class="rounded border-gray-300 text-primary focus:ring-primary w-4 h-4" type="checkbox"/></th><th class="px-4 py-3 border-b border-gray-200 text-xs font-bold text-text-muted uppercase tracking-wider">ID MANIFIESTO</th><th class="px-4 py-3 border-b border-gray-200 text-xs font-bold text-text-muted uppercase tracking-wider">EQUIPO / CONTENIDO</th><th class="px-4 py-3 border-b border-gray-200 text-xs font-bold text-text-muted uppercase tracking-wider">CLIENTE CORPORATIVO</th><th class="px-4 py-3 border-b border-gray-200 text-xs font-bold text-text-muted uppercase tracking-wider">FECHA RECEPCIÓN</th><th class="px-4 py-3 border-b border-gray-200 text-xs font-bold text-text-muted uppercase tracking-wider text-right">PESO (KG)</th><th class="px-4 py-3 border-b border-gray-200 text-xs font-bold text-text-muted uppercase tracking-wider text-right">VOL (M³)</th><th class="px-4 py-3 border-b border-gray-200 text-xs font-bold text-text-muted uppercase tracking-wider text-center">ESTADO</th><th class="px-4 py-3 border-b border-gray-200 text-xs font-bold text-text-muted uppercase tracking-wider text-right">ACCIONES</th></tr>
+</thead>
+<tbody class="divide-y divide-gray-100"><!-- Row 1: Motor Caterpillar --> <tr class="group hover:bg-blue-50/50 transition-colors h-10"> <td class="px-4 py-2 w-10"><input class="rounded border-gray-300 text-primary focus:ring-primary w-4 h-4" type="checkbox"/></td> <td class="px-4 py-2"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-gray-400">precision_manufacturing</span><span class="font-mono text-sm text-primary font-medium">MAN-CAT-9022</span></div></td> <td class="px-4 py-2 text-sm text-text-main font-bold">Motor Caterpillar C15</td> <td class="px-4 py-2 text-sm text-text-main"><span class="font-mono text-xs text-text-muted mr-1">ENT-99</span> Mining Solutions SA</td> <td class="px-4 py-2 font-mono text-xs text-text-muted">25 Oct, 08:30 AM</td> <td class="px-4 py-2 font-mono text-sm text-text-main text-right">1,450.0</td> <td class="px-4 py-2 font-mono text-sm text-text-muted text-right">4.2</td> <td class="px-4 py-2 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-red-600 text-white border border-red-700">AOG</span></td> <td class="px-4 py-2 text-right"><div class="flex items-center justify-end gap-2"><button class="text-gray-400 hover:text-primary"><span class="material-symbols-outlined text-[18px]">visibility</span></button></div></td> </tr> <!-- Row 2: Generador --> <tr class="group hover:bg-blue-50/50 transition-colors h-10"> <td class="px-4 py-2 w-10"><input class="rounded border-gray-300 text-primary focus:ring-primary w-4 h-4" type="checkbox"/></td> <td class="px-4 py-2"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-gray-400">factory</span><span class="font-mono text-sm text-primary font-medium">MAN-GEN-500K</span></div></td> <td class="px-4 py-2 text-sm text-text-main font-bold">Generador Eléctrico 500kVA</td> <td class="px-4 py-2 text-sm text-text-main"><span class="font-mono text-xs text-text-muted mr-1">ENT-12</span> Global Energy Corp</td> <td class="px-4 py-2 font-mono text-xs text-text-muted">25 Oct, 07:15 AM</td> <td class="px-4 py-2 font-mono text-sm text-text-main text-right">2,100.5</td> <td class="px-4 py-2 font-mono text-sm text-text-muted text-right">8.5</td> <td class="px-4 py-2 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500 text-white">CARGA CRÍTICA</span></td> <td class="px-4 py-2 text-right"><div class="flex items-center justify-end gap-2"><button class="text-gray-400 hover:text-primary"><span class="material-symbols-outlined text-[18px]">visibility</span></button></div></td> </tr> <!-- Row 3: Pallet Repuestos --> <tr class="group hover:bg-blue-50/50 transition-colors h-10"> <td class="px-4 py-2 w-10"><input class="rounded border-gray-300 text-primary focus:ring-primary w-4 h-4" type="checkbox"/></td> <td class="px-4 py-2"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-gray-400">widgets</span><span class="font-mono text-sm text-primary font-medium">MAN-HYD-P4</span></div></td> <td class="px-4 py-2 text-sm text-text-main font-bold">Repuestos Hidráulicos (Pallet 4)</td> <td class="px-4 py-2 text-sm text-text-main"><span class="font-mono text-xs text-text-muted mr-1">ENT-44</span> Hydro-Systems LLC</td> <td class="px-4 py-2 font-mono text-xs text-text-muted">24 Oct, 04:30 PM</td> <td class="px-4 py-2 font-mono text-sm text-text-main text-right">420.0</td> <td class="px-4 py-2 font-mono text-sm text-text-muted text-right">1.2</td> <td class="px-4 py-2 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800 border border-blue-200 uppercase">Procesado</span></td> <td class="px-4 py-2 text-right"><div class="flex items-center justify-end gap-2"><button class="text-gray-400 hover:text-primary"><span class="material-symbols-outlined text-[18px]">visibility</span></button></div></td> </tr></tbody>
+</table>
+</div>
+<!-- Floating Action Bar (Consolidation) -->
+<div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-primary text-white rounded-lg shadow-lift py-3 px-6 flex items-center gap-6 animate-fade-in-up z-30">
+<div class="flex items-center gap-3 border-r border-gray-600 pr-6">
+<span class="bg-accent text-primary font-bold rounded-full w-6 h-6 flex items-center justify-center text-xs">2</span>
+<span class="font-medium text-sm">Paquetes seleccionados</span>
+</div>
+<div class="flex items-center gap-1 text-gray-300 text-xs font-mono mr-2"><span>Masa Total:</span> <span class="text-white font-bold">3,970.5 kg</span></div>
+<div class="flex items-center gap-2">
+<button class="hover:bg-white/10 px-3 py-1.5 rounded transition-colors text-sm font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">print</span>
+                    Etiquetas
+                </button>
+<button class="bg-accent hover:bg-emerald-400 text-primary px-4 py-1.5 rounded shadow-sm transition-colors text-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">deployed_code</span>
+                    Consolidar
+                </button>
+<button class="hover:bg-white/10 p-1.5 rounded transition-colors text-gray-400 hover:text-white">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+</main>
+</body></html>

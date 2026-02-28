@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ventas en USA - Industrial &amp; Heavy Cargo</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;family=DM+Sans:opsz,wght@9..40,400;500;700&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0A192F", // Navy Deep
+                        "secondary": "#112240", // Navy Light
+                        "accent": "#00BFA6", // Teal
+                        "background-light": "#F6F8FA", // Cool Gray
+                        "background-dark": "#101722",
+                        "surface": "#FFFFFF",
+                        "muted": "#6B7280"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["DM Sans", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem", // 2px
+                        "md": "0.25rem", // 4px
+                        "lg": "0.5rem",
+                        "xl": "0.75rem"
+                    },
+                    boxShadow: {
+                        "lift": "0 10px 15px -3px rgba(10, 25, 47, 0.1), 0 4px 6px -2px rgba(10, 25, 47, 0.05)"
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .ticker-wrap {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .ticker {
+            display: inline-block;
+            animation: scroll 30s linear infinite;
+        }.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-body text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
+<nav class="sticky top-0 z-50 w-full bg-surface/90 dark:bg-secondary/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<div class="flex items-center gap-2">
+<div class="bg-primary text-white p-1 rounded-md">
+<span class="material-symbols-outlined text-2xl">factory</span>
+</div>
+<span class="font-display font-bold text-xl tracking-tight text-primary dark:text-white">VENTAS EN USA</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors" href="#">Logística Industrial</a>
+<a class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors" href="#">Carga Pesada</a>
+<a class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors" href="#">Rastreo B2B</a>
+</div>
+<div class="flex items-center gap-3">
+<button class="hidden sm:flex items-center justify-center px-4 h-9 text-sm font-bold text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition-colors">
+                        Acceso Corporativo
+                    </button>
+<button class="flex items-center justify-center px-5 h-9 bg-primary hover:bg-secondary text-white text-sm font-bold rounded shadow-sm transition-colors tracking-wide">
+                        Solicitar Cuenta
+                    </button>
+</div>
+</div>
+</div>
+</nav>
+<main class="relative flex flex-col min-h-screen">
+<section class="relative pt-12 pb-24 lg:pt-20 lg:pb-32 overflow-hidden">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+<div class="flex flex-col gap-6 max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 w-fit">
+<span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+<span class="text-xs font-bold text-accent tracking-wide uppercase">Carga Crítica &amp; Maquinaria</span>
+</div>
+<h1 class="font-display text-5xl lg:text-6xl font-bold leading-[1.1] text-primary dark:text-white tracking-tight">
+                            Logística Industrial<br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">y de Alto Valor a tu medida.</span>
+</h1>
+<p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-lg">
+                            Importación especializada de maquinaria pesada, repuestos industriales, equipos bancarios y tecnología de alta densidad. Sin límites de dimensión ni valor.
+                        </p>
+<div class="flex flex-col sm:flex-row gap-4 mt-2">
+<button class="flex items-center justify-center px-8 h-12 bg-accent hover:bg-teal-500 text-white text-base font-bold rounded shadow-lg shadow-accent/20 transition-all hover:-translate-y-0.5">
+                                Cotizar Carga Pesada
+                            </button>
+<button class="flex items-center justify-center px-8 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-primary dark:text-white text-base font-bold rounded hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors group">
+<span class="material-symbols-outlined mr-2 text-xl group-hover:translate-x-1 transition-transform">forklift</span>
+                                Servicios Corporativos
+                            </button>
+</div>
+<div class="flex items-center gap-6 mt-4 text-sm font-medium text-slate-500 dark:text-slate-400">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-accent text-lg">verified</span>
+<span>Certificación ISO</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-accent text-lg">shield</span>
+<span>Seguro de Carga 100%</span>
+</div>
+</div>
+</div>
+<div class="relative lg:h-[600px] flex items-center justify-center">
+<div class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-900 rounded-full blur-3xl opacity-60"></div>
+<div class="relative w-full aspect-square max-w-lg mx-auto">
+<img alt="Large cargo plane being loaded with heavy industrial machinery and equipment at dusk" class="w-full h-full object-cover rounded-lg shadow-2xl rotate-3 transform hover:rotate-0 transition-all duration-700 grayscale-[0.2]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb1HihySoq4hEsRy7nJWIRxJAdbkUrAO9LOqZxYFEcDT-IdXW-bMwCyqKuNeMFqlmnn4HabC-PNtfDP2FgSy6nuAb1tCXPPgK3WG1ZWbpCWPAkkEAHti6M23fQUTv4o0YgYcAw4jXADaM3Vx1MN9JKEZ_7g7Mt_RYSXpcXGZ6a8mEqkKKkKj9GsBqbLi6IxK8vuzXHRiGFCxbsEJHcwZL_35Ads6Y5e1HFm3bD1MzNbfPwevCltGHAsbg3M9o7RIHkJLvYTw9P2TEh"/>
+<div class="absolute -bottom-8 -left-4 sm:-left-8 right-4 sm:right-8 bg-surface dark:bg-secondary p-6 rounded-md shadow-lift border border-gray-100 dark:border-gray-700 backdrop-blur-sm z-20 hover:-translate-y-1 transition-transform duration-300">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-display font-bold text-lg text-primary dark:text-white">Rastreo de Manifiesto</h3>
+<span class="bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 text-xs font-bold px-2 py-1 rounded uppercase tracking-wider">Operativo</span>
+</div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400">barcode_scanner</span>
+</div>
+<input class="block w-full pl-10 pr-24 py-3 bg-background-light dark:bg-background-dark border border-gray-200 dark:border-gray-600 rounded text-slate-900 dark:text-white font-mono text-sm placeholder:text-slate-400 focus:ring-2 focus:ring-primary focus:border-primary transition-shadow" placeholder="BOL-9821-IND..." type="text"/>
+<button class="absolute inset-y-1 right-1 px-4 bg-primary text-white text-sm font-bold rounded hover:bg-secondary transition-colors">
+                                        Localizar
+                                    </button>
+</div>
+<p class="mt-2 text-xs text-slate-500 font-mono">Ingrese Bill of Lading o Nro. de Guía Industrial.</p>
+</div>
+<div class="absolute -top-6 -right-6 w-24 h-24 bg-dots-pattern opacity-20 hidden lg:block"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="w-full bg-primary text-white py-3 overflow-hidden border-y border-white/10 relative z-20">
+<div class="ticker-wrap">
+<div class="ticker">
+<div class="inline-flex items-center gap-12 font-mono text-sm tracking-wide">
+<span class="flex items-center gap-2"><span class="text-accent">🏭</span> Maquinaria Pesada en Tránsito</span>
+<span class="w-1 h-1 bg-white/30 rounded-full"></span>
+<span class="flex items-center gap-2"><span class="text-accent">✈️</span> Carga Aérea Consolidada: Salida 18:00</span>
+<span class="w-1 h-1 bg-white/30 rounded-full"></span>
+<span class="flex items-center gap-2"><span class="text-accent">⚓️</span> Contenedores Flat Rack Disponibles</span>
+<span class="w-1 h-1 bg-white/30 rounded-full"></span>
+<span class="flex items-center gap-2"><span class="text-accent">⚙️</span> Repuestos Críticos: Prioridad Alta</span>
+<span class="w-1 h-1 bg-white/30 rounded-full"></span>
+<span class="flex items-center gap-2"><span class="text-accent">🏭</span> Maquinaria Pesada en Tránsito</span>
+<span class="w-1 h-1 bg-white/30 rounded-full"></span>
+<span class="flex items-center gap-2"><span class="text-accent">✈️</span> Carga Aérea Consolidada: Salida 18:00</span>
+<span class="w-1 h-1 bg-white/30 rounded-full"></span>
+<span class="flex items-center gap-2"><span class="text-accent">⚓️</span> Contenedores Flat Rack Disponibles</span>
+</div>
+</div>
+</div>
+</div>
+<section class="py-24 bg-white dark:bg-background-dark relative">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<h2 class="font-display text-3xl md:text-4xl font-bold text-primary dark:text-white mb-4">Proceso Logístico Integral</h2>
+<p class="text-slate-600 dark:text-slate-400 text-lg">Gestión de cadena de suministro para industrias exigentes. Control total desde origen hasta planta.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="group relative bg-background-light dark:bg-secondary p-8 rounded-md border border-transparent hover:border-gray-200 dark:hover:border-gray-700 hover:shadow-lg transition-all duration-300">
+<div class="absolute top-0 right-0 p-4 opacity-10 font-display text-6xl font-bold text-primary dark:text-white group-hover:opacity-20 transition-opacity">01</div>
+<div class="w-14 h-14 bg-primary text-white rounded flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">inventory_2</span>
+</div>
+<h3 class="font-display text-xl font-bold text-primary dark:text-white mb-3">Identificación de Carga</h3>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Registro detallado de equipos y evaluación de requerimientos técnicos de transporte (peso, dimensiones, fragilidad).
+                        </p>
+</div>
+<div class="group relative bg-background-light dark:bg-secondary p-8 rounded-md border border-transparent hover:border-gray-200 dark:hover:border-gray-700 hover:shadow-lg transition-all duration-300">
+<div class="absolute top-0 right-0 p-4 opacity-10 font-display text-6xl font-bold text-primary dark:text-white group-hover:opacity-20 transition-opacity">02</div>
+<div class="w-14 h-14 bg-white text-primary border border-primary/20 rounded flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">pallet</span>
+</div>
+<h3 class="font-display text-xl font-bold text-primary dark:text-white mb-3">Consolidación y Resguardo</h3>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Almacenamiento especializado en Miami con manejo de carga frágil, peligrosa y pesada. Embalaje industrial certificado.
+                        </p>
+</div>
+<div class="group relative bg-background-light dark:bg-secondary p-8 rounded-md border border-transparent hover:border-gray-200 dark:hover:border-gray-700 hover:shadow-lg transition-all duration-300">
+<div class="absolute top-0 right-0 p-4 opacity-10 font-display text-6xl font-bold text-primary dark:text-white group-hover:opacity-20 transition-opacity">03</div>
+<div class="w-14 h-14 bg-accent text-white rounded flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">local_shipping</span>
+</div>
+<h3 class="font-display text-xl font-bold text-primary dark:text-white mb-3">Despacho y Entrega Crítica</h3>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Gestión aduanal experta, nacionalización y entrega directa en planta industrial o sitio de obra con grúas si es requerido.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<section class="relative py-24 bg-primary overflow-hidden">
+<div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(to right, #ffffff 1px, transparent 1px); background-size: 40px 40px;"></div>
+<div class="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-secondary/50 to-transparent pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="flex flex-col lg:flex-row items-center gap-12">
+<div class="lg:w-1/2">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-white/10 border border-white/20 mb-6 backdrop-blur-sm">
+<span class="material-symbols-outlined text-accent text-sm">emergency</span>
+<span class="font-mono text-xs text-accent font-bold tracking-wider uppercase">SERVICIO CRÍTICO</span>
+</div>
+<h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-6">
+                        Urgencias en<br/>
+<span class="text-accent">menos de 72 horas.</span>
+</h2>
+<p class="text-blue-100 text-lg leading-relaxed mb-8 max-w-lg">
+                        Para cuando la línea de producción no puede detenerse. Importa repuestos críticos, maquinaria pesada o equipos industriales con prioridad máxima de embarque y despacho aduanal preferencial.
+                    </p>
+<ul class="space-y-4 mb-8">
+<li class="flex items-start gap-3">
+<div class="bg-accent/20 p-1 rounded">
+<span class="material-symbols-outlined text-accent text-xl">settings_alert</span>
+</div>
+<div>
+<h4 class="text-white font-bold font-display">Repuestos Críticos</h4>
+<p class="text-sm text-gray-400">Solución inmediata para líneas de producción detenidas.</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<div class="bg-accent/20 p-1 rounded">
+<span class="material-symbols-outlined text-accent text-xl">precision_manufacturing</span>
+</div>
+<div>
+<h4 class="text-white font-bold font-display">Maquinaria Paralizada</h4>
+<p class="text-sm text-gray-400">Logística de emergencia para reactivación operativa.</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<div class="bg-accent/20 p-1 rounded">
+<span class="material-symbols-outlined text-accent text-xl">verified_user</span>
+</div>
+<div>
+<h4 class="text-white font-bold font-display">Garantía Operativa</h4>
+<p class="text-sm text-gray-400">Prioridad absoluta sobre carga comercial estándar.</p>
+</div>
+</li>
+</ul>
+<button class="flex items-center gap-2 px-6 h-11 border border-accent text-accent hover:bg-accent hover:text-white font-bold rounded transition-colors text-sm uppercase tracking-wide">
+                        Solicitar Envío Urgente
+                        <span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+<div class="lg:w-1/2 w-full">
+<div class="relative bg-secondary/80 backdrop-blur-md border border-white/10 rounded-lg p-1 overflow-hidden shadow-2xl">
+<div class="bg-black/30 px-4 py-2 flex justify-between items-center border-b border-white/5">
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+<div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+</div>
+<span class="font-mono text-xs text-gray-500">INDUSTRIAL_LOGISTICS_DASHBOARD</span>
+</div>
+<div class="p-6 relative">
+<div class="flex justify-between items-start mb-8">
+<div>
+<div class="text-xs text-gray-400 font-mono mb-1">PART NUMBER</div>
+<div class="text-white font-mono text-xl tracking-wider">CAT-3406-E</div>
+</div>
+<div class="text-right">
+<div class="text-xs text-gray-400 font-mono mb-1">STATUS</div>
+<div class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-red-500/20 border border-red-500/30 text-red-400 text-xs font-bold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+AOG / Crítico
+                                </div>
+</div>
+</div>
+<div class="space-y-6">
+<div class="flex justify-between text-xs text-gray-400 font-mono">
+<span>MIAMI HUB</span>
+<span>PLANTA VALENCIA</span>
+</div>
+<div class="h-2 bg-white/10 rounded-full overflow-hidden relative">
+<div class="absolute left-0 top-0 h-full w-3/4 bg-accent shadow-[0_0_15px_rgba(0,191,166,0.5)]"></div>
+</div>
+<div class="grid grid-cols-3 gap-4 mt-6">
+<div class="bg-black/20 p-3 rounded border border-white/5">
+<div class="text-[10px] text-gray-500 uppercase mb-1">ETA Planta</div>
+<div class="text-white font-display font-bold text-lg">14:00 HRS</div>
+</div>
+<div class="bg-black/20 p-3 rounded border border-white/5">
+<div class="text-[10px] text-gray-500 uppercase mb-1">Peso Neto</div>
+<div class="text-white font-display font-bold text-lg">850 KG</div>
+</div>
+<div class="bg-black/20 p-3 rounded border border-white/5">
+<div class="text-[10px] text-gray-500 uppercase mb-1">Tipo</div>
+<div class="text-red-400 font-display font-bold text-lg">URGENT</div>
+</div>
+</div>
+</div>
+<div class="absolute top-1/2 right-4 -translate-y-1/2 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-9xl">conveyor_belt</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-background-light dark:bg-gray-800 relative overflow-hidden">
+<div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#0A192F 1px, transparent 1px); background-size: 32px 32px;"></div>
+<div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+<h2 class="font-display text-3xl md:text-5xl font-bold text-primary dark:text-white mb-6">Soluciones para su Industria</h2>
+<p class="text-slate-600 dark:text-slate-300 text-lg mb-10 max-w-2xl mx-auto">Solicite una cotización técnica detallada para su proyecto de importación. Transparencia en costos de flete, seguro y nacionalización.</p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<button class="flex items-center justify-center px-8 h-12 bg-accent hover:bg-teal-400 text-white text-base font-bold rounded shadow-lg shadow-black/10 transition-colors">
+                        Cotizar Proyecto
+                    </button>
+<button class="flex items-center justify-center px-8 h-12 bg-transparent border border-primary/20 dark:border-white/30 text-primary dark:text-white text-base font-bold rounded hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+                        Contactar Ventas B2B
+                    </button>
+</div>
+</div>
+</section>
+<footer class="bg-secondary text-white pt-16 pb-8 border-t border-white/5">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+<div class="col-span-1 lg:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-accent text-3xl">factory</span>
+<span class="font-display font-bold text-xl tracking-tight">VENTAS EN USA</span>
+</div>
+<p class="text-gray-400 text-sm leading-relaxed mb-6">
+                            Operador logístico especializado en carga industrial, maquinaria pesada y proyectos de infraestructura. Conectamos proveedores globales con la industria venezolana.
+                        </p>
+<div class="flex gap-4">
+<a class="w-8 h-8 rounded bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-colors" href="#">
+<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+</a>
+<a class="w-8 h-8 rounded bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-colors" href="#">
+<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.072 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.85-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-display font-bold text-lg mb-6">Compañía</h4>
+<ul class="space-y-3 text-sm text-gray-400">
+<li><a class="hover:text-white transition-colors" href="#">Servicios Corporativos</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Alianzas Logísticas</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Certificaciones</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Blog Industrial</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-display font-bold text-lg mb-6">Servicios</h4>
+<ul class="space-y-3 text-sm text-gray-400">
+<li><a class="hover:text-white transition-colors" href="#">Carga Proyecto</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Repuestos Críticos</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Maquinaria Pesada</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Agenciamiento Aduanal</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-display font-bold text-lg mb-6">Contacto B2B</h4>
+<ul class="space-y-4 text-sm text-gray-400">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-accent text-lg">location_on</span>
+<span>8400 NW 25th St, Suite 100<br/>Doral, FL 33122</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-accent text-lg">call</span>
+<span>+1 (305) 555-0123</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-accent text-lg">mail</span>
+<span>corporate@ventasenusa.com</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+<p>© 2023 Ventas en USA LLC. Todos los derechos reservados.</p>
+<div class="flex gap-6">
+<a class="hover:text-white transition-colors" href="#">Privacidad</a>
+<a class="hover:text-white transition-colors" href="#">Términos de Carga</a>
+<a class="hover:text-white transition-colors" href="#">Mapa del sitio</a>
+</div>
+</div>
+</div>
+</footer>
+</main>
+</body></html>
