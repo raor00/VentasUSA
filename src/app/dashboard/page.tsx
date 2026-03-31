@@ -2,74 +2,117 @@
 
 import Sidebar from "@/components/Sidebar";
 import { useStore } from "@/context/StoreContext";
+import WarehouseManagement from "@/components/WarehouseManagement";
+import { useState } from "react";
 
 export default function UserDashboard() {
     const { user, shipments } = useStore();
+    const inMiami = shipments.filter((s) => s.status === "en_miami").length;
+    const inTransit = shipments.filter((s) => s.status === "en_transito").length;
+    const readyPickup = shipments.filter((s) => s.status === "por_retirar").length;
+    const [showWarehouse, setShowWarehouse] = useState(false);
 
     return (
         <div className="flex h-screen w-full bg-background-light">
             <Sidebar variant="user" />
 
             <main className="flex-1 flex flex-col h-full overflow-hidden relative">
-                {/* Scrollable Content */}
                 <div className="flex-1 overflow-y-auto p-4 md:p-8 lg:px-12 pb-24">
-                    {/* Top Section: Welcome & Actions */}
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
                         <div>
                             <h2 className="text-3xl md:text-4xl font-display font-bold text-primary mb-2">Hola, {user.name}</h2>
-                            <p className="text-slate-500">Gestión de activos industriales y logística pesada.</p>
+                            <p className="text-slate-500">Panel operativo de aterrizaje, compuerta de carga y retiro con montacarga.</p>
                         </div>
-                        <button className="group flex items-center justify-center gap-2 bg-accent hover:bg-teal-500 text-white font-bold py-3 px-6 rounded shadow-lg shadow-teal-500/20 transition-all hover:-translate-y-0.5 active:translate-y-0">
-                            <span className="material-symbols-outlined text-[20px]">shopping_cart</span>
-                            <span>Cotizar Carga Pesada</span>
+                        <button onClick={() => setShowWarehouse(!showWarehouse)} className="group flex items-center justify-center gap-2 bg-accent hover:bg-teal-500 text-white font-bold py-3 px-6 rounded shadow-lg shadow-teal-500/20 transition-all hover:-translate-y-0.5 active:translate-y-0">
+                            <span className="material-symbols-outlined text-[20px]">control_camera</span>
+                            <span>{showWarehouse ? "Ocultar Almacén" : "Activar Monitoreo"}</span>
                         </button>
                     </div>
 
-                    {/* Dashboard Grid */}
+                    {showWarehouse && <WarehouseManagement />}
+
+                    <section className="mb-8 rounded-2xl border border-primary/10 bg-linear-to-r from-primary via-secondary to-[#14304d] p-6 text-white shadow-lift">
+                        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+                            <div>
+                                <p className="text-xs uppercase tracking-[0.2em] text-teal-200 mb-2 font-mono">Operacion en vivo</p>
+                                <h3 className="font-display text-2xl md:text-3xl font-bold mb-2">Vuelo VU-CARGO-019 en proceso de descarga</h3>
+                                <p className="text-blue-100/80 max-w-2xl">Aterrizaje completado, compuerta trasera abierta y montacarga realizando extraccion de mercancia critica.</p>
+                            </div>
+                            <div className="grid grid-cols-3 gap-3 min-w-[280px]">
+                                <div className="rounded-xl border border-white/15 bg-white/8 p-3 text-center">
+                                    <p className="text-[10px] uppercase text-blue-200/80">Pista</p>
+                                    <p className="font-display font-bold text-lg">OK</p>
+                                </div>
+                                <div className="rounded-xl border border-white/15 bg-white/8 p-3 text-center">
+                                    <p className="text-[10px] uppercase text-blue-200/80">Compuerta</p>
+                                    <p className="font-display font-bold text-lg text-teal-300">Abierta</p>
+                                </div>
+                                <div className="rounded-xl border border-white/15 bg-white/8 p-3 text-center">
+                                    <p className="text-[10px] uppercase text-blue-200/80">Montacarga</p>
+                                    <p className="font-display font-bold text-lg">Activo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-                        {/* Left Column: Status Stats (2/3 width) */}
                         <div className="lg:col-span-2 space-y-6">
-                            {/* Status Cards Container */}
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                {/* In Miami Card */}
                                 <div className="bg-white p-5 rounded border border-slate-100 shadow-card hover:shadow-lift transition-shadow group cursor-pointer relative overflow-hidden">
                                     <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity text-blue-600">
                                         <span className="material-symbols-outlined text-[64px]">warehouse</span>
                                     </div>
                                     <div className="flex flex-col relative z-10">
                                         <span className="text-slate-500 font-medium text-sm mb-1">En Miami</span>
-                                        <span className="font-display font-bold text-[42px] leading-none text-blue-600">5</span>
+                                        <span className="font-display font-bold text-[42px] leading-none text-blue-600">{inMiami}</span>
                                         <span className="text-xs text-blue-600/80 mt-2 font-medium">Manifiestos Procesados</span>
                                     </div>
                                 </div>
-                                {/* In Transit Card */}
                                 <div className="bg-white p-5 rounded border border-slate-100 shadow-card hover:shadow-lift transition-shadow group cursor-pointer relative overflow-hidden">
                                     <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity text-amber-500">
                                         <span className="material-symbols-outlined text-[64px]">flight_takeoff</span>
                                     </div>
                                     <div className="flex flex-col relative z-10">
                                         <span className="text-slate-500 font-medium text-sm mb-1">En Tránsito</span>
-                                        <span className="font-display font-bold text-[42px] leading-none text-amber-500">2</span>
+                                        <span className="font-display font-bold text-[42px] leading-none text-amber-500">{inTransit}</span>
                                         <span className="text-xs text-amber-600/80 mt-2 font-medium">Llegada est: Jueves</span>
                                     </div>
                                 </div>
-                                {/* Ready for Pickup Card */}
                                 <div className="bg-white p-5 rounded border border-slate-100 shadow-card hover:shadow-lift transition-shadow group cursor-pointer relative overflow-hidden ring-1 ring-accent/20">
                                     <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity text-accent">
-                                        <span className="material-symbols-outlined text-[64px]">local_shipping</span>
+                                        <span className="material-symbols-outlined text-[64px]">forklift</span>
                                     </div>
                                     <div className="flex flex-col relative z-10">
                                         <div className="flex items-center gap-2 mb-1">
                                             <span className="text-slate-500 font-medium text-sm">Por Retirar</span>
                                             <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
                                         </div>
-                                        <span className="font-display font-bold text-[42px] leading-none text-accent">1</span>
-                                        <span className="text-xs text-teal-600/80 mt-2 font-medium">Disponible en tienda</span>
+                                        <span className="font-display font-bold text-[42px] leading-none text-accent">{readyPickup}</span>
+                                        <span className="text-xs text-teal-600/80 mt-2 font-medium">Lista para montacarga</span>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Recent Shipments Table */}
+                            <div className="bg-white rounded border border-slate-100 shadow-card p-5">
+                                <h3 className="font-display font-bold text-lg text-primary mb-4">Secuencia Operativa</h3>
+                                <div className="grid sm:grid-cols-3 gap-3">
+                                    {[
+                                        { icon: "flight_land", title: "Aterrizaje", desc: "Aeronave en plataforma" },
+                                        { icon: "garage_door", title: "Compuerta", desc: "Rampa de carga abierta" },
+                                        { icon: "forklift", title: "Extraccion", desc: "Mercancia en retiro" },
+                                    ].map((step, index) => (
+                                        <div key={step.title} className="rounded-xl border border-slate-200 p-4 bg-slate-50/70">
+                                            <div className="flex items-center justify-between mb-2">
+                                                <span className="material-symbols-outlined text-accent">{step.icon}</span>
+                                                <span className="text-xs font-mono text-slate-400">0{index + 1}</span>
+                                            </div>
+                                            <p className="font-semibold text-primary">{step.title}</p>
+                                            <p className="text-sm text-slate-500">{step.desc}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
                             <div className="bg-white rounded border border-slate-100 shadow-card overflow-hidden">
                                 <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
                                     <h3 className="font-display font-bold text-lg text-primary">Cargas Recientes</h3>
@@ -113,11 +156,9 @@ export default function UserDashboard() {
                             </div>
                         </div>
 
-                        {/* Right Column: Locker ID (1/3 width) */}
                         <div className="lg:col-span-1 space-y-6">
-                            {/* Locker ID Card */}
                             <div className="relative w-full rounded-xl overflow-hidden shadow-lift group hover:-translate-y-1 transition-transform duration-300">
-                                <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-accent z-0"></div>
+                                <div className="absolute inset-0 bg-linear-to-br from-primary via-secondary to-accent z-0"></div>
                                 <div className="absolute inset-0 opacity-10 z-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
                                 <div className="relative z-10 p-6 flex flex-col h-full justify-between min-h-[220px]">
                                     <div className="flex justify-between items-start">
@@ -145,21 +186,19 @@ export default function UserDashboard() {
                                 </div>
                             </div>
 
-                            {/* Tip Pro Card */}
-                            <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded p-6 shadow-card text-white relative overflow-hidden">
+                            <div className="bg-linear-to-br from-slate-900 to-slate-800 rounded p-6 shadow-card text-white relative overflow-hidden">
                                 <div className="absolute -right-6 -bottom-6 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
                                 <div className="relative z-10">
                                     <div className="flex items-center gap-2 mb-3 text-accent">
-                                        <span className="material-symbols-outlined text-[20px]">rocket_launch</span>
-                                        <span className="text-xs font-bold uppercase tracking-wider">Tip Pro</span>
+                                        <span className="material-symbols-outlined text-[20px]">travel_explore</span>
+                                        <span className="text-xs font-bold uppercase tracking-wider">Estado Coordinado</span>
                                     </div>
-                                    <h4 className="font-display font-bold text-lg mb-2">Aduana Industrial & Maquinaria</h4>
-                                    <p className="text-slate-400 text-sm leading-relaxed mb-4">Servicio especializado en Heavy Machinery Handling. Gestión de permisos SADA y nacionalización de equipos críticos.</p>
-                                    <a className="text-sm font-medium text-white underline decoration-accent underline-offset-4 hover:text-accent transition-colors" href="#">Servicio Express para Repuestos Críticos →</a>
+                                    <h4 className="font-display font-bold text-lg mb-2">Compuerta y Montacarga Sincronizados</h4>
+                                    <p className="text-slate-400 text-sm leading-relaxed mb-4">La secuencia visual del panel ahora refleja la operación real de descarga en pista para evitar ambiguedades.</p>
+                                    <a className="text-sm font-medium text-white underline decoration-accent underline-offset-4 hover:text-accent transition-colors" href="#">Ver checklist de descarga →</a>
                                 </div>
                             </div>
 
-                            {/* Warehouse Status */}
                             <div className="bg-white rounded border border-slate-100 p-5 shadow-card">
                                 <h4 className="font-display font-bold text-slate-800 mb-4 text-sm uppercase tracking-wide">Estatus de Almacén</h4>
                                 <div className="space-y-4">

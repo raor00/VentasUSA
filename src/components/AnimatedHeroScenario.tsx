@@ -15,6 +15,10 @@ export default function AnimatedHeroScenario() {
     const containerRef = useRef<HTMLDivElement>(null);
 
     useLayoutEffect(() => {
+        const prefersReducedMotion =
+            typeof window !== "undefined" &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
         const ctx = gsap.context(() => {
 
             // ── INITIAL STATES ──────────────────────────────────────────
@@ -29,8 +33,8 @@ export default function AnimatedHeroScenario() {
             // Cargo items — NO SVG transform attribute used.
             // GSAP owns position entirely (absolute coords within plane-asm).
             // c1 = crate (repuestos), c2 = machinery
-            gsap.set(".c1", { x: 686, y: 224, opacity: 1 });
-            gsap.set(".c2", { x: 645, y: 218, opacity: 1 });
+            gsap.set(".c1", { x: 646, y: 158, opacity: 1 });
+            gsap.set(".c2", { x: 636, y: 208, opacity: 1 });
 
             // Forklifts — GSAP owns x (y set by SVG group translate)
             gsap.set(".fk1", { x: 1100 });
@@ -46,7 +50,10 @@ export default function AnimatedHeroScenario() {
             });
 
             // ── MASTER TIMELINE ─────────────────────────────────────────
-            const tl = gsap.timeline({ repeat: -1, repeatDelay: 2.5 });
+            const tl = gsap.timeline({
+                repeat: prefersReducedMotion ? 0 : -1,
+                repeatDelay: 2.5,
+            });
 
             // ─ PHASE 1: PLANE APPROACHES ────────────────────────────────
             tl
@@ -73,13 +80,13 @@ export default function AnimatedHeroScenario() {
             // ─ PHASE 3: FORKLIFT 1 — repuestos crate ────────────────────
             tl
                 // FK1 drives in from right
-                .to(".fk1", { x: 885, duration: 2.4, ease: "power2.inOut" }, "+=0.4")
+                .to(".fk1", { x: 892, duration: 2.4, ease: "power2.inOut" }, "+=0.4")
                 // c1: slides along deck to ramp edge
                 .to(".c1",  { x: 728, duration: 0.5, ease: "none" })
                 // c1: drops to ramp surface
                 .to(".c1",  { y: 280, duration: 0.18, ease: "power2.in" })
                 // c1: slides down ramp to fork level
-                .to(".c1",  { x: 843, y: 341, duration: 1.0, ease: "power2.in" })
+                .to(".c1",  { x: 850, y: 278, duration: 1.0, ease: "power2.in" })
                 // visual transfer
                 .set(".c1",        { opacity: 0 })
                 .set(".fk1-cargo", { opacity: 1 })
@@ -89,10 +96,10 @@ export default function AnimatedHeroScenario() {
             // ─ PHASE 4: FORKLIFT 2 — heavy machinery ────────────────────
             tl
                 // FK2 starts approaching while FK1 still departing
-                .to(".fk2", { x: 885, duration: 2.4, ease: "power2.inOut" }, "-=2.0")
+                .to(".fk2", { x: 892, duration: 2.4, ease: "power2.inOut" }, "-=2.0")
                 .to(".c2",  { x: 728, duration: 0.8, ease: "none" })
                 .to(".c2",  { y: 280, duration: 0.18, ease: "power2.in" })
-                .to(".c2",  { x: 843, y: 341, duration: 1.2, ease: "power2.in" })
+                .to(".c2",  { x: 850, y: 266, duration: 1.2, ease: "power2.in" })
                 .set(".c2",        { opacity: 0 })
                 .set(".fk2-cargo", { opacity: 1 })
                 .to(".fk2", { x: 1200, duration: 2.8, ease: "power2.inOut" });
@@ -113,9 +120,9 @@ export default function AnimatedHeroScenario() {
     return (
         <div
             ref={containerRef}
-            className="w-full h-full relative overflow-hidden flex items-center justify-center pointer-events-none"
+                className="cargo-plane-container w-full h-full relative overflow-hidden flex items-center justify-center pointer-events-none"
             aria-hidden="true"
-            style={{ minHeight: "38vh" }}
+            style={{ minHeight: "clamp(280px, 44vh, 520px)" }}
         >
             {/* Ambient scene glow */}
             <div
@@ -127,7 +134,7 @@ export default function AnimatedHeroScenario() {
 
             <svg
                 viewBox="0 0 1000 400"
-                className="w-full h-auto max-h-[68vh]"
+                className="w-full h-auto max-h-[70vh] sm:max-h-[68vh]"
                 preserveAspectRatio="xMidYMid meet"
             >
                 <defs>
@@ -266,28 +273,28 @@ export default function AnimatedHeroScenario() {
                         A proper cargo-plane silhouette: nose left, tail right
                     */}
                     <path d="
-                        M 185 222
-                        C 178 202, 200 158, 240 155
-                        L 732 155
-                        C 760 155, 782 166, 790 192
-                        L 790 252
-                        C 780 278, 756 286, 730 286
-                        L 265 286
-                        C 222 286, 182 268, 182 252
-                        C 180 240, 180 230, 185 222
+                        M 178 226
+                        C 176 198, 206 154, 252 150
+                        L 738 150
+                        C 768 150, 792 168, 802 194
+                        L 802 248
+                        C 792 278, 766 290, 736 290
+                        L 274 290
+                        C 224 290, 182 270, 178 244
+                        C 176 236, 176 231, 178 226
                         Z
                     " fill="url(#ahsFg)" />
 
                     {/* Specular sheen (top surface only) */}
                     <path d="
-                        M 188 216
-                        C 180 198, 202 160, 240 158
-                        L 732 158
-                        C 758 158, 779 168, 787 192
-                        L 786 188
-                        C 778 162, 758 157, 732 157
-                        L 240 157
-                        C 204 157, 182 198, 188 216
+                        M 186 220
+                        C 182 196, 208 158, 252 154
+                        L 736 154
+                        C 764 154, 785 170, 794 192
+                        L 792 186
+                        C 784 164, 764 158, 736 158
+                        L 252 158
+                        C 214 158, 186 194, 186 220
                         Z
                     " fill="url(#ahsSheen)" opacity="0.8" />
 
@@ -337,11 +344,11 @@ export default function AnimatedHeroScenario() {
 
                     {/* ── WING (swept, below fuselage) ── */}
                     <path d="
-                        M 418 232
-                        C 458 232, 528 258, 635 334
-                        L 620 342
-                        L 590 342
-                        C 523 290, 472 256, 408 244
+                        M 430 236
+                        C 474 238, 548 266, 646 332
+                        L 624 346
+                        L 588 346
+                        C 526 296, 474 262, 420 248
                         Z
                     " fill="url(#ahsWing)" />
                     {/* Winglet */}
@@ -544,12 +551,12 @@ export default function AnimatedHeroScenario() {
                     {/* ── FK1 loaded cargo ── */}
                     {/* Appears at scene (843, 341): rect x=-42, y=56 within group at (GSAP_x, 285) */}
                     <g className="fk1-cargo" opacity="0">
-                        <rect x="-42" y="56" width="46" height="44" rx="3"
+                        <rect x="-42" y="-1" width="46" height="44" rx="3"
                             fill="#b45309" stroke="#92400e" strokeWidth="1.5" />
-                        <rect x="-37" y="68" width="36" height="16" rx="2"
+                        <rect x="-37" y="11" width="36" height="16" rx="2"
                             fill="#fef08a" opacity="0.95" />
-                        <text x="-19" y="78" fill="#78350f" fontSize="5.5" fontWeight="bold" textAnchor="middle">REPUESTOS</text>
-                        <rect x="-42" y="96" width="46" height="5" rx="2" fill="#92400e" />
+                        <text x="-19" y="21" fill="#78350f" fontSize="5.5" fontWeight="bold" textAnchor="middle">REPUESTOS</text>
+                        <rect x="-42" y="39" width="46" height="5" rx="2" fill="#92400e" />
                     </g>
                 </g>
 
@@ -586,16 +593,16 @@ export default function AnimatedHeroScenario() {
                     {/* ── FK2 loaded cargo ── */}
                     {/* Appears at scene (843, 341): rect x=-42 y=66 within group at (GSAP_x, 275) */}
                     <g className="fk2-cargo" opacity="0">
-                        <rect x="-46" y="66" width="58" height="54" rx="5"
+                        <rect x="-46" y="-5" width="58" height="54" rx="5"
                             fill="#0e7490" stroke="#0891b2" strokeWidth="2" />
-                        <circle cx="-17" cy="93" r="16" fill="#091c2c" />
-                        <circle cx="-17" cy="93" r="10" fill="#152a3e" />
-                        <circle cx="-17" cy="93" r="4.5" fill="#00BFA6" />
+                        <circle cx="-17" cy="22" r="16" fill="#091c2c" />
+                        <circle cx="-17" cy="22" r="10" fill="#152a3e" />
+                        <circle cx="-17" cy="22" r="4.5" fill="#00BFA6" />
                         {[0, 90, 180, 270].map((deg, i) => (
                             <circle
                                 key={i}
                                 cx={-17 + 12 * Math.cos(deg * Math.PI / 180)}
-                                cy={ 93 + 12 * Math.sin(deg * Math.PI / 180)}
+                                cy={ 22 + 12 * Math.sin(deg * Math.PI / 180)}
                                 r="2" fill="#040c1a"
                             />
                         ))}

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 interface NavItem {
@@ -10,34 +10,27 @@ interface NavItem {
     href: string;
 }
 
-interface SidebarProps {
-    variant: "user" | "admin";
-}
+
 
 const userNavItems: NavItem[] = [
     { label: "Dashboard", icon: "dashboard", href: "/dashboard" },
     { label: "Guías de Carga", icon: "inventory_2", href: "#" },
     { label: "Pre-Alertar", icon: "notifications_active", href: "#" },
     { label: "Pagos", icon: "credit_card", href: "#" },
+    { label: "Almacén", icon: "warehouse", href: "/dashboard?view=warehouse" },
     { label: "Configuración", icon: "settings", href: "#" },
 ];
 
-const adminNavItems: NavItem[] = [
-    { label: "Dashboard", icon: "dashboard", href: "/admin" },
-    { label: "Almacén", icon: "warehouse", href: "/admin" },
-    { label: "Envíos", icon: "local_shipping", href: "#" },
-    { label: "Usuarios", icon: "group", href: "#" },
-    { label: "Configuración", icon: "settings", href: "#" },
-];
-
-export default function Sidebar({ variant }: SidebarProps) {
+export default function Sidebar() {
     const pathname = usePathname();
-    const items = variant === "admin" ? adminNavItems : userNavItems;
+    const searchParams = useSearchParams();
+    const currentView = searchParams.get('view');
+
+    const items = userNavItems;
     const [mobileOpen, setMobileOpen] = useState(false);
 
     const isActive = (item: NavItem) => {
-        if (variant === "admin" && item.label === "Almacén") return true;
-        if (variant === "user" && item.label === "Dashboard") return true;
+        if (item.href.includes('view=warehouse') && currentView === 'warehouse') return true;
         return pathname === item.href && item.href !== "#";
     };
 
@@ -45,12 +38,12 @@ export default function Sidebar({ variant }: SidebarProps) {
         <>
             {/* Mobile Header */}
             <header className="md:hidden flex items-center justify-between p-4 bg-white border-b border-slate-200">
-                <Link href="/" className="flex items-center gap-2">
+                <Link href="/dashboard" className="flex items-center gap-2">
                     <div className="w-8 h-8 rounded bg-primary flex items-center justify-center text-white">
                         <span className="material-symbols-outlined text-[20px]">anchor</span>
                     </div>
                     <span className="font-display font-bold text-lg text-primary">
-                        {variant === "admin" ? "Ventas Admin" : "Ventas en USA"}
+                        Ventas en USA
                     </span>
                 </Link>
                 <button className="text-primary" onClick={() => setMobileOpen(!mobileOpen)}>
@@ -62,25 +55,23 @@ export default function Sidebar({ variant }: SidebarProps) {
             {mobileOpen && (
                 <div className="md:hidden fixed inset-0 z-50 bg-black/40" onClick={() => setMobileOpen(false)}>
                     <aside className="w-64 h-full bg-white shadow-xl" onClick={(e) => e.stopPropagation()}>
-                        <SidebarContent variant={variant} items={items} isActive={isActive} />
+                        <SidebarContent items={items} isActive={isActive} />
                     </aside>
                 </div>
             )}
 
             {/* Desktop Sidebar */}
             <aside className="hidden md:flex flex-col w-64 h-full bg-white border-r border-slate-200 shadow-card z-10">
-                <SidebarContent variant={variant} items={items} isActive={isActive} />
+                <SidebarContent items={items} isActive={isActive} />
             </aside>
         </>
     );
 }
 
 function SidebarContent({
-    variant,
     items,
     isActive,
 }: {
-    variant: "user" | "admin";
     items: NavItem[];
     isActive: (item: NavItem) => boolean;
 }) {
@@ -89,14 +80,10 @@ function SidebarContent({
             {/* Logo Area */}
             <div className="p-6 border-b border-slate-100 flex items-center gap-3">
                 <div className="w-8 h-8 rounded bg-primary flex items-center justify-center text-white">
-                    {variant === "admin" ? (
-                        <span className="font-display font-bold text-lg">V</span>
-                    ) : (
-                        <span className="material-symbols-outlined text-[20px]">anchor</span>
-                    )}
+                    <span className="material-symbols-outlined text-[20px]">anchor</span>
                 </div>
                 <h1 className="font-display font-bold text-lg tracking-tight text-primary">
-                    {variant === "admin" ? "Ventas Admin" : "Ventas en USA"}
+                    Ventas en USA
                 </h1>
             </div>
 
@@ -106,17 +93,14 @@ function SidebarContent({
                     <Link
                         key={item.label}
                         href={item.href}
-                        className={`flex items-center gap-3 px-3 py-3 rounded-lg transition-colors group ${isActive(item)
-                                ? variant === "admin"
-                                    ? "bg-primary/5 text-primary"
-                                    : "bg-secondary text-white"
+                        className={`flex items-center gap-3 px-3 py-3 rounded-lg transition-colors ${isActive(item)
+                                ? "bg-secondary text-white"
                                 : "text-slate-500 hover:bg-slate-50 hover:text-primary"
                             }`}
                     >
                         <span
-                            className={`material-symbols-outlined text-[22px] ${isActive(item) && variant === "admin" ? "text-primary" : ""
-                                }`}
-                            style={isActive(item) && variant === "admin" ? { fontVariationSettings: "'FILL' 1" } : {}}
+                            className={`material-symbols-outlined text-[22px] ${isActive(item) ? "text-white" : "text-slate-500"}`}
+                            style={isActive(item) ? { fontVariationSettings: "'FILL' 1" } : {}}
                         >
                             {item.icon}
                         </span>
@@ -131,15 +115,15 @@ function SidebarContent({
                     <div
                         className="w-10 h-10 rounded-full bg-slate-200 bg-center bg-cover"
                         style={{
-                            backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuCWjZb-8W5UDKKa7NVufXSdPA8UxGxlWHtfxVTBeBCJRKEPyJxmDKC0aiNSmvkphvPTHiufdBKeZW6vFZRZmxCe_cash2tPyok2tG_GmgFqVALwNMtZq8wIPAddoUZQnKFG-xNwZTULjtqW9wbIAsS_3Hu612m7vii6aINCfN_Pa9KFtAdDijaO9YsmthJtXRmZhHndXRQckvGd2RwufAFEGNiVq71PDtAneMitQqRpN58RCkmZlrsD1jMC2TU5q2T0f9ocZhRrZmwp')`,
+                            backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuCWjZb-8W5UDKKa7NVufXSdPA8UxGxlWHtfxVTBeBCJRKEPyJxmDKC0aiNSmvkphvPTHiufdBKeZW6vFZRZmxCe_cash2tPyJxmDKC0aiNSmvkphvPTHiufdBKeZW6vFZRZmxCe_cash2tPyok2tG_GmgFqVALwNMtZq8wIPAddoUZQnKFG-xNwZTULjtqW9wbIAsS_3Hu612m7vii6aINCfN_Pa9KFtAdDijaO9YsmthJtXRmZhHndXRQckbGd2RwufAFEGNiVq71PDtAneMitQqRpN58RCkmZlrsD1jMC2TU5q2T0f9ocZhRrZmwp')`,
                         }}
                     />
                     <div className="flex flex-col">
                         <span className="text-sm font-bold text-primary font-display">
-                            {variant === "admin" ? "Carlos M." : "Alex M."}
+                            Alex M.
                         </span>
                         <span className="text-xs text-slate-500 font-mono">
-                            {variant === "admin" ? "Jefe de Logística" : "ID: V-12894"}
+                            ID: V-12894
                         </span>
                     </div>
                     <button className="ml-auto text-slate-400 hover:text-primary transition-colors">

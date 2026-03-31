@@ -1,18 +1,20 @@
 "use client";
 
+import { use } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useStore } from "@/context/StoreContext";
 import Link from "next/link";
 
-export default function TrackingPage({ params }: { params: { id: string } }) {
+export default function TrackingPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = use(params);
     const { trackingInfo } = useStore();
 
     return (
         <div className="bg-background-light min-h-screen flex flex-col antialiased bg-map-pattern relative overflow-x-hidden">
             <Navbar />
 
-            <main className="flex-grow z-10 py-8 px-4 sm:px-6 lg:px-8">
+            <main className="grow z-10 py-8 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-3xl mx-auto">
                     {/* Breadcrumb */}
                     <div className="flex items-center gap-2 text-sm text-text-muted mb-6 font-medium">
@@ -39,7 +41,7 @@ export default function TrackingPage({ params }: { params: { id: string } }) {
                                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 pt-4 border-t border-gray-100">
                                     <div className="flex flex-col">
                                         <span className="text-[10px] uppercase tracking-wider text-text-muted font-bold">BOL Number</span>
-                                        <span className="font-mono text-primary font-bold text-sm">{trackingInfo.bolNumber}</span>
+                                        <span className="font-mono text-primary font-bold text-sm">{id || trackingInfo.bolNumber}</span>
                                     </div>
                                     <div className="flex flex-col">
                                         <span className="text-[10px] uppercase tracking-wider text-text-muted font-bold">Container ID</span>
@@ -87,14 +89,14 @@ export default function TrackingPage({ params }: { params: { id: string } }) {
                                 {idx < trackingInfo.steps.length - 1 && (
                                     <div
                                         aria-hidden="true"
-                                        className={`absolute top-10 left-[19px] w-[2px] h-full -ml-[1px] ${step.status === 'completed' ? 'bg-accent' : 'bg-gray-200 border-l-[2px] border-dotted border-gray-300'
+                                        className={`absolute top-10 left-[19px] w-[2px] h-full -ml-px ${step.status === 'completed' ? 'bg-accent' : 'bg-gray-200 border-l-2 border-dotted border-gray-300'
                                             }`}
                                     />
                                 )}
 
                                 <div className="flex gap-6 sm:gap-8 relative">
                                     {/* Icon Node */}
-                                    <div className="relative flex-shrink-0 z-10">
+                                    <div className="relative shrink-0 z-10">
                                         {step.status === 'active' && (
                                             <>
                                                 <div className="absolute -inset-2 rounded-full border border-accent opacity-40 animate-ping"></div>
