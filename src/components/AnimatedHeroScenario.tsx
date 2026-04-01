@@ -128,7 +128,7 @@ export default function AnimatedHeroScenario() {
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                    background: "radial-gradient(ellipse 70% 50% at 50% 62%, rgba(0,191,166,0.08) 0%, transparent 100%)",
+                    background: "radial-gradient(ellipse 70% 50% at 50% 62%, rgba(37,99,235,0.08) 0%, transparent 100%)",
                 }}
             />
 
@@ -208,8 +208,8 @@ export default function AnimatedHeroScenario() {
                 {/* Taxiway edge lights */}
                 {[...Array(11)].map((_, i) => (
                     <g key={i}>
-                        <circle cx={42 + i * 90} cy="351" r="3.5" fill="#00BFA6" opacity="0.55" />
-                        <circle cx={42 + i * 90} cy="351" r="7"   fill="#00BFA6" opacity="0.10" />
+                        <circle cx={42 + i * 90} cy="351" r="3.5" fill="#2563EB" opacity="0.55" />
+                        <circle cx={42 + i * 90} cy="351" r="7"   fill="#2563EB" opacity="0.10" />
                     </g>
                 ))}
 
@@ -220,7 +220,7 @@ export default function AnimatedHeroScenario() {
                     <ellipse
                         className="eng-glow"
                         cx="555" cy="222" rx="68" ry="20"
-                        fill="#00BFA6"
+                        fill="#2563EB"
                         filter="url(#ahsGlow)"
                         opacity="0"
                     />
@@ -310,11 +310,11 @@ export default function AnimatedHeroScenario() {
 
                     {/* Fin accent stripe (teal) */}
                     <path d="M 752 149 L 775 31 L 781 35 L 760 150 Z"
-                        fill="#00BFA6" opacity="0.55" />
+                        fill="#2563EB" opacity="0.55" />
 
                     {/* VU logo BOX — on the fin, NOT the wing */}
                     <rect x="753" y="52" width="44" height="36" rx="5"
-                        fill="#00BFA6" opacity="0.92" />
+                        fill="#2563EB" opacity="0.92" />
                     <text x="775" y="76"
                         fill="#040c18" fontSize="15" fontWeight="900"
                         textAnchor="middle" fontFamily="Inter, sans-serif"
@@ -338,7 +338,7 @@ export default function AnimatedHeroScenario() {
 
                     {/* ── BRANDING CHEATLINE ── */}
                     <path d="M 184 244 C 242 266, 344 266, 668 266"
-                        stroke="#00BFA6" strokeWidth="5.5" fill="none" strokeLinecap="round" opacity="0.9" />
+                        stroke="#2563EB" strokeWidth="5.5" fill="none" strokeLinecap="round" opacity="0.9" />
                     <path d="M 186 254 C 242 274, 344 274, 668 274"
                         stroke="#1a4470" strokeWidth="1.5"  fill="none" strokeLinecap="round" opacity="0.55" />
 
@@ -353,7 +353,7 @@ export default function AnimatedHeroScenario() {
                     " fill="url(#ahsWing)" />
                     {/* Winglet */}
                     <path d="M 635 334 L 656 292 L 644 286 L 618 334 Z"
-                        fill="#00BFA6" opacity="0.72" />
+                        fill="#2563EB" opacity="0.72" />
                     {/* Flap panel line */}
                     <path d="M 418 232 C 458 240, 525 266, 630 338 L 622 342 C 526 270, 460 244, 416 242 Z"
                         fill="#060e1c" opacity="0.35" />
@@ -372,7 +372,7 @@ export default function AnimatedHeroScenario() {
                         <ellipse cx="8" cy="22" rx="5.5" ry="14" fill="#010508" />
                         {/* Accent intake ring */}
                         <path d="M 13 0 C 21 0, 21 44, 13 44"
-                            stroke="#00BFA6" strokeWidth="2" fill="none" />
+                            stroke="#2563EB" strokeWidth="2" fill="none" />
                         {/* Exhaust cone */}
                         <path d="M 108 11 L 124 18 L 124 26 L 108 33 Z" fill="#2a4060" />
                         {/* Anti-collision beacon */}
@@ -415,7 +415,7 @@ export default function AnimatedHeroScenario() {
 
                     {/* Deck floor line */}
                     <line x1="642" y1="216" x2="724" y2="216"
-                        stroke="#00BFA6" strokeWidth="1.5"
+                        stroke="#2563EB" strokeWidth="1.5"
                         strokeDasharray="7 6" opacity="0.28" />
 
                     {/* Floor grating */}
@@ -431,7 +431,7 @@ export default function AnimatedHeroScenario() {
                         C 776 272, 752 280, 728 280
                         L 642 280
                         Z
-                    " fill="none" stroke="#00BFA6" strokeWidth="1" opacity="0.20" />
+                    " fill="none" stroke="#2563EB" strokeWidth="1" opacity="0.20" />
 
                     {/* ── CARGO ITEM 1 — Repuestos crate (yellow) ── */}
                     {/*
@@ -464,7 +464,7 @@ export default function AnimatedHeroScenario() {
                         {/* Gear face */}
                         <circle cx="33" cy="31" r="19" fill="#091c2c" />
                         <circle cx="33" cy="31" r="12" fill="#152a3e" />
-                        <circle cx="33" cy="31" r="5"  fill="#00BFA6" />
+                        <circle cx="33" cy="31" r="5"  fill="#2563EB" />
                         {[0, 90, 180, 270].map((deg, i) => (
                             <circle
                                 key={i}
@@ -597,7 +597,7 @@ export default function AnimatedHeroScenario() {
                             fill="#0e7490" stroke="#0891b2" strokeWidth="2" />
                         <circle cx="-17" cy="22" r="16" fill="#091c2c" />
                         <circle cx="-17" cy="22" r="10" fill="#152a3e" />
-                        <circle cx="-17" cy="22" r="4.5" fill="#00BFA6" />
+                        <circle cx="-17" cy="22" r="4.5" fill="#2563EB" />
                         {[0, 90, 180, 270].map((deg, i) => (
                             <circle
                                 key={i}

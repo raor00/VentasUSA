@@ -66,7 +66,7 @@ export default function UserDashboard() {
                         </div>
                         <button
                             onClick={() => setShowWarehouse(!showWarehouse)}
-                            className="group flex items-center justify-center gap-2 bg-accent hover:bg-teal-500 text-white font-bold py-3 px-6 rounded shadow-lg shadow-teal-500/20 transition-all hover:-translate-y-0.5 active:translate-y-0"
+                            className="group flex items-center justify-center gap-2 bg-accent hover:bg-blue-700 text-white font-bold py-3 px-6 rounded shadow-lg shadow-blue-500/20 transition-all hover:-translate-y-0.5 active:translate-y-0"
                         >
                             <span className="material-symbols-outlined text-[20px]">control_camera</span>
                             <span>{showWarehousePanel ? "Ocultar Monitoreo" : "Activar Monitoreo"}</span>
@@ -107,14 +107,14 @@ export default function UserDashboard() {
                             <section className="mb-8 rounded-2xl border border-primary/10 bg-linear-to-r from-primary via-secondary to-[#14304d] p-6 text-white shadow-lift">
                                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
                                     <div>
-                                        <p className="text-xs uppercase tracking-[0.2em] text-teal-200 mb-2 font-mono">Operacion en vivo</p>
+                                        <p className="text-xs uppercase tracking-[0.2em] text-blue-200 mb-2 font-mono">Operacion en vivo</p>
                                         <h3 className="font-display text-2xl md:text-3xl font-bold mb-2">Vuelo VU-CARGO-019 en proceso de descarga</h3>
                                         <p className="text-blue-100/80 max-w-2xl">Aterrizaje completado, compuerta trasera abierta y montacarga realizando extracción de mercancía crítica.</p>
                                     </div>
                                     <div className="grid grid-cols-3 gap-3 min-w-[280px]">
                                         {[
                                             { label: "Pista", value: "OK", tone: "text-white" },
-                                            { label: "Compuerta", value: "Abierta", tone: "text-teal-300" },
+                                            { label: "Compuerta", value: "Abierta", tone: "text-blue-300" },
                                             { label: "Montacarga", value: "Activo", tone: "text-white" },
                                         ].map((item) => (
                                             <div key={item.label} className="rounded-xl border border-white/15 bg-white/8 p-3 text-center">
@@ -170,7 +170,7 @@ export default function UserDashboard() {
                                     <div className="bg-white rounded border border-slate-100 shadow-card overflow-hidden">
                                         <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
                                             <h3 className="font-display font-bold text-lg text-primary">Cargas críticas en seguimiento</h3>
-                                            <a className="text-sm font-medium text-accent hover:text-teal-600 transition-colors" href="#">Ver operación completa</a>
+                                            <a className="text-sm font-medium text-accent hover:text-blue-700 transition-colors" href="#">Ver operación completa</a>
                                         </div>
                                         <div className="overflow-x-auto">
                                             <table className="w-full text-left border-collapse">
@@ -192,7 +192,7 @@ export default function UserDashboard() {
                                                             <td className="px-6 py-4 text-slate-500 text-right">${shipment.value.toLocaleString()}</td>
                                                             <td className="px-6 py-4">
                                                                 <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${shipment.status === "por_retirar"
-                                                                    ? "bg-teal-100 text-teal-800 border-teal-200"
+                                                                    ? "bg-blue-100 text-blue-800 border-blue-200"
                                                                     : shipment.status === "en_transito"
                                                                         ? "bg-amber-100 text-amber-800 border-amber-200"
                                                                         : "bg-blue-100 text-blue-800 border-blue-200"
@@ -323,7 +323,7 @@ export default function UserDashboard() {
 
                             <div className="space-y-6">
                                 <div className="bg-linear-to-br from-primary to-secondary rounded-2xl p-6 text-white shadow-card">
-                                    <p className="text-xs uppercase tracking-[0.2em] text-teal-200 font-mono mb-2">Liberación documental</p>
+                                    <p className="text-xs uppercase tracking-[0.2em] text-blue-200 font-mono mb-2">Liberación documental</p>
                                     <h4 className="font-display font-bold text-xl mb-2">La guía correcta acelera el despacho</h4>
                                     <p className="text-blue-100/80 text-sm leading-relaxed">Aquí se valida lo que permite que una carga crítica no se quede detenida por una factura, un BL o una ficha técnica incompleta.</p>
                                 </div>
@@ -378,7 +378,7 @@ export default function UserDashboard() {
                                 </div>
                                 <div className="space-y-6">
                                     <div className="bg-linear-to-br from-primary to-secondary rounded-2xl p-6 text-white shadow-card">
-                                        <p className="text-xs uppercase tracking-[0.2em] text-teal-200 font-mono mb-2">Pulso de almacén</p>
+                                        <p className="text-xs uppercase tracking-[0.2em] text-blue-200 font-mono mb-2">Pulso de almacén</p>
                                         <h4 className="font-display font-bold text-xl mb-2">El almacén decide la velocidad real de la operación</h4>
                                         <p className="text-blue-100/80 text-sm leading-relaxed">Aquí se controla ingreso, pesaje, consolidación y preparación de salida para que la carga crítica no se estanque al aterrizar.</p>
                                     </div>
@@ -467,7 +467,7 @@ export default function UserDashboard() {
 
                                 <div className="space-y-6">
                                     <div className="bg-linear-to-br from-primary to-secondary rounded-2xl p-6 text-white shadow-card">
-                                        <p className="text-xs uppercase tracking-[0.2em] text-teal-200 font-mono mb-2">Coordinación final</p>
+                                        <p className="text-xs uppercase tracking-[0.2em] text-blue-200 font-mono mb-2">Coordinación final</p>
                                         <h4 className="font-display font-bold text-xl mb-2">Despacho no es “salida”, es cierre perfecto</h4>
                                         <p className="text-blue-100/80 text-sm leading-relaxed">Aquí se alinea liberación documental, ventana de retiro, unidad asignada y destino final para que la operación cierre sin fricción.</p>
                                     </div>

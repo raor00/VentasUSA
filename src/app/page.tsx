@@ -20,7 +20,7 @@ export default function LandingPage() {
 
             <div className="fixed right-5 top-1/2 -translate-y-1/2 z-200 hidden lg:block">
                 <div className="relative w-px h-44 bg-white/10 rounded-full overflow-hidden">
-                    <div className="scroll-route-fill absolute top-0 left-0 w-full h-full bg-linear-to-b from-accent to-teal-300 rounded-full origin-top scale-y-0" />
+                    <div className="scroll-route-fill absolute top-0 left-0 w-full h-full bg-linear-to-b from-accent to-blue-300 rounded-full origin-top scale-y-0" />
                 </div>
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full flex flex-col items-center gap-9 pt-1">
                     {(["hero", "process", "urgency", "cta"] as const).map((s, i) => (
@@ -47,11 +47,11 @@ export default function LandingPage() {
                     <div
                         className="absolute inset-0 pointer-events-none"
                         style={{
-                            backgroundImage: "linear-gradient(rgba(0,191,166,0.06) 1px, transparent 1px), linear-gradient(to right, rgba(0,191,166,0.06) 1px, transparent 1px)",
+                            backgroundImage: "linear-gradient(rgba(37,99,235,0.06) 1px, transparent 1px), linear-gradient(to right, rgba(37,99,235,0.06) 1px, transparent 1px)",
                             backgroundSize: "min(58px, 12vw) min(58px, 12vw)",
                         }}
                     />
-                    <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65vw] max-w-[760px] h-[42vh] rounded-full pointer-events-none" style={{ background: "radial-gradient(ellipse, rgba(0,191,166,0.1) 0%, transparent 72%)" }} />
+                    <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65vw] max-w-[760px] h-[42vh] rounded-full pointer-events-none" style={{ background: "radial-gradient(ellipse, rgba(37,99,235,0.1) 0%, transparent 72%)" }} />
                     <div className="absolute top-1/2 right-0 w-[42vw] max-w-[420px] h-[42vw] max-h-[420px] rounded-full pointer-events-none" style={{ background: "radial-gradient(ellipse, rgba(74,158,221,0.08) 0%, transparent 72%)" }} />
 
                     <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-14 min-h-svh flex flex-col justify-center gap-6 sm:gap-8">
@@ -60,7 +60,7 @@ export default function LandingPage() {
                         </div>
 
                         <div className="w-full max-w-4xl mx-auto text-center flex flex-col items-center gap-4 sm:gap-5">
-                            <div data-hero-animate className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border" style={{ background: "rgba(0,191,166,0.12)", borderColor: "rgba(0,191,166,0.3)" }}>
+                            <div data-hero-animate className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border" style={{ background: "rgba(37,99,235,0.12)", borderColor: "rgba(37,99,235,0.28)" }}>
                                 <span className="w-2 h-2 rounded-full bg-accent animate-pulse shrink-0" />
                                 <span className="text-[11px] sm:text-xs font-bold text-accent tracking-widest uppercase">Logistica Industrial de Respuesta Critica</span>
                             </div>
@@ -68,7 +68,7 @@ export default function LandingPage() {
                             <h1 data-hero-animate className="font-display font-bold text-white tracking-tight leading-[1.05] text-[clamp(2rem,7vw,4.5rem)]">
                                 No movemos paquetes,
                                 <br />
-                                <span className="animate-shimmer-text bg-[linear-gradient(90deg,#00BFA6,#4a9edd,#00BFA6)] bg-size-[200%_auto] bg-clip-text [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
+                                <span className="animate-shimmer-text bg-[linear-gradient(90deg,#2563EB,#60A5FA,#2563EB)] bg-size-[200%_auto] bg-clip-text [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
                                     movemos continuidad operativa.
                                 </span>
                             </h1>
@@ -78,7 +78,7 @@ export default function LandingPage() {
                             </p>
 
                             <div data-hero-animate className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md sm:max-w-none">
-                                <button className="flex items-center justify-center gap-2 px-8 py-4 font-bold rounded-xl text-white transition-all duration-300 hover:-translate-y-1" style={{ background: "#00BFA6", boxShadow: "0 8px 32px rgba(0,191,166,0.35)" }}>
+                                <button className="flex items-center justify-center gap-2 px-8 py-4 font-bold rounded-xl text-white transition-all duration-300 hover:-translate-y-1" style={{ background: "#2563EB", boxShadow: "0 8px 32px rgba(37,99,235,0.28)" }}>
                                     Solicitar Operacion Prioritaria
                                 </button>
                                 <button className="flex items-center justify-center gap-2 px-8 py-4 font-bold rounded-xl text-white transition-all duration-300 hover:bg-white/20" style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)" }}>
@@ -168,7 +168,7 @@ export default function LandingPage() {
                             {[
                                 { num: "01", icon: "flight_land", bg: "#0A192F", iconColor: "white", title: "Aterrizaje y Posicionamiento", desc: "El avion reduce velocidad, toma pista y se alinea con zona de descarga para iniciar maniobra segura." },
                                 { num: "02", icon: "garage_door", bg: "white", iconColor: "#0A192F", border: true, title: "Apertura de Compuerta", desc: "La compuerta trasera desciende y habilita el corredor de salida de mercancia con senalizacion de seguridad." },
-                                { num: "03", icon: "forklift", bg: "#00BFA6", iconColor: "white", title: "Extraccion con Montacarga", desc: "El montacarga ingresa, toma la carga y la traslada al area de inspeccion sin romper la cadena operativa." },
+                                { num: "03", icon: "forklift", bg: "#2563EB", iconColor: "white", title: "Extraccion con Montacarga", desc: "El montacarga ingresa, toma la carga y la traslada al area de inspeccion sin romper la cadena operativa." },
                             ].map((card, index, arr) => (
                                 <div key={card.num} data-animate="card" className={`group relative bg-background-light p-6 sm:p-8 rounded-2xl border border-transparent hover:border-gray-200 hover:shadow-xl transition-all duration-300 ${index === arr.length - 1 ? "sm:col-span-2 sm:max-w-md sm:mx-auto md:col-span-1 md:max-w-none" : ""}`}>
                                     <div className="absolute top-0 right-0 p-4 font-display text-5xl sm:text-6xl font-bold text-primary select-none" style={{ opacity: 0.08 }}>{card.num}</div>
@@ -185,13 +185,13 @@ export default function LandingPage() {
 
                 <section id="heavy-cargo-section" data-section="urgency" className="relative py-20 sm:py-24 overflow-hidden" style={{ background: "#0A192F" }}>
                     <div className="parallax-grid absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(to right, #ffffff 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
-                    <div className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full pointer-events-none" style={{ background: "radial-gradient(ellipse, rgba(0,191,166,0.12) 0%, transparent 70%)" }} />
+                    <div className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full pointer-events-none" style={{ background: "radial-gradient(ellipse, rgba(37,99,235,0.12) 0%, transparent 70%)" }} />
 
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                         <div className="flex flex-col lg:flex-row items-center gap-10 sm:gap-12">
                             <div className="lg:w-1/2 w-full">
                                 <div data-animate="badge" className="inline-flex items-center gap-2 px-3 py-1 rounded-lg mb-5 sm:mb-6" style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)" }}>
-                                    <span className="material-symbols-outlined text-accent text-sm">emergency</span>
+                                     <span className="material-symbols-outlined text-accent text-sm">emergency</span>
                                     <span className="font-mono text-xs text-accent font-bold tracking-wider uppercase">Control de Operacion</span>
                                 </div>
 
@@ -211,7 +211,7 @@ export default function LandingPage() {
                                         { icon: "responsive_layout", title: "Vista Responsive", desc: "La experiencia se adapta a mobile, tablet y escritorio." },
                                     ].map((item) => (
                                         <li key={item.title} data-animate="item" className="flex items-start gap-3">
-                                            <div className="p-1.5 rounded-lg shrink-0" style={{ background: "rgba(0,191,166,0.2)" }}>
+                                            <div className="p-1.5 rounded-lg shrink-0" style={{ background: "rgba(37,99,235,0.18)" }}>
                                                 <span className="material-symbols-outlined text-accent text-lg sm:text-xl">{item.icon}</span>
                                             </div>
                                             <div>
@@ -258,7 +258,7 @@ export default function LandingPage() {
                                                 <span>Zona de Almacen</span>
                                             </div>
                                             <div className="h-2 rounded-full overflow-hidden relative" style={{ background: "rgba(255,255,255,0.1)" }}>
-                                                <div data-animate="progress-bar" className="absolute left-0 top-0 h-full w-3/4 rounded-full" style={{ background: "#00BFA6", boxShadow: "0 0 15px rgba(0,191,166,0.5)" }} />
+                                                <div data-animate="progress-bar" className="absolute left-0 top-0 h-full w-3/4 rounded-full" style={{ background: "#2563EB", boxShadow: "0 0 15px rgba(37,99,235,0.4)" }} />
                                             </div>
                                             <div className="grid grid-cols-3 gap-2 sm:gap-4 mt-4 sm:mt-6">
                                                 {[
@@ -293,7 +293,7 @@ export default function LandingPage() {
                             Coordinamos carga critica, maquinaria, repuestos y activos industriales desde USA hacia Venezuela con velocidad, trazabilidad y control operativo en cada etapa.
                         </p>
                         <div className="flex flex-col sm:flex-row justify-center gap-4">
-                            <button data-animate="cta-element" className="flex items-center justify-center px-8 h-12 text-white text-sm sm:text-base font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5" style={{ background: "#00BFA6", boxShadow: "0 4px 20px rgba(0,191,166,0.3)" }}>
+                            <button data-animate="cta-element" className="flex items-center justify-center px-8 h-12 text-white text-sm sm:text-base font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5" style={{ background: "#2563EB", boxShadow: "0 4px 20px rgba(37,99,235,0.24)" }}>
                                 Solicitar Evaluacion Logistica
                             </button>
                             <button data-animate="cta-element" className="flex items-center justify-center px-8 h-12 text-primary text-sm sm:text-base font-bold rounded-xl transition-colors hover:bg-black/5" style={{ border: "1px solid rgba(10,25,47,0.2)" }}>

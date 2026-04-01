@@ -114,7 +114,7 @@ export default function LoginPage() {
                             <p className="text-xs text-slate-400 font-medium mb-4">
                                 ¿No tienes una cuenta corporativa?
                             </p>
-                            <button className="text-sm font-bold text-accent hover:text-teal-600 transition-colors uppercase tracking-wide">
+                            <button className="text-sm font-bold text-accent hover:text-blue-700 transition-colors uppercase tracking-wide">
                                 Solicitar Registro Industrial
                             </button>
                         </div>

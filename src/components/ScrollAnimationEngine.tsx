@@ -285,9 +285,9 @@ export default function ScrollAnimationEngine() {
                     trigger: section,
                     start: "top 60%",
                     end: "bottom 40%",
-                    onEnter: () => gsap.to(dot, { backgroundColor: "#00BFA6", borderColor: "#00BFA6", scale: 1.5, duration: 0.3 }),
+                    onEnter: () => gsap.to(dot, { backgroundColor: "#2563EB", borderColor: "#2563EB", scale: 1.5, duration: 0.3 }),
                     onLeave: () => gsap.to(dot, { backgroundColor: "transparent", borderColor: "rgba(255,255,255,0.3)", scale: 1, duration: 0.3 }),
-                    onEnterBack: () => gsap.to(dot, { backgroundColor: "#00BFA6", borderColor: "#00BFA6", scale: 1.5, duration: 0.3 }),
+                    onEnterBack: () => gsap.to(dot, { backgroundColor: "#2563EB", borderColor: "#2563EB", scale: 1.5, duration: 0.3 }),
                     onLeaveBack: () => gsap.to(dot, { backgroundColor: "transparent", borderColor: "rgba(255,255,255,0.3)", scale: 1, duration: 0.3 }),
                 });
                 triggers.push(st);

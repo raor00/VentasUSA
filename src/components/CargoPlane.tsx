@@ -77,24 +77,24 @@ const CargoPlane: React.FC<CargoPlaneProps> = ({ className = "", id }) => {
 
                     {/* ── Accent stripe ── */}
                     <linearGradient id="cp-stripe" x1="0" y1="0" x2="1" y2="0">
-                        <stop offset="0%"   stopColor="#00BFA6" stopOpacity="0" />
-                        <stop offset="8%"   stopColor="#00BFA6" stopOpacity="0.85" />
-                        <stop offset="92%"  stopColor="#00BFA6" stopOpacity="0.85" />
-                        <stop offset="100%" stopColor="#00BFA6" stopOpacity="0" />
+                        <stop offset="0%"   stopColor="#2563EB" stopOpacity="0" />
+                        <stop offset="8%"   stopColor="#2563EB" stopOpacity="0.85" />
+                        <stop offset="92%"  stopColor="#2563EB" stopOpacity="0.85" />
+                        <stop offset="100%" stopColor="#2563EB" stopOpacity="0" />
                     </linearGradient>
 
                     <linearGradient id="cp-stripe2" x1="0" y1="0" x2="1" y2="0">
-                        <stop offset="0%"   stopColor="#00BFA6" stopOpacity="0" />
-                        <stop offset="8%"   stopColor="#00BFA6" stopOpacity="0.28" />
-                        <stop offset="92%"  stopColor="#00BFA6" stopOpacity="0.28" />
-                        <stop offset="100%" stopColor="#00BFA6" stopOpacity="0" />
+                        <stop offset="0%"   stopColor="#2563EB" stopOpacity="0" />
+                        <stop offset="8%"   stopColor="#2563EB" stopOpacity="0.28" />
+                        <stop offset="92%"  stopColor="#2563EB" stopOpacity="0.28" />
+                        <stop offset="100%" stopColor="#2563EB" stopOpacity="0" />
                     </linearGradient>
 
                     {/* ── Exhaust heat haze ── */}
                     <radialGradient id="cp-exhaust" cx="100%" cy="50%" r="80%">
-                        <stop offset="0%"   stopColor="#00BFA6" stopOpacity="0.45" />
+                        <stop offset="0%"   stopColor="#2563EB" stopOpacity="0.45" />
                         <stop offset="45%"  stopColor="#0078a0" stopOpacity="0.15" />
-                        <stop offset="100%" stopColor="#00BFA6" stopOpacity="0" />
+                        <stop offset="100%" stopColor="#2563EB" stopOpacity="0" />
                     </radialGradient>
 
                     {/* ── Drop shadow ── */}
@@ -178,7 +178,7 @@ const CargoPlane: React.FC<CargoPlaneProps> = ({ className = "", id }) => {
                     {/* Fin accent stripe (vertical) */}
                     <path
                         d="M62 74 L50 28 L52 27 L65 73Z"
-                        fill="#00BFA6"
+                        fill="#2563EB"
                         opacity="0.55"
                     />
                     {/* Fin root fillet */}
@@ -232,7 +232,7 @@ const CargoPlane: React.FC<CargoPlaneProps> = ({ className = "", id }) => {
                     {/* Wing leading edge accent */}
                     <path
                         d="M188 80 L82 34 L84 32 L190 78Z"
-                        fill="#00BFA6"
+                        fill="#2563EB"
                         opacity="0.08"
                     />
 
@@ -330,7 +330,7 @@ const CargoPlane: React.FC<CargoPlaneProps> = ({ className = "", id }) => {
                     ────────────────────────────────────────── */}
                     <text
                         x="200" y="76"
-                        fill="#00BFA6"
+                        fill="#2563EB"
                         fontSize="9"
                         fontFamily="Space Grotesk, sans-serif"
                         fontWeight="700"

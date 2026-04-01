@@ -94,7 +94,7 @@ export default function Navbar() {
 
                         <Link
                             href="/login"
-                            className="hidden sm:flex items-center justify-center px-5 h-10 text-sm font-bold rounded-xl transition-all duration-300 whitespace-nowrap bg-accent text-white hover:bg-teal-400 shadow-md shadow-accent/20"
+                            className="hidden sm:flex items-center justify-center px-5 h-10 text-sm font-bold rounded-xl transition-all duration-300 whitespace-nowrap bg-accent text-white hover:bg-blue-700 shadow-md shadow-accent/20"
                         >
                             Acceso Corporativo
                         </Link>
