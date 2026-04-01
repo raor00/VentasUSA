@@ -160,15 +160,15 @@ export default function LandingPage() {
                                 <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                                 <span className="text-xs font-bold text-primary tracking-wide uppercase">Secuencia Operativa</span>
                             </div>
-                            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4">De llegada critica a salida coordinada</h2>
-                            <p className="text-slate-600 text-base sm:text-lg">La secuencia correcta no termina al abrir la compuerta: continúa con control físico, validación y preparación para almacén o despacho final.</p>
+                            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4">Cómo se mueve una operación urgente, de origen a entrega</h2>
+                            <p className="text-slate-600 text-base sm:text-lg">Más que una maniobra de pista, este es el proceso completo que sigue una empresa para traer carga crítica desde USA hasta Caracas con prioridad y control.</p>
                         </div>
 
                         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
                             {[
-                                { num: "01", icon: "flight_land", bg: "#0A192F", iconColor: "white", title: "Aterrizaje y aseguramiento de plataforma", desc: "La aeronave entra a posición, se asegura el perímetro operativo y se habilita la zona de descarga para iniciar una maniobra sin riesgo." },
-                                { num: "02", icon: "garage_door", bg: "white", iconColor: "#0A192F", border: true, title: "Apertura de compuerta y extracción controlada", desc: "La compuerta trasera se habilita, el corredor queda despejado y el montacarga inicia la salida de la carga crítica bajo control visual y operativo." },
-                                { num: "03", icon: "forklift", bg: "#2563EB", iconColor: "white", title: "Inspección, custodia y salida coordinada", desc: "La mercancía se verifica, se clasifica y se transfiere a almacén o despacho con trazabilidad documental y prioridad según impacto operativo." },
+                                { num: "01", icon: "shopping_cart", bg: "#0A192F", iconColor: "white", title: "Solicitas tu operación y consolidamos la compra", desc: "Tu empresa define qué necesita traer desde USA y coordinamos proveedor, recolección, documentación base y prioridad operativa desde el origen." },
+                                { num: "02", icon: "flight_takeoff", bg: "white", iconColor: "#0A192F", border: true, title: "Montamos la carga y la embarcamos con control total", desc: "La mercancía se recibe, se consolida, se valida documentalmente y se prepara para embarque aéreo con trazabilidad durante todo el tránsito." },
+                                { num: "03", icon: "local_shipping", bg: "#2563EB", iconColor: "white", title: "Coordinamos entrega express en Caracas", desc: "Al aterrizar, activamos liberación operativa, descarga prioritaria y salida coordinada para que la carga llegue en tiempo récord a su destino final." },
                             ].map((card, index, arr) => (
                                 <div key={card.num} data-animate="card" className={`group relative bg-background-light p-6 sm:p-8 rounded-2xl border border-transparent hover:border-gray-200 hover:shadow-xl transition-all duration-300 ${index === arr.length - 1 ? "sm:col-span-2 sm:max-w-md sm:mx-auto md:col-span-1 md:max-w-none" : ""}`}>
                                     <div className="absolute top-0 right-0 p-4 font-display text-5xl sm:text-6xl font-bold text-primary select-none" style={{ opacity: 0.08 }}>{card.num}</div>

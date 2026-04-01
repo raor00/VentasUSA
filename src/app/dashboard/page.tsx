@@ -3,10 +3,10 @@
 import Sidebar from "@/components/Sidebar";
 import { useStore } from "@/context/StoreContext";
 import WarehouseManagement from "@/components/WarehouseManagement";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function UserDashboard() {
+function UserDashboardContent() {
     const { user, shipments } = useStore();
     const [showWarehouse, setShowWarehouse] = useState(false);
     const searchParams = useSearchParams();
@@ -510,5 +510,13 @@ export default function UserDashboard() {
                 </div>
             </main>
         </div>
+    );
+}
+
+export default function UserDashboard() {
+    return (
+        <Suspense fallback={<div className="min-h-screen w-full bg-background-light" />}>
+            <UserDashboardContent />
+        </Suspense>
     );
 }
