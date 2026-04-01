@@ -62,28 +62,28 @@ export default function LandingPage() {
                         <div className="w-full max-w-4xl mx-auto text-center flex flex-col items-center gap-4 sm:gap-5">
                             <div data-hero-animate className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border" style={{ background: "rgba(0,191,166,0.12)", borderColor: "rgba(0,191,166,0.3)" }}>
                                 <span className="w-2 h-2 rounded-full bg-accent animate-pulse shrink-0" />
-                                <span className="text-[11px] sm:text-xs font-bold text-accent tracking-widest uppercase">Operacion Aerea Coordinada</span>
+                                <span className="text-[11px] sm:text-xs font-bold text-accent tracking-widest uppercase">Logistica Industrial de Respuesta Critica</span>
                             </div>
 
                             <h1 data-hero-animate className="font-display font-bold text-white tracking-tight leading-[1.05] text-[clamp(2rem,7vw,4.5rem)]">
-                                Un avion aterriza,
+                                No movemos paquetes,
                                 <br />
                                 <span className="animate-shimmer-text bg-[linear-gradient(90deg,#00BFA6,#4a9edd,#00BFA6)] bg-size-[200%_auto] bg-clip-text [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
-                                    se abre compuerta, sale la carga.
+                                    movemos continuidad operativa.
                                 </span>
                             </h1>
 
                             <p data-hero-animate className="text-blue-200/80 leading-relaxed max-w-2xl text-[clamp(0.95rem,2.2vw,1.2rem)]">
-                                Flujo completo y coherente en una sola narrativa visual: aterrizaje controlado, apertura de compuerta y retiro de mercancia con montacarga.
+                                Ventas en USA esta diseñado para empresas que no pueden detener su operacion: traemos maquinaria, repuestos criticos, equipos de alto valor y carga prioritaria desde USA hacia Venezuela con velocidad, trazabilidad y control logistico de punta a punta.
                             </p>
 
                             <div data-hero-animate className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md sm:max-w-none">
                                 <button className="flex items-center justify-center gap-2 px-8 py-4 font-bold rounded-xl text-white transition-all duration-300 hover:-translate-y-1" style={{ background: "#00BFA6", boxShadow: "0 8px 32px rgba(0,191,166,0.35)" }}>
-                                    Solicitar Plan Logistico
+                                    Solicitar Operacion Prioritaria
                                 </button>
                                 <button className="flex items-center justify-center gap-2 px-8 py-4 font-bold rounded-xl text-white transition-all duration-300 hover:bg-white/20" style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)" }}>
                                     <span className="material-symbols-outlined text-accent text-[1.2rem]">monitoring</span>
-                                    Ver Flujo Operativo
+                                    Ver Centro de Control
                                 </button>
                             </div>
 
@@ -113,7 +113,7 @@ export default function LandingPage() {
                     <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none" style={{ background: "linear-gradient(to top, white, transparent)" }} />
                 </section>
 
-                <div className="relative z-30 max-w-3xl mx-auto w-full px-4 sm:px-6 -mt-8">
+                <div id="tracking-section" className="relative z-30 max-w-3xl mx-auto w-full px-4 sm:px-6 -mt-8">
                     <div data-animate="tracking-card" className="bg-white p-5 sm:p-6 rounded-2xl border border-gray-100" style={{ boxShadow: "0 20px 60px rgba(10,25,47,0.15)" }}>
                         <div className="flex items-center justify-between mb-4">
                             <h3 className="font-display font-bold text-lg text-primary">Centro de Coordinacion de Descarga</h3>
@@ -152,7 +152,7 @@ export default function LandingPage() {
                     </div>
                 </div>
 
-                <section data-section="process" className="py-20 sm:py-24 bg-background-light relative overflow-hidden">
+                <section id="process-section" data-section="process" className="py-20 sm:py-24 bg-background-light relative overflow-hidden">
                     <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "radial-gradient(#0A192F 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                         <div data-animate="title-wrap" className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
@@ -169,8 +169,8 @@ export default function LandingPage() {
                                 { num: "01", icon: "flight_land", bg: "#0A192F", iconColor: "white", title: "Aterrizaje y Posicionamiento", desc: "El avion reduce velocidad, toma pista y se alinea con zona de descarga para iniciar maniobra segura." },
                                 { num: "02", icon: "garage_door", bg: "white", iconColor: "#0A192F", border: true, title: "Apertura de Compuerta", desc: "La compuerta trasera desciende y habilita el corredor de salida de mercancia con senalizacion de seguridad." },
                                 { num: "03", icon: "forklift", bg: "#00BFA6", iconColor: "white", title: "Extraccion con Montacarga", desc: "El montacarga ingresa, toma la carga y la traslada al area de inspeccion sin romper la cadena operativa." },
-                            ].map((card) => (
-                                <div key={card.num} data-animate="card" className="group relative bg-background-light p-6 sm:p-8 rounded-2xl border border-transparent hover:border-gray-200 hover:shadow-xl transition-all duration-300">
+                            ].map((card, index, arr) => (
+                                <div key={card.num} data-animate="card" className={`group relative bg-background-light p-6 sm:p-8 rounded-2xl border border-transparent hover:border-gray-200 hover:shadow-xl transition-all duration-300 ${index === arr.length - 1 ? "sm:col-span-2 sm:max-w-md sm:mx-auto md:col-span-1 md:max-w-none" : ""}`}>
                                     <div className="absolute top-0 right-0 p-4 font-display text-5xl sm:text-6xl font-bold text-primary select-none" style={{ opacity: 0.08 }}>{card.num}</div>
                                     <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center mb-5 sm:mb-6 shadow-md group-hover:scale-110 transition-transform duration-300" style={{ background: card.bg, color: card.iconColor, border: card.border ? "1px solid rgba(10,25,47,0.2)" : "none" }}>
                                         <span className="material-symbols-outlined text-2xl sm:text-3xl">{card.icon}</span>
@@ -183,7 +183,7 @@ export default function LandingPage() {
                     </div>
                 </section>
 
-                <section data-section="urgency" className="relative py-20 sm:py-24 overflow-hidden" style={{ background: "#0A192F" }}>
+                <section id="heavy-cargo-section" data-section="urgency" className="relative py-20 sm:py-24 overflow-hidden" style={{ background: "#0A192F" }}>
                     <div className="parallax-grid absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(to right, #ffffff 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
                     <div className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full pointer-events-none" style={{ background: "radial-gradient(ellipse, rgba(0,191,166,0.12) 0%, transparent 70%)" }} />
 
@@ -287,17 +287,17 @@ export default function LandingPage() {
                     <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: "radial-gradient(#0A192F 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 text-center">
                         <h2 data-animate="cta-title" className="font-display text-2xl sm:text-3xl md:text-5xl font-bold text-primary mb-5 sm:mb-6">
-                            Rediseno completo, listo para produccion
+                            Cuando tu operacion no puede detenerse, la logistica tampoco.
                         </h2>
                         <p data-animate="cta-desc" className="text-slate-600 text-base sm:text-lg mb-8 sm:mb-10 max-w-2xl mx-auto">
-                            Ahora la experiencia cuenta una historia unica y responsive desde el impacto visual hasta el cierre comercial.
+                            Coordinamos carga critica, maquinaria, repuestos y activos industriales desde USA hacia Venezuela con velocidad, trazabilidad y control operativo en cada etapa.
                         </p>
                         <div className="flex flex-col sm:flex-row justify-center gap-4">
                             <button data-animate="cta-element" className="flex items-center justify-center px-8 h-12 text-white text-sm sm:text-base font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5" style={{ background: "#00BFA6", boxShadow: "0 4px 20px rgba(0,191,166,0.3)" }}>
-                                Solicitar Demo
+                                Solicitar Evaluacion Logistica
                             </button>
                             <button data-animate="cta-element" className="flex items-center justify-center px-8 h-12 text-primary text-sm sm:text-base font-bold rounded-xl transition-colors hover:bg-black/5" style={{ border: "1px solid rgba(10,25,47,0.2)" }}>
-                                Coordinar Reunion B2B
+                                Hablar con un Asesor Operativo
                             </button>
                         </div>
                     </div>

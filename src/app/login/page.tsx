@@ -15,7 +15,7 @@ export default function LoginPage() {
 
         // Mock Auth Logic
         if (username === "admin" && password === "admin123") {
-            router.push("/admin");
+            router.push("/dashboard");
         } else if (username.length > 0 && password.length > 0) {
             // Any other valid looking input goes to user dashboard
             router.push("/dashboard");
@@ -26,6 +26,11 @@ export default function LoginPage() {
 
     return (
         <div className="min-h-screen bg-background-light flex items-center justify-center p-4 relative overflow-hidden bg-map-pattern">
+            <Link href="/" className="absolute top-4 left-4 z-20 inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-200 bg-white/90 text-primary font-bold text-sm shadow-sm hover:bg-white hover:border-slate-300 transition-colors">
+                <span className="material-symbols-outlined text-[18px]">arrow_back</span>
+                Volver al inicio
+            </Link>
+
             {/* Background Decor */}
             <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 -skew-x-12 transform translate-x-1/4" />
 

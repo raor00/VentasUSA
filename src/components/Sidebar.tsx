@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 interface NavItem {
@@ -14,24 +14,35 @@ interface NavItem {
 
 const userNavItems: NavItem[] = [
     { label: "Dashboard", icon: "dashboard", href: "/dashboard" },
-    { label: "Guías de Carga", icon: "inventory_2", href: "#" },
-    { label: "Pre-Alertar", icon: "notifications_active", href: "#" },
-    { label: "Pagos", icon: "credit_card", href: "#" },
+    { label: "Centro de Operaciones", icon: "monitoring", href: "/dashboard?view=operations" },
+    { label: "Guías de Carga", icon: "inventory_2", href: "/dashboard?view=guides" },
     { label: "Almacén", icon: "warehouse", href: "/dashboard?view=warehouse" },
-    { label: "Configuración", icon: "settings", href: "#" },
+    { label: "Despachos", icon: "local_shipping", href: "/dashboard?view=dispatch" },
+    { label: "Configuración", icon: "settings", href: "/dashboard?view=settings" },
 ];
 
 export default function Sidebar() {
     const pathname = usePathname();
+    const router = useRouter();
     const searchParams = useSearchParams();
     const currentView = searchParams.get('view');
 
     const items = userNavItems;
     const [mobileOpen, setMobileOpen] = useState(false);
 
+    const handleNavigate = () => setMobileOpen(false);
+    const handleLogout = () => {
+        setMobileOpen(false);
+        router.push("/login");
+    };
+
     const isActive = (item: NavItem) => {
-        if (item.href.includes('view=warehouse') && currentView === 'warehouse') return true;
-        return pathname === item.href && item.href !== "#";
+        if (item.href.includes('view=')) {
+            const view = item.href.split('view=')[1];
+            return pathname === '/dashboard' && currentView === view;
+        }
+
+        return pathname === item.href && !currentView;
     };
 
     return (
@@ -55,14 +66,14 @@ export default function Sidebar() {
             {mobileOpen && (
                 <div className="md:hidden fixed inset-0 z-50 bg-black/40" onClick={() => setMobileOpen(false)}>
                     <aside className="w-64 h-full bg-white shadow-xl" onClick={(e) => e.stopPropagation()}>
-                        <SidebarContent items={items} isActive={isActive} />
+                        <SidebarContent items={items} isActive={isActive} onNavigate={handleNavigate} onLogout={handleLogout} />
                     </aside>
                 </div>
             )}
 
             {/* Desktop Sidebar */}
             <aside className="hidden md:flex flex-col w-64 h-full bg-white border-r border-slate-200 shadow-card z-10">
-                <SidebarContent items={items} isActive={isActive} />
+                <SidebarContent items={items} isActive={isActive} onNavigate={handleNavigate} onLogout={handleLogout} />
             </aside>
         </>
     );
@@ -71,9 +82,13 @@ export default function Sidebar() {
 function SidebarContent({
     items,
     isActive,
+    onNavigate,
+    onLogout,
 }: {
     items: NavItem[];
     isActive: (item: NavItem) => boolean;
+    onNavigate: () => void;
+    onLogout: () => void;
 }) {
     return (
         <>
@@ -93,6 +108,7 @@ function SidebarContent({
                     <Link
                         key={item.label}
                         href={item.href}
+                        onClick={onNavigate}
                         className={`flex items-center gap-3 px-3 py-3 rounded-lg transition-colors ${isActive(item)
                                 ? "bg-secondary text-white"
                                 : "text-slate-500 hover:bg-slate-50 hover:text-primary"
@@ -126,7 +142,7 @@ function SidebarContent({
                             ID: V-12894
                         </span>
                     </div>
-                    <button className="ml-auto text-slate-400 hover:text-primary transition-colors">
+                    <button className="ml-auto text-slate-400 hover:text-primary transition-colors" onClick={onLogout} type="button">
                         <span className="material-symbols-outlined text-[20px]">logout</span>
                     </button>
                 </div>

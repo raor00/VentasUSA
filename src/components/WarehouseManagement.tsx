@@ -16,7 +16,7 @@ export default function WarehouseManagement() {
     const totalWeight = selectedPackages.reduce((acc, pkg) => acc + pkg.weight, 0);
 
     return (
-        <div className="flex-1 flex flex-col h-screen overflow-hidden relative">
+        <div className="flex flex-col min-h-[720px] overflow-hidden relative rounded-2xl border border-slate-200 bg-white shadow-card">
             {/* Top Header */}
             <header className="bg-surface h-auto md:h-16 border-b border-gray-200 flex flex-wrap items-center justify-between px-6 py-3 md:py-0 shrink-0 z-10">
                 <div className="flex items-center gap-4 mb-3 md:mb-0">
