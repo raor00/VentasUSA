@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export default function Footer() {
     return (
         <footer className="bg-secondary text-white pt-16 pb-8 border-t border-white/5">
@@ -26,23 +24,23 @@ export default function Footer() {
 
                     {/* Company Links */}
                     <div>
-                        <h4 className="font-display font-bold text-lg mb-6">Compañía</h4>
+                        <h4 className="font-display font-bold text-lg mb-6">Capacidades</h4>
                         <ul className="space-y-3 text-sm text-gray-400">
-                            <li><a className="hover:text-white transition-colors" href="#">Servicios Corporativos</a></li>
-                            <li><a className="hover:text-white transition-colors" href="#">Alianzas Logísticas</a></li>
-                            <li><a className="hover:text-white transition-colors" href="#">Certificaciones</a></li>
-                            <li><a className="hover:text-white transition-colors" href="#">Blog Industrial</a></li>
+                            <li><span className="hover:text-white transition-colors">Operación aérea industrial</span></li>
+                            <li><span className="hover:text-white transition-colors">Visibilidad documental B2B</span></li>
+                            <li><span className="hover:text-white transition-colors">Coordinación Miami → Venezuela</span></li>
+                            <li><span className="hover:text-white transition-colors">Soporte para carga crítica</span></li>
                         </ul>
                     </div>
 
                     {/* Services */}
                     <div>
-                        <h4 className="font-display font-bold text-lg mb-6">Servicios</h4>
+                        <h4 className="font-display font-bold text-lg mb-6">Soluciones</h4>
                         <ul className="space-y-3 text-sm text-gray-400">
-                            <li><a className="hover:text-white transition-colors" href="#">Carga Proyecto</a></li>
-                            <li><a className="hover:text-white transition-colors" href="#">Repuestos Críticos</a></li>
-                            <li><a className="hover:text-white transition-colors" href="#">Maquinaria Pesada</a></li>
-                            <li><a className="hover:text-white transition-colors" href="#">Agenciamiento Aduanal</a></li>
+                            <li><span className="hover:text-white transition-colors">Carga proyecto</span></li>
+                            <li><span className="hover:text-white transition-colors">Repuestos críticos</span></li>
+                            <li><span className="hover:text-white transition-colors">Maquinaria pesada</span></li>
+                            <li><span className="hover:text-white transition-colors">Despacho coordinado</span></li>
                         </ul>
                     </div>
 
@@ -51,15 +49,15 @@ export default function Footer() {
                         <h4 className="font-display font-bold text-lg mb-6">Contacto B2B</h4>
                         <ul className="space-y-4 text-sm text-gray-400">
                             <li className="flex items-start gap-3">
-                                <span className="material-symbols-outlined text-accent text-lg">location_on</span>
+                                <span className="material-symbols-outlined text-lg" style={{ color: "#E7C98A" }}>location_on</span>
                                 <span>8400 NW 25th St, Suite 100<br />Doral, FL 33122</span>
                             </li>
                             <li className="flex items-center gap-3">
-                                <span className="material-symbols-outlined text-accent text-lg">call</span>
+                                <span className="material-symbols-outlined text-lg" style={{ color: "#E7C98A" }}>call</span>
                                 <span>+1 (305) 555-0123</span>
                             </li>
                             <li className="flex items-center gap-3">
-                                <span className="material-symbols-outlined text-accent text-lg">mail</span>
+                                <span className="material-symbols-outlined text-lg" style={{ color: "#E7C98A" }}>mail</span>
                                 <span>corporate@ventasenusa.com</span>
                             </li>
                         </ul>
@@ -70,9 +68,9 @@ export default function Footer() {
                 <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
                     <p>© 2024 Ventas en USA LLC. Todos los derechos reservados.</p>
                     <div className="flex gap-6">
-                        <a className="hover:text-white transition-colors" href="#">Privacidad</a>
-                        <a className="hover:text-white transition-colors" href="#">Términos de Carga</a>
-                        <a className="hover:text-white transition-colors" href="#">Mapa del sitio</a>
+                        <span className="hover:text-white transition-colors">Privacidad</span>
+                        <span className="hover:text-white transition-colors">Términos de Carga</span>
+                        <span className="hover:text-white transition-colors">Mapa del sitio</span>
                     </div>
                 </div>
             </div>

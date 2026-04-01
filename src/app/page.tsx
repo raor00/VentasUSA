@@ -60,9 +60,9 @@ export default function LandingPage() {
                         </div>
 
                         <div className="w-full max-w-4xl mx-auto text-center flex flex-col items-center gap-4 sm:gap-5">
-                            <div data-hero-animate className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border" style={{ background: "rgba(37,99,235,0.12)", borderColor: "rgba(37,99,235,0.28)" }}>
-                                <span className="w-2 h-2 rounded-full bg-accent animate-pulse shrink-0" />
-                                <span className="text-[11px] sm:text-xs font-bold text-accent tracking-widest uppercase">Logistica Industrial de Respuesta Critica</span>
+                            <div data-hero-animate className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border" style={{ background: "rgba(37,99,235,0.12)", borderColor: "rgba(192,138,46,0.35)" }}>
+                                <span className="w-2 h-2 rounded-full animate-pulse shrink-0" style={{ background: "#C08A2E" }} />
+                                <span className="text-[11px] sm:text-xs font-bold tracking-widest uppercase" style={{ color: "#E7C98A" }}>Logistica Industrial de Respuesta Critica</span>
                             </div>
 
                             <h1 data-hero-animate className="font-display font-bold text-white tracking-tight leading-[1.05] text-[clamp(2rem,7vw,4.5rem)]">
@@ -81,8 +81,8 @@ export default function LandingPage() {
                                 <button className="flex items-center justify-center gap-2 px-8 py-4 font-bold rounded-xl text-white transition-all duration-300 hover:-translate-y-1" style={{ background: "#2563EB", boxShadow: "0 8px 32px rgba(37,99,235,0.28)" }}>
                                     Solicitar Operacion Prioritaria
                                 </button>
-                                <button className="flex items-center justify-center gap-2 px-8 py-4 font-bold rounded-xl text-white transition-all duration-300 hover:bg-white/20" style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)" }}>
-                                    <span className="material-symbols-outlined text-accent text-[1.2rem]">monitoring</span>
+                                <button className="flex items-center justify-center gap-2 px-8 py-4 font-bold rounded-xl text-white transition-all duration-300 hover:bg-white/20" style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(192,138,46,0.35)" }}>
+                                    <span className="material-symbols-outlined text-[1.2rem]" style={{ color: "#E7C98A" }}>monitoring</span>
                                     Ver Centro de Control
                                 </button>
                             </div>
@@ -114,19 +114,19 @@ export default function LandingPage() {
                 </section>
 
                 <div id="tracking-section" className="relative z-30 max-w-3xl mx-auto w-full px-4 sm:px-6 -mt-8">
-                    <div data-animate="tracking-card" className="bg-white p-5 sm:p-6 rounded-2xl border border-gray-100" style={{ boxShadow: "0 20px 60px rgba(10,25,47,0.15)" }}>
-                        <div className="flex items-center justify-between mb-4">
-                            <h3 className="font-display font-bold text-lg text-primary">Centro de Coordinacion de Descarga</h3>
-                            <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wider">Operativo</span>
-                        </div>
+                        <div data-animate="tracking-card" className="bg-white p-5 sm:p-6 rounded-2xl border border-gray-100" style={{ boxShadow: "0 20px 60px rgba(10,25,47,0.15)" }}>
+                            <div className="flex items-center justify-between mb-4">
+                                <h3 className="font-display font-bold text-lg text-primary">Rastreo Operativo B2B</h3>
+                                <span className="text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wider" style={{ background: "rgba(192,138,46,0.14)", color: "#8A6422" }}>Visibilidad Activa</span>
+                            </div>
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <span className="material-symbols-outlined text-slate-400 text-lg">barcode_scanner</span>
                             </div>
-                            <input className="block w-full pl-10 pr-24 py-3 bg-background-light border border-gray-200 rounded-xl text-slate-900 font-mono text-sm placeholder:text-slate-400 focus:ring-2 focus:ring-primary focus:border-primary transition-shadow" placeholder="FLIGHT-CARGO-042..." type="text" />
+                            <input className="block w-full pl-10 pr-24 py-3 bg-background-light border border-gray-200 rounded-xl text-slate-900 font-mono text-sm placeholder:text-slate-400 focus:ring-2 focus:ring-primary focus:border-primary transition-shadow" placeholder="MAN-CAT-9022 / VU-CARGO-019" type="text" />
                             <button className="absolute inset-y-1 right-1 px-4 bg-primary text-white text-sm font-bold rounded-lg hover:bg-secondary transition-colors">Ver Estado</button>
                         </div>
-                        <p className="mt-2 text-xs text-slate-500 font-mono">Consulte vuelo, compuerta activa y avance de montacarga en tiempo real.</p>
+                        <p className="mt-2 text-xs text-slate-500 font-mono">Consulte manifiesto, estado documental, liberacion de compuerta y avance de descarga desde un mismo punto de control.</p>
                     </div>
                 </div>
 
@@ -135,12 +135,12 @@ export default function LandingPage() {
                         <div className="ticker">
                             <div className="inline-flex items-center gap-10 font-mono text-xs sm:text-sm tracking-wide">
                                 {[
-                                    { icon: "✈️", text: "Aterrizaje confirmado en plataforma 3" },
-                                    { icon: "🚪", text: "Compuerta de carga en apertura segura" },
-                                    { icon: "🦺", text: "Montacarga en posicion de extraccion" },
-                                    { icon: "📦", text: "Mercancia industrial liberada" },
-                                    { icon: "✈️", text: "Aterrizaje confirmado en plataforma 3" },
-                                    { icon: "🚪", text: "Compuerta de carga en apertura segura" },
+                                    { icon: "✈️", text: "Vuelo industrial confirmado en plataforma" },
+                                    { icon: "📄", text: "Manifiesto validado para descarga prioritaria" },
+                                    { icon: "🚪", text: "Compuerta habilitada con corredor asegurado" },
+                                    { icon: "🏗️", text: "Maquinaria critica en proceso de extracción" },
+                                    { icon: "🚚", text: "Carga liberada para almacén o despacho coordinado" },
+                                    { icon: "✈️", text: "Vuelo industrial confirmado en plataforma" },
                                 ].map((item, i) => (
                                     <span key={i} className="flex items-center gap-2 whitespace-nowrap">
                                         {i > 0 && <span className="w-1 h-1 bg-white/30 rounded-full mr-8" />}
@@ -160,15 +160,15 @@ export default function LandingPage() {
                                 <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                                 <span className="text-xs font-bold text-primary tracking-wide uppercase">Secuencia Operativa</span>
                             </div>
-                            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4">Un guion claro, de pista a almacen</h2>
-                            <p className="text-slate-600 text-base sm:text-lg">Cada bloque de la interfaz representa exactamente lo que ocurre en la operacion fisica.</p>
+                            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4">De llegada critica a salida coordinada</h2>
+                            <p className="text-slate-600 text-base sm:text-lg">La secuencia correcta no termina al abrir la compuerta: continúa con control físico, validación y preparación para almacén o despacho final.</p>
                         </div>
 
                         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
                             {[
-                                { num: "01", icon: "flight_land", bg: "#0A192F", iconColor: "white", title: "Aterrizaje y Posicionamiento", desc: "El avion reduce velocidad, toma pista y se alinea con zona de descarga para iniciar maniobra segura." },
-                                { num: "02", icon: "garage_door", bg: "white", iconColor: "#0A192F", border: true, title: "Apertura de Compuerta", desc: "La compuerta trasera desciende y habilita el corredor de salida de mercancia con senalizacion de seguridad." },
-                                { num: "03", icon: "forklift", bg: "#2563EB", iconColor: "white", title: "Extraccion con Montacarga", desc: "El montacarga ingresa, toma la carga y la traslada al area de inspeccion sin romper la cadena operativa." },
+                                { num: "01", icon: "flight_land", bg: "#0A192F", iconColor: "white", title: "Aterrizaje y aseguramiento de plataforma", desc: "La aeronave entra a posición, se asegura el perímetro operativo y se habilita la zona de descarga para iniciar una maniobra sin riesgo." },
+                                { num: "02", icon: "garage_door", bg: "white", iconColor: "#0A192F", border: true, title: "Apertura de compuerta y extracción controlada", desc: "La compuerta trasera se habilita, el corredor queda despejado y el montacarga inicia la salida de la carga crítica bajo control visual y operativo." },
+                                { num: "03", icon: "forklift", bg: "#2563EB", iconColor: "white", title: "Inspección, custodia y salida coordinada", desc: "La mercancía se verifica, se clasifica y se transfiere a almacén o despacho con trazabilidad documental y prioridad según impacto operativo." },
                             ].map((card, index, arr) => (
                                 <div key={card.num} data-animate="card" className={`group relative bg-background-light p-6 sm:p-8 rounded-2xl border border-transparent hover:border-gray-200 hover:shadow-xl transition-all duration-300 ${index === arr.length - 1 ? "sm:col-span-2 sm:max-w-md sm:mx-auto md:col-span-1 md:max-w-none" : ""}`}>
                                     <div className="absolute top-0 right-0 p-4 font-display text-5xl sm:text-6xl font-bold text-primary select-none" style={{ opacity: 0.08 }}>{card.num}</div>
@@ -191,24 +191,24 @@ export default function LandingPage() {
                         <div className="flex flex-col lg:flex-row items-center gap-10 sm:gap-12">
                             <div className="lg:w-1/2 w-full">
                                 <div data-animate="badge" className="inline-flex items-center gap-2 px-3 py-1 rounded-lg mb-5 sm:mb-6" style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)" }}>
-                                     <span className="material-symbols-outlined text-accent text-sm">emergency</span>
-                                    <span className="font-mono text-xs text-accent font-bold tracking-wider uppercase">Control de Operacion</span>
+                                     <span className="material-symbols-outlined text-sm" style={{ color: "#E7C98A" }}>shield</span>
+                                    <span className="font-mono text-xs font-bold tracking-wider uppercase" style={{ color: "#E7C98A" }}>Visibilidad Ejecutiva</span>
                                 </div>
 
                                 <h2 data-animate="title" className="font-display text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-5 sm:mb-6">
-                                    Coherencia total
+                                    Control total
                                     <br />
-                                    <span className="text-accent">entre escena y proceso.</span>
+                                    <span style={{ color: "#E7C98A" }}>sobre una operacion critica.</span>
                                 </h2>
 
                                 <p data-animate="desc" className="text-blue-100 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 max-w-lg">
-                                    Lo que ves en la animacion coincide con los estados operativos: aeronave en tierra, compuerta activa, montacarga en movimiento y mercancia en retiro.
+                                    Ventas en USA no solo mueve carga: entrega lectura operativa para que tu equipo sepa qué aterrizó, qué se liberó, qué sigue en inspección y qué ya puede salir a destino.
                                 </p>
 
                                 <ul className="space-y-4 mb-7 sm:mb-8">
                                     {[
-                                        { icon: "visibility", title: "Estados Claros", desc: "Cada fase tiene representacion visual comprensible y consistente." },
-                                        { icon: "responsive_layout", title: "Vista Responsive", desc: "La experiencia se adapta a mobile, tablet y escritorio." },
+                                        { icon: "monitoring", title: "Trazabilidad Ejecutiva", desc: "Vuelo, documentos, descarga y salida visibles en una sola lectura operativa." },
+                                        { icon: "priority_high", title: "Priorización por Impacto", desc: "La carga crítica se atiende según urgencia industrial, no por orden arbitrario." },
                                     ].map((item) => (
                                         <li key={item.title} data-animate="item" className="flex items-start gap-3">
                                             <div className="p-1.5 rounded-lg shrink-0" style={{ background: "rgba(37,99,235,0.18)" }}>
@@ -222,8 +222,8 @@ export default function LandingPage() {
                                     ))}
                                 </ul>
 
-                                <button data-animate="cta-btn" className="flex items-center gap-2 px-6 h-11 font-bold rounded-xl transition-all duration-300 text-sm uppercase tracking-wide group border border-accent text-accent hover:bg-accent hover:text-white">
-                                    Validar Flujo con mi Equipo
+                                <button data-animate="cta-btn" className="flex items-center gap-2 px-6 h-11 font-bold rounded-xl transition-all duration-300 text-sm uppercase tracking-wide group text-white hover:text-white" style={{ border: "1px solid rgba(192,138,46,0.45)", color: "#E7C98A" }}>
+                                    Solicitar Diagnostico Operativo
                                     <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
                                 </button>
                             </div>
@@ -246,9 +246,9 @@ export default function LandingPage() {
                                             </div>
                                             <div className="text-right">
                                                 <div className="text-[10px] text-gray-400 font-mono mb-1">STATUS</div>
-                                                <div className="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg text-emerald-300 text-xs font-bold uppercase" style={{ background: "rgba(16,185,129,0.16)", border: "1px solid rgba(16,185,129,0.3)" }}>
-                                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                                                    Descargando
+                                                <div className="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg text-xs font-bold uppercase" style={{ background: "rgba(192,138,46,0.14)", border: "1px solid rgba(192,138,46,0.3)", color: "#E7C98A" }}>
+                                                    <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#C08A2E" }} />
+                                                    Prioridad Alta
                                                 </div>
                                             </div>
                                         </div>
@@ -262,10 +262,10 @@ export default function LandingPage() {
                                             </div>
                                             <div className="grid grid-cols-3 gap-2 sm:gap-4 mt-4 sm:mt-6">
                                                 {[
-                                                    { label: "Compuerta", value: "ABIERTA", color: "#6ee7b7" },
-                                                    { label: "Montacarga", value: "EN RAMPA", color: "white" },
-                                                    { label: "Carga", value: "EN RETIRO", color: "#67e8f9" },
-                                                ].map((stat) => (
+                                                     { label: "Compuerta", value: "LIBERADA", color: "#E7C98A" },
+                                                     { label: "Montacarga", value: "OPERANDO", color: "white" },
+                                                     { label: "Carga", value: "EN CUSTODIA", color: "#93C5FD" },
+                                                 ].map((stat) => (
                                                     <div key={stat.label} data-animate="stat" className="p-2 sm:p-3 rounded-xl text-center" style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.05)" }}>
                                                         <div className="text-[9px] sm:text-[10px] text-gray-500 uppercase mb-1">{stat.label}</div>
                                                         <div className="font-display font-bold text-sm sm:text-lg" style={{ color: stat.color }}>{stat.value}</div>
@@ -296,7 +296,7 @@ export default function LandingPage() {
                             <button data-animate="cta-element" className="flex items-center justify-center px-8 h-12 text-white text-sm sm:text-base font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5" style={{ background: "#2563EB", boxShadow: "0 4px 20px rgba(37,99,235,0.24)" }}>
                                 Solicitar Evaluacion Logistica
                             </button>
-                            <button data-animate="cta-element" className="flex items-center justify-center px-8 h-12 text-primary text-sm sm:text-base font-bold rounded-xl transition-colors hover:bg-black/5" style={{ border: "1px solid rgba(10,25,47,0.2)" }}>
+                            <button data-animate="cta-element" className="flex items-center justify-center px-8 h-12 text-primary text-sm sm:text-base font-bold rounded-xl transition-colors hover:bg-black/5" style={{ border: "1px solid rgba(192,138,46,0.4)", color: "#8A6422" }}>
                                 Hablar con un Asesor Operativo
                             </button>
                         </div>
