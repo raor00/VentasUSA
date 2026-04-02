@@ -192,6 +192,17 @@ body {
 .cargo-plane-container {
   will-change: transform, opacity;
   backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.cargo-plane-container svg,
+.cargo-plane-container g,
+.cargo-plane-container path,
+.cargo-plane-container rect,
+.cargo-plane-container circle,
+.cargo-plane-container ellipse {
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .cargo-plane-wrapper {
@@ -311,6 +322,21 @@ body {
 .trail-smoke {
   transform: translateZ(0);
   will-change: transform;
+}
+
+@media (max-width: 767px) {
+  .ticker {
+    animation-duration: 42s;
+  }
+
+  .scroll-progress-bar {
+    animation: none;
+    background: linear-gradient(90deg, #2563EB, #60A5FA);
+  }
+
+  .accent-glow {
+    animation-duration: 4s;
+  }
 }
 
 /* ============================================================

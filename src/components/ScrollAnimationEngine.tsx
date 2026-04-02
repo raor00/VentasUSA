@@ -16,6 +16,7 @@ export default function ScrollAnimationEngine() {
         const timer = setTimeout(() => {
 
             const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            const isMobile = window.matchMedia("(max-width: 767px)").matches;
 
             // =====================================================
             // HERO CONTENT — stagger reveal (always runs first)
@@ -23,13 +24,13 @@ export default function ScrollAnimationEngine() {
             const heroElements = document.querySelectorAll<HTMLElement>("[data-hero-animate]");
             if (heroElements.length) {
                 // Set initial state imperatively before animating
-                gsap.set(heroElements, { opacity: 0, y: 40, filter: "blur(5px)" });
+                gsap.set(heroElements, { opacity: 0, y: isMobile ? 24 : 40, filter: isMobile ? "blur(0px)" : "blur(5px)" });
                 const t = gsap.to(heroElements, {
                     opacity: 1,
                     y: 0,
                     filter: "blur(0px)",
-                    duration: 0.9,
-                    stagger: 0.18,
+                    duration: isMobile ? 0.65 : 0.9,
+                    stagger: isMobile ? 0.1 : 0.18,
                     ease: "power3.out",
                     delay: 0.4,
                 });
@@ -94,7 +95,7 @@ export default function ScrollAnimationEngine() {
 
             const processCards = document.querySelectorAll<HTMLElement>("[data-animate='card']");
             if (processCards.length) {
-                gsap.set(processCards, { opacity: 0, y: 60, scale: 0.95 });
+                gsap.set(processCards, { opacity: 0, y: isMobile ? 28 : 60, scale: isMobile ? 1 : 0.95 });
                 processCards.forEach((card, index) => {
                     const st = ScrollTrigger.create({
                         trigger: card,
@@ -105,7 +106,7 @@ export default function ScrollAnimationEngine() {
                                 opacity: 1,
                                 y: 0,
                                 scale: 1,
-                                duration: 0.7,
+                                duration: isMobile ? 0.5 : 0.7,
                                 ease: "power2.out",
                             });
                         },
@@ -121,7 +122,7 @@ export default function ScrollAnimationEngine() {
             if (urgencySection) {
                 // Parallax grid background
                 const gridBg = urgencySection.querySelector<HTMLElement>(".parallax-grid");
-                if (gridBg) {
+                if (gridBg && !isMobile) {
                     const st = ScrollTrigger.create({
                         trigger: urgencySection,
                         start: "top bottom",
@@ -152,7 +153,7 @@ export default function ScrollAnimationEngine() {
                         onEnter: () => {
                             gsap.fromTo(el, from, {
                                 opacity: 1, y: 0, x: 0, scale: 1, skewY: 0, rotationY: 0,
-                                duration: selector.includes("title") ? 1.1 : 0.8,
+                                duration: isMobile ? 0.55 : selector.includes("title") ? 1.1 : 0.8,
                                 ease: selector.includes("badge") ? "back.out(2)" : selector.includes("dashboard") ? "power3.out" : "power3.out",
                             });
                         },
@@ -168,6 +169,10 @@ export default function ScrollAnimationEngine() {
                         start: "top 88%",
                         once: true,
                         onEnter: () => {
+                            if (isMobile) {
+                                gsap.fromTo(urgencyItems, { opacity: 0, x: -20 }, { opacity: 1, x: 0, stagger: 0.1, duration: 0.45, ease: "power2.out" });
+                                return;
+                            }
                             gsap.fromTo(urgencyItems, { opacity: 0, x: -70 }, { opacity: 1, x: 0, stagger: 0.2, duration: 0.85, ease: "power3.out" });
                         },
                     });
@@ -196,6 +201,10 @@ export default function ScrollAnimationEngine() {
                         start: "top 88%",
                         once: true,
                         onEnter: () => {
+                            if (isMobile) {
+                                gsap.fromTo(statItems, { opacity: 0, y: 16, scale: 1 }, { opacity: 1, y: 0, scale: 1, stagger: 0.08, duration: 0.4, ease: "power2.out" });
+                                return;
+                            }
                             gsap.fromTo(statItems, { opacity: 0, y: 25, scale: 0.87 }, { opacity: 1, y: 0, scale: 1, stagger: 0.1, duration: 0.65, ease: "back.out(1.4)" });
                         },
                     });
@@ -249,7 +258,7 @@ export default function ScrollAnimationEngine() {
                     trigger: document.body,
                     start: "top top",
                     end: "bottom bottom",
-                    scrub: 0.3,
+                    scrub: isMobile ? false : 0.3,
                     onUpdate: (self) => {
                         gsap.set(scrollProgressBar, { scaleX: self.progress });
                     },
@@ -266,7 +275,7 @@ export default function ScrollAnimationEngine() {
                     trigger: document.body,
                     start: "top top",
                     end: "bottom bottom",
-                    scrub: 0.5,
+                    scrub: isMobile ? false : 0.5,
                     onUpdate: (self) => {
                         gsap.set(routeFill, { scaleY: self.progress });
                     },

@@ -18,14 +18,17 @@ export default function AnimatedHeroScenario() {
         const prefersReducedMotion =
             typeof window !== "undefined" &&
             window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const isMobile =
+            typeof window !== "undefined" &&
+            window.matchMedia("(max-width: 767px)").matches;
 
         const ctx = gsap.context(() => {
 
             // ── INITIAL STATES ──────────────────────────────────────────
-            gsap.set(".plane-asm",   { x: 1200 });
+            gsap.set(".plane-asm",   { x: 1200, force3D: true });
 
             // Ramp closed (folded up at -45°), pivot at "0 0" = local top-left
-            gsap.set(".cargo-ramp",  { rotation: -45, transformOrigin: "0 0" });
+            gsap.set(".cargo-ramp",  { rotation: -45, transformOrigin: "0 0", force3D: true });
 
             // Hold interior light off
             gsap.set(".hold-light",  { opacity: 0 });
@@ -33,12 +36,12 @@ export default function AnimatedHeroScenario() {
             // Cargo items — NO SVG transform attribute used.
             // GSAP owns position entirely (absolute coords within plane-asm).
             // c1 = crate (repuestos), c2 = machinery
-            gsap.set(".c1", { x: 646, y: 158, opacity: 1 });
-            gsap.set(".c2", { x: 636, y: 208, opacity: 1 });
+            gsap.set(".c1", { x: 646, y: 158, opacity: 1, force3D: true });
+            gsap.set(".c2", { x: 636, y: 208, opacity: 1, force3D: true });
 
             // Forklifts — GSAP owns x (y set by SVG group translate)
-            gsap.set(".fk1", { x: 1100 });
-            gsap.set(".fk2", { x: 1100 });
+            gsap.set(".fk1", { x: 1100, force3D: true });
+            gsap.set(".fk2", { x: 1100, force3D: true });
             gsap.set(".fk1-cargo", { opacity: 0 });
             gsap.set(".fk2-cargo", { opacity: 0 });
 
@@ -51,8 +54,9 @@ export default function AnimatedHeroScenario() {
 
             // ── MASTER TIMELINE ─────────────────────────────────────────
             const tl = gsap.timeline({
-                repeat: prefersReducedMotion ? 0 : -1,
-                repeatDelay: 2.5,
+                repeat: prefersReducedMotion || isMobile ? 0 : -1,
+                repeatDelay: isMobile ? 0 : 2.5,
+                defaults: { force3D: true },
             });
 
             // ─ PHASE 1: PLANE APPROACHES ────────────────────────────────
