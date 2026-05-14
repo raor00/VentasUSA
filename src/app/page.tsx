@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedHeroScenario from "@/components/AnimatedHeroScenario";
 import ScrollAnimationEngine from "@/components/ScrollAnimationEngine";
+import QuotationModal from "@/components/QuotationModal";
 
 export default function LandingPage() {
     useEffect(() => {
@@ -13,6 +14,9 @@ export default function LandingPage() {
             window.scrollTo({ top: 0, behavior: "instant" });
         }
     }, []);
+
+    const [modalOpen, setModalOpen] = useState(false);
+    const WA_URL = "https://wa.me/13053030502?text=" + encodeURIComponent("Hola, necesito importar carga prioritaria desde USA.");
 
     return (
         <>
@@ -78,10 +82,20 @@ export default function LandingPage() {
                             </p>
 
                             <div data-hero-animate className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md sm:max-w-none">
-                                <button className="flex items-center justify-center gap-2 px-8 py-4 font-bold rounded-xl text-white transition-all duration-300 hover:-translate-y-1" style={{ background: "#2563EB", boxShadow: "0 8px 32px rgba(37,99,235,0.28)" }}>
+                                <a
+                                    href={WA_URL}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center gap-2 px-8 py-4 font-bold rounded-xl text-white transition-all duration-300 hover:-translate-y-1"
+                                    style={{ background: "#2563EB", boxShadow: "0 8px 32px rgba(37,99,235,0.28)" }}
+                                >
                                     Solicitar Operacion Prioritaria
-                                </button>
-                                <button className="flex items-center justify-center gap-2 px-8 py-4 font-bold rounded-xl text-white transition-all duration-300 hover:bg-white/20" style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(192,138,46,0.35)" }}>
+                                </a>
+                                <button
+                                    onClick={() => setModalOpen(true)}
+                                    className="flex items-center justify-center gap-2 px-8 py-4 font-bold rounded-xl text-white transition-all duration-300 hover:bg-white/20"
+                                    style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(192,138,46,0.35)" }}
+                                >
                                     <span className="material-symbols-outlined text-[1.2rem]" style={{ color: "#E7C98A" }}>monitoring</span>
                                     Ver Centro de Control
                                 </button>
@@ -221,10 +235,17 @@ export default function LandingPage() {
                                     ))}
                                 </ul>
 
-                                <button data-animate="cta-btn" className="flex items-center gap-2 px-6 h-11 font-bold rounded-xl transition-all duration-300 text-sm uppercase tracking-wide group text-white hover:text-white" style={{ border: "1px solid rgba(192,138,46,0.45)", color: "#E7C98A" }}>
+                                <a
+                                    href={WA_URL}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-animate="cta-btn"
+                                    className="flex items-center gap-2 px-6 h-11 font-bold rounded-xl transition-all duration-300 text-sm uppercase tracking-wide group text-white hover:text-white"
+                                    style={{ border: "1px solid rgba(192,138,46,0.45)", color: "#E7C98A" }}
+                                >
                                     Solicitar Diagnostico Operativo
                                     <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                                </button>
+                                </a>
                             </div>
 
                             <div className="lg:w-1/2 w-full">
@@ -292,10 +313,22 @@ export default function LandingPage() {
                             Coordinamos carga critica, maquinaria, repuestos y activos industriales desde USA hacia Venezuela con velocidad, trazabilidad y control operativo en cada etapa.
                         </p>
                         <div className="flex flex-col sm:flex-row justify-center gap-4">
-                            <button data-animate="cta-element" className="flex items-center justify-center px-8 h-12 text-white text-sm sm:text-base font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5" style={{ background: "#2563EB", boxShadow: "0 4px 20px rgba(37,99,235,0.24)" }}>
+                            <a
+                                href={WA_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-animate="cta-element"
+                                className="flex items-center justify-center px-8 h-12 text-white text-sm sm:text-base font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5"
+                                style={{ background: "#2563EB", boxShadow: "0 4px 20px rgba(37,99,235,0.24)" }}
+                            >
                                 Solicitar Evaluacion Logistica
-                            </button>
-                            <button data-animate="cta-element" className="flex items-center justify-center px-8 h-12 text-primary text-sm sm:text-base font-bold rounded-xl transition-colors hover:bg-black/5" style={{ border: "1px solid rgba(192,138,46,0.4)", color: "#8A6422" }}>
+                            </a>
+                            <button
+                                onClick={() => setModalOpen(true)}
+                                data-animate="cta-element"
+                                className="flex items-center justify-center px-8 h-12 text-sm sm:text-base font-bold rounded-xl transition-colors hover:bg-black/5"
+                                style={{ border: "1px solid rgba(192,138,46,0.4)", color: "#8A6422" }}
+                            >
                                 Hablar con un Asesor Operativo
                             </button>
                         </div>
@@ -304,6 +337,7 @@ export default function LandingPage() {
 
                 <Footer />
             </main>
+            <QuotationModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
         </>
     );
 }
