@@ -140,7 +140,6 @@ export default function LandingPage() {
                                     { icon: "🚪", text: "Compuerta habilitada con corredor asegurado" },
                                     { icon: "🏗️", text: "Maquinaria critica en proceso de extracción" },
                                     { icon: "🚚", text: "Carga liberada para almacén o despacho coordinado" },
-                                    { icon: "✈️", text: "Vuelo industrial confirmado en plataforma" },
                                 ].map((item, i) => (
                                     <span key={i} className="flex items-center gap-2 whitespace-nowrap">
                                         {i > 0 && <span className="w-1 h-1 bg-white/30 rounded-full mr-8" />}

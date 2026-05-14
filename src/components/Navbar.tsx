@@ -93,7 +93,7 @@ export default function Navbar() {
                         <div className="flex-1" />
 
                         <Link
-                            href="/login"
+                            href="/dashboard"
                             className="hidden sm:flex items-center justify-center px-5 h-10 text-sm font-bold rounded-xl transition-all duration-300 whitespace-nowrap bg-accent text-white hover:bg-blue-700 shadow-md shadow-accent/20"
                         >
                             Acceso Corporativo

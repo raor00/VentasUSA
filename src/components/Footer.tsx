@@ -26,10 +26,10 @@ export default function Footer() {
                     <div>
                         <h4 className="font-display font-bold text-lg mb-6">Capacidades</h4>
                         <ul className="space-y-3 text-sm text-gray-400">
-                            <li><span className="hover:text-white transition-colors">Operación aérea industrial</span></li>
-                            <li><span className="hover:text-white transition-colors">Visibilidad documental B2B</span></li>
-                            <li><span className="hover:text-white transition-colors">Coordinación Miami → Venezuela</span></li>
-                            <li><span className="hover:text-white transition-colors">Soporte para carga crítica</span></li>
+                            <li><a href="#" className="hover:text-white transition-colors">Operación aérea industrial</a></li>
+                            <li><a href="#" className="hover:text-white transition-colors">Visibilidad documental B2B</a></li>
+                            <li><a href="#" className="hover:text-white transition-colors">Coordinación Miami → Venezuela</a></li>
+                            <li><a href="#" className="hover:text-white transition-colors">Soporte para carga crítica</a></li>
                         </ul>
                     </div>
 
@@ -37,10 +37,10 @@ export default function Footer() {
                     <div>
                         <h4 className="font-display font-bold text-lg mb-6">Soluciones</h4>
                         <ul className="space-y-3 text-sm text-gray-400">
-                            <li><span className="hover:text-white transition-colors">Carga proyecto</span></li>
-                            <li><span className="hover:text-white transition-colors">Repuestos críticos</span></li>
-                            <li><span className="hover:text-white transition-colors">Maquinaria pesada</span></li>
-                            <li><span className="hover:text-white transition-colors">Despacho coordinado</span></li>
+                            <li><a href="#" className="hover:text-white transition-colors">Carga proyecto</a></li>
+                            <li><a href="#" className="hover:text-white transition-colors">Repuestos críticos</a></li>
+                            <li><a href="#" className="hover:text-white transition-colors">Maquinaria pesada</a></li>
+                            <li><a href="#" className="hover:text-white transition-colors">Despacho coordinado</a></li>
                         </ul>
                     </div>
 
@@ -54,11 +54,11 @@ export default function Footer() {
                             </li>
                             <li className="flex items-center gap-3">
                                 <span className="material-symbols-outlined text-lg" style={{ color: "#E7C98A" }}>call</span>
-                                <span>+1 (305) 555-0123</span>
+                                <a href="tel:+13053030502" className="hover:text-white transition-colors">+1 (305) 303-0502</a>
                             </li>
                             <li className="flex items-center gap-3">
                                 <span className="material-symbols-outlined text-lg" style={{ color: "#E7C98A" }}>mail</span>
-                                <span>corporate@ventasenusa.com</span>
+                                <a href="mailto:corporate@ventasusa.com" className="hover:text-white transition-colors">corporate@ventasusa.com</a>
                             </li>
                         </ul>
                     </div>
@@ -66,11 +66,11 @@ export default function Footer() {
 
                 {/* Bottom Bar */}
                 <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-                    <p>© 2024 Ventas en USA LLC. Todos los derechos reservados.</p>
+                    <p>© 2025 Ventas en USA LLC. Todos los derechos reservados.</p>
                     <div className="flex gap-6">
-                        <span className="hover:text-white transition-colors">Privacidad</span>
-                        <span className="hover:text-white transition-colors">Términos de Carga</span>
-                        <span className="hover:text-white transition-colors">Mapa del sitio</span>
+                        <a href="#" className="hover:text-white transition-colors">Privacidad</a>
+                        <a href="#" className="hover:text-white transition-colors">Términos de Carga</a>
+                        <a href="#" className="hover:text-white transition-colors">Mapa del sitio</a>
                     </div>
                 </div>
             </div>
