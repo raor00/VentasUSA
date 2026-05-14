@@ -40,8 +40,6 @@ export default function AnimatedHeroScenario() {
             gsap.set(".c2", { x: 636, y: 208, opacity: 1, force3D: true });
 
             // Forklifts — GSAP owns x (y set by SVG group translate)
-            gsap.set(".fk1", { x: 1100, force3D: true });
-            gsap.set(".fk2", { x: 1100, force3D: true });
             gsap.set(".fk1-cargo", { opacity: 0 });
             gsap.set(".fk2-cargo", { opacity: 0 });
 
@@ -58,6 +56,10 @@ export default function AnimatedHeroScenario() {
                 repeatDelay: isMobile ? 0 : 2.5,
                 defaults: { force3D: true },
             });
+
+            // Reset FK positions at t=0 so every repeat starts clean
+            tl.set(".fk1", { x: 1100 }, 0)
+              .set(".fk2", { x: 1100 }, 0);
 
             // ─ PHASE 1: PLANE APPROACHES ────────────────────────────────
             tl
@@ -144,9 +146,9 @@ export default function AnimatedHeroScenario() {
                 <defs>
                     {/* Fuselage gradient — dark navy top to deep blue-black */}
                     <linearGradient id="ahsFg" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%"   stopColor="#243a56" />
-                        <stop offset="45%"  stopColor="#162c44" />
-                        <stop offset="100%" stopColor="#09162a" />
+                        <stop offset="0%"   stopColor="#2e5070" />
+                        <stop offset="45%"  stopColor="#1a3a58" />
+                        <stop offset="100%" stopColor="#0a1a2e" />
                     </linearGradient>
 
                     {/* Fuselage specular highlight */}
@@ -170,8 +172,8 @@ export default function AnimatedHeroScenario() {
 
                     {/* Engine nacelle */}
                     <linearGradient id="ahsEng" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%"   stopColor="#1c3252" />
-                        <stop offset="100%" stopColor="#060d1c" />
+                        <stop offset="0%"   stopColor="#2a4870" />
+                        <stop offset="100%" stopColor="#0a1428" />
                     </linearGradient>
 
                     {/* Cargo ramp */}
@@ -361,6 +363,9 @@ export default function AnimatedHeroScenario() {
                     {/* Flap panel line */}
                     <path d="M 418 232 C 458 240, 525 266, 630 338 L 622 342 C 526 270, 460 244, 416 242 Z"
                         fill="#060e1c" opacity="0.35" />
+                    {/* Wing leading edge accent */}
+                    <path d="M 430 236 C 474 238, 548 266, 646 332"
+                        stroke="#2563EB" strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.45" />
 
                     {/* ── ENGINE NACELLE (under wing) ── */}
                     <g transform="translate(474, 282)">
@@ -394,7 +399,7 @@ export default function AnimatedHeroScenario() {
                         C 776 272, 752 280, 728 280
                         L 642 280
                         Z
-                    " fill="#030710" />
+                    " fill="#05101e" />
 
                     {/* Warm glow (animated) */}
                     <path className="hold-light" d="
