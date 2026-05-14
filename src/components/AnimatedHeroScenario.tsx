@@ -2,6 +2,9 @@
 
 import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * AnimatedHeroScenario — Cinematic cargo logistics animation
@@ -26,82 +29,102 @@ export default function AnimatedHeroScenario() {
 
             // ── INITIAL STATES ──────────────────────────────────────────
             gsap.set(".plane-asm",   { x: 1200, force3D: true });
-
-            // Ramp closed (folded up at -45°), pivot at "0 0" = local top-left
             gsap.set(".cargo-ramp",  { rotation: -45, transformOrigin: "0 0", force3D: true });
-
-            // Hold interior light off
             gsap.set(".hold-light",  { opacity: 0 });
-
-            // Cargo items — NO SVG transform attribute used.
-            // GSAP owns position entirely (absolute coords within plane-asm).
-            // c1 = crate (repuestos), c2 = machinery
             gsap.set(".c1", { x: 646, y: 158, opacity: 1, force3D: true });
             gsap.set(".c2", { x: 636, y: 208, opacity: 1, force3D: true });
-
-            // Forklifts — GSAP owns x (y set by SVG group translate)
             gsap.set(".fk1-cargo", { opacity: 0 });
             gsap.set(".fk2-cargo", { opacity: 0 });
-
-            // FX
             gsap.set(".eng-glow",    { opacity: 0 });
             gsap.set(".land-beam",   { opacity: 0 });
             gsap.set([".dust-l", ".dust-r"], {
                 opacity: 0, scaleX: 0.1, transformOrigin: "center bottom",
             });
-
-            // ── MASTER TIMELINE ─────────────────────────────────────────
-            const tl = gsap.timeline({
-                repeat: prefersReducedMotion || isMobile ? 0 : -1,
-                repeatDelay: isMobile ? 0 : 2.5,
-                defaults: { force3D: true },
+            gsap.set([".label-01", ".label-02", ".label-03", ".label-04"], {
+                opacity: 0, x: -10,
             });
 
-            // Reset FK positions at t=0 so every repeat starts clean
+            if (prefersReducedMotion) {
+                gsap.set(".plane-asm", { x: 0 });
+                return;
+            }
+
+            if (isMobile) {
+                // Mobile: simple autoplay, no pin
+                const tl = gsap.timeline({
+                    repeat: -1,
+                    repeatDelay: 2,
+                    defaults: { force3D: true },
+                });
+                tl.set(".fk1", { x: 1100 }, 0)
+                  .set(".fk2", { x: 1100 }, 0);
+                tl
+                    .to(".eng-glow",  { opacity: 0.85, duration: 0.5 }, 0)
+                    .to(".land-beam", { opacity: 0.4,  duration: 0.3 }, 0)
+                    .to(".plane-asm", { x: 0, duration: 5.0, ease: "power4.out" }, 0.1)
+                    .to(".land-beam", { opacity: 0, duration: 1.2 }, "-=1.8")
+                    .to([".dust-l", ".dust-r"], { opacity: 0.55, scaleX: 1, duration: 0.18, ease: "back.out(3)", stagger: 0.05 }, "-=0.9")
+                    .to([".dust-l", ".dust-r"], { opacity: 0, scaleX: 2.6, duration: 1.5 }, "-=0.4")
+                    .to(".eng-glow", { opacity: 0.12, duration: 2.8 }, "-=2.1")
+                    .to(".hold-light", { opacity: 1, duration: 0.9 }, "+=0.6")
+                    .to(".cargo-ramp", { rotation: 28, duration: 2.2, ease: "bounce.out" }, "-=0.2")
+                    .to(".fk1", { x: 892, duration: 2.4, ease: "power2.inOut" }, "+=0.4")
+                    .to(".c1",  { x: 728, duration: 0.5, ease: "none" })
+                    .to(".c1",  { y: 280, duration: 0.18, ease: "power2.in" })
+                    .to(".c1",  { x: 850, y: 278, duration: 1.0, ease: "power2.in" })
+                    .set(".c1",        { opacity: 0 })
+                    .set(".fk1-cargo", { opacity: 1 })
+                    .to(".fk1", { x: 1200, duration: 2.6, ease: "power2.inOut" })
+                    .to(".fk2", { x: 892, duration: 2.4, ease: "power2.inOut" }, "-=2.0")
+                    .to(".c2",  { x: 728, duration: 0.8, ease: "none" })
+                    .to(".c2",  { y: 280, duration: 0.18, ease: "power2.in" })
+                    .to(".c2",  { x: 850, y: 266, duration: 1.2, ease: "power2.in" })
+                    .set(".c2",        { opacity: 0 })
+                    .set(".fk2-cargo", { opacity: 1 })
+                    .to(".fk2", { x: 1200, duration: 2.8, ease: "power2.inOut" })
+                    .to(".cargo-ramp", { rotation: -45, duration: 1.5, ease: "power2.inOut" }, "-=0.5")
+                    .to(".hold-light", { opacity: 0, duration: 0.7 }, "<")
+                    .to(".eng-glow",   { opacity: 1.0, duration: 1.8 }, "+=0.4")
+                    .to(".plane-asm",  { x: -1320, duration: 3.8, ease: "power3.in" }, "+=0.5")
+                    .to(".eng-glow",   { opacity: 0, duration: 0.8 }, "-=1.3");
+                return;
+            }
+
+            // ── DESKTOP: Scroll Narrative ────────────────────────────────
+            const tl = gsap.timeline({ defaults: { force3D: true } });
+
+            // FK initial positions inside timeline
             tl.set(".fk1", { x: 1100 }, 0)
               .set(".fk2", { x: 1100 }, 0);
 
-            // ─ PHASE 1: PLANE APPROACHES ────────────────────────────────
+            // Phase 1: Plane arrives (0–20%)
             tl
                 .to(".eng-glow",  { opacity: 0.85, duration: 0.5 }, 0)
                 .to(".land-beam", { opacity: 0.4,  duration: 0.3 }, 0)
                 .to(".plane-asm", { x: 0, duration: 5.0, ease: "power4.out" }, 0.1)
                 .to(".land-beam", { opacity: 0, duration: 1.2 }, "-=1.8")
-                // touchdown dust
-                .to([".dust-l", ".dust-r"], {
-                    opacity: 0.55, scaleX: 1, duration: 0.18,
-                    ease: "back.out(3)", stagger: 0.05,
-                }, "-=0.9")
-                .to([".dust-l", ".dust-r"], {
-                    opacity: 0, scaleX: 2.6, duration: 1.5,
-                }, "-=0.4")
-                .to(".eng-glow", { opacity: 0.12, duration: 2.8 }, "-=2.1");
+                .to([".dust-l", ".dust-r"], { opacity: 0.55, scaleX: 1, duration: 0.18, ease: "back.out(3)", stagger: 0.05 }, "-=0.9")
+                .to([".dust-l", ".dust-r"], { opacity: 0, scaleX: 2.6, duration: 1.5 }, "-=0.4")
+                .to(".eng-glow", { opacity: 0.12, duration: 2.8 }, "-=2.1")
+                .to(".label-01", { opacity: 1, x: 0, duration: 0.5 }, 2.0)
+                .to(".label-01", { opacity: 0, x: -10, duration: 0.3 }, 4.5);
 
-            // ─ PHASE 2: CARGO DOOR OPENS ────────────────────────────────
+            // Phase 2: Ramp opens (20–40%)
             tl
-                .to(".hold-light", { opacity: 1, duration: 0.9 }, "+=0.6")
-                // ramp lowers with a bounce
-                .to(".cargo-ramp", { rotation: 28, duration: 2.2, ease: "bounce.out" }, "-=0.2");
+                .to(".hold-light", { opacity: 1, duration: 0.9 }, "+=0.3")
+                .to(".cargo-ramp", { rotation: 28, duration: 2.2, ease: "bounce.out" }, "-=0.2")
+                .to(".label-02", { opacity: 1, x: 0, duration: 0.5 }, "<+=0.5");
 
-            // ─ PHASE 3: FORKLIFT 1 — repuestos crate ────────────────────
+            // Phase 3+4: Forklifts (40–70%)
             tl
-                // FK1 drives in from right
+                .to(".label-02", { opacity: 0, x: -10, duration: 0.3 }, "+=0.2")
                 .to(".fk1", { x: 892, duration: 2.4, ease: "power2.inOut" }, "+=0.4")
-                // c1: slides along deck to ramp edge
                 .to(".c1",  { x: 728, duration: 0.5, ease: "none" })
-                // c1: drops to ramp surface
                 .to(".c1",  { y: 280, duration: 0.18, ease: "power2.in" })
-                // c1: slides down ramp to fork level
                 .to(".c1",  { x: 850, y: 278, duration: 1.0, ease: "power2.in" })
-                // visual transfer
                 .set(".c1",        { opacity: 0 })
                 .set(".fk1-cargo", { opacity: 1 })
-                // FK1 exits right with cargo
-                .to(".fk1", { x: 1200, duration: 2.6, ease: "power2.inOut" });
-
-            // ─ PHASE 4: FORKLIFT 2 — heavy machinery ────────────────────
-            tl
-                // FK2 starts approaching while FK1 still departing
+                .to(".fk1", { x: 1200, duration: 2.6, ease: "power2.inOut" })
                 .to(".fk2", { x: 892, duration: 2.4, ease: "power2.inOut" }, "-=2.0")
                 .to(".c2",  { x: 728, duration: 0.8, ease: "none" })
                 .to(".c2",  { y: 280, duration: 0.18, ease: "power2.in" })
@@ -110,13 +133,31 @@ export default function AnimatedHeroScenario() {
                 .set(".fk2-cargo", { opacity: 1 })
                 .to(".fk2", { x: 1200, duration: 2.8, ease: "power2.inOut" });
 
-            // ─ PHASE 5: CLOSE UP & DEPART ───────────────────────────────
+            // Phase 5: Close up (70–85%)
             tl
+                .to(".label-03", { opacity: 1, x: 0, duration: 0.5 }, "<-=1.0")
                 .to(".cargo-ramp", { rotation: -45, duration: 1.5, ease: "power2.inOut" }, "-=0.5")
                 .to(".hold-light", { opacity: 0, duration: 0.7 }, "<")
-                .to(".eng-glow",   { opacity: 1.0, duration: 1.8 }, "+=0.4")
-                .to(".plane-asm",  { x: -1320, duration: 3.8, ease: "power3.in" }, "+=0.5")
-                .to(".eng-glow",   { opacity: 0,  duration: 0.8 }, "-=1.3");
+                .to(".label-03", { opacity: 0, x: -10, duration: 0.3 }, "+=0.3");
+
+            // Phase 6: Depart (85–100%)
+            tl
+                .to(".label-04", { opacity: 1, x: 0, duration: 0.5 }, "+=0.2")
+                .to(".eng-glow",  { opacity: 1.0, duration: 1.8 }, "<")
+                .to(".plane-asm", { x: -1320, duration: 3.8, ease: "power3.in" }, "+=0.5")
+                .to(".eng-glow",  { opacity: 0, duration: 0.8 }, "-=1.3")
+                .to(".label-04", { opacity: 0, x: -10, duration: 0.5 }, "-=0.8");
+
+            // ScrollTrigger: pin hero, scrub animation to scroll
+            ScrollTrigger.create({
+                trigger: "#hero-section",
+                start: "top top",
+                end: "+=280%",
+                pin: true,
+                scrub: 1.2,
+                animation: tl,
+                anticipatePin: 1,
+            });
 
         }, containerRef);
 
@@ -130,6 +171,23 @@ export default function AnimatedHeroScenario() {
             aria-hidden="true"
             style={{ minHeight: "clamp(280px, 44vh, 520px)" }}
         >
+            {/* Narrative labels */}
+            <div className="narrative-label label-01 absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 opacity-0 pointer-events-none select-none hidden sm:block" style={{zIndex: 10}}>
+                <span className="font-mono text-[10px] text-blue-400/60 tracking-[0.2em] uppercase">01</span>
+                <p className="text-white/80 font-bold text-sm leading-tight mt-0.5">Aterriza con<br/>prioridad</p>
+            </div>
+            <div className="narrative-label label-02 absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 opacity-0 pointer-events-none select-none hidden sm:block" style={{zIndex: 10}}>
+                <span className="font-mono text-[10px] text-blue-400/60 tracking-[0.2em] uppercase">02</span>
+                <p className="text-white/80 font-bold text-sm leading-tight mt-0.5">Carga se<br/>libera</p>
+            </div>
+            <div className="narrative-label label-03 absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 opacity-0 pointer-events-none select-none hidden sm:block" style={{zIndex: 10}}>
+                <span className="font-mono text-[10px] text-blue-400/60 tracking-[0.2em] uppercase">03</span>
+                <p className="text-white/80 font-bold text-sm leading-tight mt-0.5">Listo para<br/>despacho</p>
+            </div>
+            <div className="narrative-label label-04 absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 opacity-0 pointer-events-none select-none hidden sm:block" style={{zIndex: 10}}>
+                <span className="font-mono text-[10px] text-blue-400/60 tracking-[0.2em] uppercase">04</span>
+                <p className="text-white/80 font-bold text-sm leading-tight mt-0.5">En camino<br/>a destino</p>
+            </div>
             {/* Ambient scene glow */}
             <div
                 className="absolute inset-0 pointer-events-none"
