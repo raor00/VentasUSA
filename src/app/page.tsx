@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import AnimatedHeroScenario from "@/components/AnimatedHeroScenario";
 import ScrollAnimationEngine from "@/components/ScrollAnimationEngine";
 import QuotationModal from "@/components/QuotationModal";
+import RouteMapSection from "@/components/RouteMapSection";
 
 export default function LandingPage() {
     useEffect(() => {
@@ -164,6 +165,8 @@ export default function LandingPage() {
                         </div>
                     </div>
                 </div>
+
+                <RouteMapSection />
 
                 <section id="process-section" data-section="process" className="py-20 sm:py-24 bg-background-light relative overflow-hidden">
                     <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "radial-gradient(#0A192F 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
