@@ -58,19 +58,16 @@ export default function QuotationModal({ isOpen, onClose }: QuotationModalProps)
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setSending(true);
-        try {
-            // Replace FORMSPREE_ID with actual endpoint from formspree.io
-            await fetch("https://formspree.io/f/FORMSPREE_ID", {
-                method: "POST",
-                headers: { "Content-Type": "application/json", Accept: "application/json" },
-                body: JSON.stringify({ empresa, nombre, contacto, tipoCarga, urgencia }),
-            });
-            setSent(true);
-        } catch {
-            // fail silently — WhatsApp fallback always available
-        } finally {
-            setSending(false);
-        }
+        // Always succeed with WhatsApp pre-filled (no placeholder backend). 
+        // Form data is used to enrich the WA message for immediate human follow-up.
+        const waMsg = encodeURIComponent(
+            `Hola, necesito importar ${tipoCarga || "carga"} desde USA. Empresa: ${empresa || "[empresa]"}. Contacto: ${contacto || nombre || "[contacto]"}. Urgencia: ${urgencia || "Normal"}.`
+        );
+        // Small delay so user sees "enviando"
+        await new Promise(r => setTimeout(r, 420));
+        window.open(`https://wa.me/${WA_NUMBER}?text=${waMsg}`, "_blank");
+        setSent(true);
+        setSending(false);
     };
 
     const cargoOptions = [

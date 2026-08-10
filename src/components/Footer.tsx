@@ -1,78 +1,22 @@
 export default function Footer() {
     return (
-        <footer className="bg-secondary text-white pt-16 pb-8 border-t border-white/5">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-                    {/* Company Info */}
-                    <div className="col-span-1 lg:col-span-1">
-                        <div className="flex items-center gap-2 mb-6">
-                            <span className="material-symbols-outlined text-accent text-3xl">factory</span>
-                            <span className="font-display font-bold text-xl tracking-tight">VENTAS EN USA</span>
-                        </div>
-                        <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                            Operador logístico especializado en carga industrial, maquinaria pesada y proyectos de infraestructura. Conectamos proveedores globales con la industria venezolana.
-                        </p>
-                        <div className="flex gap-4">
-                            <a className="w-8 h-8 rounded bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-colors" href="#">
-                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" /></svg>
-                            </a>
-                            <a className="w-8 h-8 rounded bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-colors" href="#">
-                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.072 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.85-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
-                            </a>
-                        </div>
-                    </div>
-
-                    {/* Company Links */}
+        <footer className="bg-[#0A192F] border-t border-white/10 text-white/70 text-sm">
+            <div className="max-w-6xl mx-auto px-6 py-8">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-y-6">
                     <div>
-                        <h4 className="font-display font-bold text-lg mb-6">Capacidades</h4>
-                        <ul className="space-y-3 text-sm text-gray-400">
-                            <li><a href="#" className="hover:text-white transition-colors">Operación aérea industrial</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Visibilidad documental B2B</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Coordinación Miami → Venezuela</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Soporte para carga crítica</a></li>
-                        </ul>
+                        <div className="font-semibold tracking-tight text-white">VENTAS USA</div>
+                        <div className="mt-0.5 text-xs">Importaciones urgentes • Logística de maquinaria pesada y repuestos</div>
+                        <div className="mt-2 text-xs">Doral, Florida • +1 (305) 303-0502 • corporate@ventasusa.com</div>
                     </div>
-
-                    {/* Services */}
-                    <div>
-                        <h4 className="font-display font-bold text-lg mb-6">Soluciones</h4>
-                        <ul className="space-y-3 text-sm text-gray-400">
-                            <li><a href="#" className="hover:text-white transition-colors">Carga proyecto</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Repuestos críticos</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Maquinaria pesada</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">Despacho coordinado</a></li>
-                        </ul>
+                    <div className="flex flex-wrap gap-x-5 text-xs">
+                        <a href="#animacion-ciclo" className="hover:text-white">Ciclo de Operatividad</a>
+                        <a href="#mapa" className="hover:text-white">Ruta MIA-CCS</a>
+                        <a href="#cta" className="hover:text-white">Cotizar</a>
+                        <a href="/tracking" className="hover:text-white">Trazabilidad</a>
                     </div>
-
-                    {/* Contact */}
-                    <div>
-                        <h4 className="font-display font-bold text-lg mb-6">Contacto B2B</h4>
-                        <ul className="space-y-4 text-sm text-gray-400">
-                            <li className="flex items-start gap-3">
-                                <span className="material-symbols-outlined text-lg" style={{ color: "#E7C98A" }}>location_on</span>
-                                <span>8400 NW 25th St, Suite 100<br />Doral, FL 33122</span>
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <span className="material-symbols-outlined text-lg" style={{ color: "#E7C98A" }}>call</span>
-                                <a href="tel:+13053030502" className="hover:text-white transition-colors">+1 (305) 303-0502</a>
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <span className="material-symbols-outlined text-lg" style={{ color: "#E7C98A" }}>mail</span>
-                                <a href="mailto:corporate@ventasusa.com" className="hover:text-white transition-colors">corporate@ventasusa.com</a>
-                            </li>
-                        </ul>
-                    </div>
+                    <div className="text-xs text-white/60">© {new Date().getFullYear()} Ventas USA. Capacidad AOG • Continuidad operativa.</div>
                 </div>
-
-                {/* Bottom Bar */}
-                <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-                    <p>© 2025 Ventas en USA LLC. Todos los derechos reservados.</p>
-                    <div className="flex gap-6">
-                        <a href="#" className="hover:text-white transition-colors">Privacidad</a>
-                        <a href="#" className="hover:text-white transition-colors">Términos de Carga</a>
-                        <a href="#" className="hover:text-white transition-colors">Mapa del sitio</a>
-                    </div>
-                </div>
+                <div className="mt-6 text-[10px] text-white/50">Privacidad • Términos • Cumplimiento AOG</div>
             </div>
         </footer>
     );

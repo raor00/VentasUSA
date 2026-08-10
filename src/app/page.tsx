@@ -1,14 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AnimatedHeroScenario from "@/components/AnimatedHeroScenario";
 import ScrollAnimationEngine from "@/components/ScrollAnimationEngine";
 import QuotationModal from "@/components/QuotationModal";
 import RouteMapSection from "@/components/RouteMapSection";
+import LifecyclePhase from "@/components/LifecyclePhase";
 
 export default function LandingPage() {
+    const router = useRouter();
+    const [modalOpen, setModalOpen] = useState(false);
+    const [trackingQuery, setTrackingQuery] = useState("");
+    const [showVideoModal, setShowVideoModal] = useState(false);
+    const [heroProgress, setHeroProgress] = useState(0);
+    const WA_URL = "https://wa.me/13053030502?text=" + encodeURIComponent("Hola, necesito importar carga prioritaria desde USA.");
+
     useEffect(() => {
         if (typeof window !== "undefined") {
             window.history.scrollRestoration = "manual";
@@ -16,24 +24,37 @@ export default function LandingPage() {
         }
     }, []);
 
-    const [modalOpen, setModalOpen] = useState(false);
-    const WA_URL = "https://wa.me/13053030502?text=" + encodeURIComponent("Hola, necesito importar carga prioritaria desde USA.");
+    // Simple scroll progress for hero visual animations (inspirado en el video: revela progresivo de info, "apertura" de compuerta, montacarga entra)
+    useEffect(() => {
+        const heroSection = document.getElementById('hero-section');
+        if (!heroSection) return;
+
+        const onScroll = () => {
+            const rect = heroSection.getBoundingClientRect();
+            const progress = Math.max(0, Math.min(1, (-rect.top) / (rect.height * 1.2)));
+            setHeroProgress(progress);
+        };
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
 
     return (
         <>
             <div className="scroll-progress-bar fixed top-0 left-0 right-0 h-[3px] z-9999 origin-left scale-x-0" />
 
             <div className="fixed right-5 top-1/2 -translate-y-1/2 z-200 hidden lg:block">
-                <div className="relative w-px h-44 bg-white/10 rounded-full overflow-hidden">
+                <div className="relative w-px h-52 bg-white/10 rounded-full overflow-hidden">
                     <div className="scroll-route-fill absolute top-0 left-0 w-full h-full bg-linear-to-b from-accent to-blue-300 rounded-full origin-top scale-y-0" />
                 </div>
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full flex flex-col items-center gap-9 pt-1">
-                    {(["hero", "process", "urgency", "cta"] as const).map((s, i) => (
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full flex flex-col items-center gap-7 pt-1">
+                    {(["hero", "mapa", "ciclo", "cta"] as const).map((s, i) => (
                         <div
                             key={s}
                             className="scroll-dot w-2 h-2 rounded-full border border-white/30 bg-transparent transition-all duration-300 cursor-pointer"
                             data-section-dot={s}
-                            title={["Hero", "Proceso", "Monitoreo", "Cierre"][i]}
+                            title={["Hero Operativo", "Mapa de Importación", "Ciclo de Operatividad", "Acción"][i]}
                         />
                     ))}
                 </div>
@@ -60,10 +81,6 @@ export default function LandingPage() {
                     <div className="absolute top-1/2 right-0 w-[42vw] max-w-[420px] h-[42vw] max-h-[420px] rounded-full pointer-events-none" style={{ background: "radial-gradient(ellipse, rgba(74,158,221,0.08) 0%, transparent 72%)" }} />
 
                     <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-14 min-h-svh flex flex-col justify-center gap-6 sm:gap-8">
-                        <div className="w-full" aria-hidden="true">
-                            <AnimatedHeroScenario />
-                        </div>
-
                         <div className="w-full max-w-4xl mx-auto text-center flex flex-col items-center gap-4 sm:gap-5">
                             <div data-hero-animate className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border" style={{ background: "rgba(37,99,235,0.12)", borderColor: "rgba(192,138,46,0.35)" }}>
                                 <span className="w-2 h-2 rounded-full animate-pulse shrink-0" style={{ background: "#C08A2E" }} />
@@ -122,6 +139,61 @@ export default function LandingPage() {
                                     <div className="w-full h-1/2 bg-accent animate-scroll-drop" />
                                 </div>
                             </div>
+
+                            {/* Hero visual limpio y schematic (inspirado en el video y los mockups que mostraste): imagen base simple + HUDs limpios + revela progresivo con scroll (compuerta "abre" revelando interior, info emerge del hold, montacarga entra). Sin mezclar SVG pesado. Estilo operativo limpio, topografía simple, colores navy/gold/azul consistentes. */}
+                            <div className="relative w-full max-w-[820px] mx-auto mt-2" data-hero-animate>
+                                <img 
+                                    src="/assets/landing-concepts/schematic-fase1.jpg" 
+                                    alt="Schematic operativo limpio: avión de carga en tarmac con compuerta abierta, montacarga, estilo mockup limpio como en el video" 
+                                    className="w-full h-auto rounded-xl shadow-2xl border border-[#C08A2E]/20" 
+                                    style={{ maxHeight: '46vh' }} 
+                                />
+
+                                {/* Interior del hold que "se revela" cuando la compuerta "abre" (progreso del video) */}
+                                <div 
+                                    className="absolute left-[48%] top-[38%] w-[28%] h-[32%] bg-[#0A192F]/70 border border-[#C08A2E]/40 rounded-sm overflow-hidden"
+                                    style={{ 
+                                        opacity: Math.max(0, heroProgress * 1.4 - 0.3), 
+                                        transition: 'opacity 0.15s' 
+                                    }}
+                                >
+                                    <div className="p-1 text-[8px] font-mono text-[#E7C98A] leading-none">
+                                        COMPUERTA LIBERADA<br/>
+                                        <span className="text-[#93C5FD]">MONTACARGA LISTO</span><br/>
+                                        <span className="text-[#C08A2E]">AOG • REPUESTOS / MACH.IND</span>
+                                    </div>
+                                </div>
+
+                                {/* Montacarga que entra con el scroll (como en el video + freezpak) */}
+                                <div 
+                                    className="absolute text-2xl"
+                                    style={{ 
+                                        left: `${18 + heroProgress * 22}%`, 
+                                        top: '72%', 
+                                        opacity: heroProgress > 0.45 ? 1 : 0,
+                                        transition: 'left 0.1s linear, opacity 0.2s',
+                                        transform: 'translateY(-50%)'
+                                    }}
+                                >
+                                    🚜
+                                </div>
+
+                                {/* HUDs limpios estilo los mockups que mostraste (pequeños, redondos, buena legibilidad) */}
+                                <div className="absolute top-3 left-3 px-2 py-1 bg-[#0A192F]/90 border border-[#C08A2E] text-[#E7C98A] font-mono text-[9px] rounded shadow" 
+                                     style={{ opacity: heroProgress > 0.1 ? 1 : 0.3 }}>
+                                    COMPUERTA: {heroProgress > 0.5 ? 'LIBERADA' : 'ABRIENDO'}
+                                </div>
+                                <div className="absolute bottom-3 right-3 px-2 py-1 bg-[#0A192F]/90 border border-[#2563EB] text-[#93C5FD] font-mono text-[9px] rounded shadow"
+                                     style={{ opacity: heroProgress > 0.35 ? 1 : 0.3 }}>
+                                    MONTACARGA: {heroProgress > 0.65 ? 'OPERANDO' : 'EN POSICIÓN'}
+                                </div>
+                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-2 py-0.5 bg-black/80 border border-[#C08A2E] text-[#E7C98A] font-mono text-[8px] rounded"
+                                     style={{ opacity: heroProgress > 0.2 ? 1 : 0.2 }}>
+                                    MIA → CCS • 2450km • {heroProgress > 0.7 ? 'OPERACIÓN COMPLETADA' : 'PRIORIDAD AOG'}
+                                </div>
+                            </div>
+                            <div className="text-center text-[9px] text-[#E7C98A]/60 -mt-1">Sigue el video de referencia • Scroll revela la operación (compuerta + montacarga + datos) • Estilo schematic limpio</div>
+                            <button onClick={() => setShowVideoModal(true)} className="text-[10px] px-2.5 py-0.5 border border-[#C08A2E]/40 text-[#E7C98A] rounded hover:bg-[#C08A2E]/10 transition self-center">ver video original de referencia</button>
                         </div>
                     </div>
 
@@ -138,10 +210,29 @@ export default function LandingPage() {
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <span className="material-symbols-outlined text-slate-400 text-lg">barcode_scanner</span>
                             </div>
-                            <input className="block w-full pl-10 pr-24 py-3 bg-background-light border border-gray-200 rounded-xl text-slate-900 font-mono text-sm placeholder:text-slate-400 focus:ring-2 focus:ring-primary focus:border-primary transition-shadow" placeholder="MAN-CAT-9022 / VU-CARGO-019" type="text" />
-                            <button className="absolute inset-y-1 right-1 px-4 bg-primary text-white text-sm font-bold rounded-lg hover:bg-secondary transition-colors">Ver Estado</button>
+                            <input 
+                                value={trackingQuery}
+                                onChange={(e) => setTrackingQuery(e.target.value)}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' && trackingQuery.trim()) {
+                                        router.push(`/tracking/${encodeURIComponent(trackingQuery.trim())}`);
+                                    }
+                                }}
+                                className="block w-full pl-10 pr-24 py-3 bg-background-light border border-gray-200 rounded-xl text-slate-900 font-mono text-sm placeholder:text-slate-400 focus:ring-2 focus:ring-primary focus:border-primary transition-shadow" 
+                                placeholder="MAN-CAT-9022 / VU-CARGO-019" 
+                                type="text" 
+                            />
+                            <button 
+                                onClick={() => {
+                                    const q = trackingQuery.trim() || 'VU-CARGO-019';
+                                    router.push(`/tracking/${encodeURIComponent(q)}`);
+                                }}
+                                className="absolute inset-y-1 right-1 px-4 bg-primary text-white text-sm font-bold rounded-lg hover:bg-secondary transition-colors"
+                            >
+                                Ver Estado
+                            </button>
                         </div>
-                        <p className="mt-2 text-xs text-slate-500 font-mono">Consulte manifiesto, estado documental, liberacion de compuerta y avance de descarga desde un mismo punto de control.</p>
+                        <p className="mt-2 text-xs text-slate-500 font-mono">Consulte manifiesto, estado documental, liberacion de compuerta y avance de descarga desde un mismo punto de control. (Demo funcional: ingrese ID y presione Enter o el botón)</p>
                     </div>
                 </div>
 
@@ -166,143 +257,73 @@ export default function LandingPage() {
                     </div>
                 </div>
 
-                <RouteMapSection />
+                <RouteMapSection onVideoClick={() => setShowVideoModal(true)} />
 
-                <section id="process-section" data-section="process" className="py-20 sm:py-24 bg-background-light relative overflow-hidden">
-                    <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "radial-gradient(#0A192F 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                        <div data-animate="title-wrap" className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 mb-4">
-                                <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                                <span className="text-xs font-bold text-primary tracking-wide uppercase">Secuencia Operativa</span>
+                {/* Ciclo de Operatividad — toda la información estructurada (estilo schematic operativo del video, sin sobrecarga visual) */}
+                <section className="relative py-16 sm:py-20 bg-[#0A192F] overflow-hidden" id="animacion-ciclo" data-section="ciclo">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6">
+                        <div className="text-center mb-10">
+                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-4" style={{ background: "rgba(37,99,235,0.12)", borderColor: "rgba(192,138,46,0.35)" }}>
+                                <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#C08A2E" }} />
+                                <span className="text-[11px] sm:text-xs font-bold tracking-widest uppercase" style={{ color: "#E7C98A" }}>CICLO DE OPERATIVIDAD</span>
                             </div>
-                            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4">Cómo se mueve una operación urgente, de origen a entrega</h2>
-                            <p className="text-slate-600 text-base sm:text-lg">Más que una maniobra de pista, este es el proceso completo que sigue una empresa para traer carga crítica desde USA hasta Caracas con prioridad y control.</p>
+                            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-3">De la solicitud en USA hasta la continuidad operativa.<br />6 fases con visibilidad total y trazabilidad.</h2>
+                            <p className="text-blue-200/70 max-w-2xl mx-auto">Cada fase con datos operativos claros (prioridad AOG, montacarga, compuerta, tiempos). El estilo schematic/HUD del video de referencia se mantiene en overlays y en el mapa; aquí toda la información aparece estructurada al avanzar.</p>
                         </div>
 
-                        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
-                            {[
-                                { num: "01", icon: "shopping_cart", bg: "#0A192F", iconColor: "white", title: "Solicitas tu operación y consolidamos la compra", desc: "Tu empresa define qué necesita traer desde USA y coordinamos proveedor, recolección, documentación base y prioridad operativa desde el origen." },
-                                { num: "02", icon: "flight_takeoff", bg: "white", iconColor: "#0A192F", border: true, title: "Montamos la carga y la embarcamos con control total", desc: "La mercancía se recibe, se consolida, se valida documentalmente y se prepara para embarque aéreo con trazabilidad durante todo el tránsito." },
-                                { num: "03", icon: "local_shipping", bg: "#2563EB", iconColor: "white", title: "Coordinamos entrega express en Caracas", desc: "Al aterrizar, activamos liberación operativa, descarga prioritaria y salida coordinada para que la carga llegue en tiempo récord a su destino final." },
-                            ].map((card, index, arr) => (
-                                <div key={card.num} data-animate="card" className={`group relative bg-background-light p-6 sm:p-8 rounded-2xl border border-transparent hover:border-gray-200 hover:shadow-xl transition-all duration-300 ${index === arr.length - 1 ? "sm:col-span-2 sm:max-w-md sm:mx-auto md:col-span-1 md:max-w-none" : ""}`}>
-                                    <div className="absolute top-0 right-0 p-4 font-display text-5xl sm:text-6xl font-bold text-primary select-none" style={{ opacity: 0.08 }}>{card.num}</div>
-                                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center mb-5 sm:mb-6 shadow-md group-hover:scale-110 transition-transform duration-300" style={{ background: card.bg, color: card.iconColor, border: card.border ? "1px solid rgba(10,25,47,0.2)" : "none" }}>
-                                        <span className="material-symbols-outlined text-2xl sm:text-3xl">{card.icon}</span>
-                                    </div>
-                                    <h3 className="font-display text-lg sm:text-xl font-bold text-primary mb-3">{card.title}</h3>
-                                    <p className="text-slate-600 leading-relaxed text-sm sm:text-base">{card.desc}</p>
-                                </div>
-                            ))}
+                        {/* Ciclo de 6 fases - toda la información al hacer scroll (estilo freezpak life cycle adaptado a importación maquinaria pesada) */}
+                        <div className="mb-6 text-center">
+                            <div className="inline text-xs font-bold tracking-[2px] uppercase text-[#E7C98A]/80">Ciclo completo de importación urgente</div>
+                            <h3 className="font-display text-2xl sm:text-3xl font-bold text-white mt-2">De la solicitud en USA hasta la continuidad operativa en Venezuela.<br />Cada fase con visibilidad total.</h3>
                         </div>
-                    </div>
-                </section>
 
-                <section id="heavy-cargo-section" data-section="urgency" className="relative py-20 sm:py-24 overflow-hidden" style={{ background: "#0A192F" }}>
-                    <div className="parallax-grid absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(to right, #ffffff 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
-                    <div className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full pointer-events-none" style={{ background: "radial-gradient(ellipse, rgba(37,99,235,0.12) 0%, transparent 70%)" }} />
-
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                        <div className="flex flex-col lg:flex-row items-center gap-10 sm:gap-12">
-                            <div className="lg:w-1/2 w-full">
-                                <div data-animate="badge" className="inline-flex items-center gap-2 px-3 py-1 rounded-lg mb-5 sm:mb-6" style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)" }}>
-                                     <span className="material-symbols-outlined text-sm" style={{ color: "#E7C98A" }}>shield</span>
-                                    <span className="font-mono text-xs font-bold tracking-wider uppercase" style={{ color: "#E7C98A" }}>Visibilidad Ejecutiva</span>
-                                </div>
-
-                                <h2 data-animate="title" className="font-display text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-5 sm:mb-6">
-                                    Control total
-                                    <br />
-                                    <span style={{ color: "#E7C98A" }}>sobre una operacion critica.</span>
-                                </h2>
-
-                                <p data-animate="desc" className="text-blue-100 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 max-w-lg">
-                                    Ventas en USA no solo mueve carga: entrega lectura operativa para que tu equipo sepa qué aterrizó, qué se liberó, qué sigue en inspección y qué ya puede salir a destino.
-                                </p>
-
-                                <ul className="space-y-4 mb-7 sm:mb-8">
-                                    {[
-                                        { icon: "monitoring", title: "Trazabilidad Ejecutiva", desc: "Vuelo, documentos, descarga y salida visibles en una sola lectura operativa." },
-                                        { icon: "priority_high", title: "Priorización por Impacto", desc: "La carga crítica se atiende según urgencia industrial, no por orden arbitrario." },
-                                    ].map((item) => (
-                                        <li key={item.title} data-animate="item" className="flex items-start gap-3">
-                                            <div className="p-1.5 rounded-lg shrink-0" style={{ background: "rgba(37,99,235,0.18)" }}>
-                                                <span className="material-symbols-outlined text-accent text-lg sm:text-xl">{item.icon}</span>
-                                            </div>
-                                            <div>
-                                                <h4 className="text-white font-bold font-display text-sm sm:text-base">{item.title}</h4>
-                                                <p className="text-xs sm:text-sm text-gray-400">{item.desc}</p>
-                                            </div>
-                                        </li>
-                                    ))}
-                                </ul>
-
-                                <a
-                                    href={WA_URL}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    data-animate="cta-btn"
-                                    className="flex items-center gap-2 px-6 h-11 font-bold rounded-xl transition-all duration-300 text-sm uppercase tracking-wide group text-white hover:text-white"
-                                    style={{ border: "1px solid rgba(192,138,46,0.45)", color: "#E7C98A" }}
-                                >
-                                    Solicitar Diagnostico Operativo
-                                    <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                                </a>
-                            </div>
-
-                            <div className="lg:w-1/2 w-full">
-                                <div data-animate="dashboard" className="relative rounded-2xl p-1 overflow-hidden" style={{ background: "rgba(17,34,64,0.8)", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 25px 60px rgba(0,0,0,0.4)" }}>
-                                    <div className="px-4 py-2 flex justify-between items-center rounded-t-xl" style={{ background: "rgba(0,0,0,0.3)", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
-                                        <div className="flex gap-1.5">
-                                            <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                                            <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                                            <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                                        </div>
-                                        <span className="font-mono text-[10px] sm:text-xs text-gray-500">LIVE_RAMP_MONITOR</span>
-                                    </div>
-                                    <div className="p-4 sm:p-6 relative">
-                                        <div className="flex justify-between items-start mb-6 sm:mb-8">
-                                            <div>
-                                                <div className="text-[10px] text-gray-400 font-mono mb-1">VUELO</div>
-                                                <div className="text-white font-mono text-lg sm:text-xl tracking-wider">VU-CARGO-019</div>
-                                            </div>
-                                            <div className="text-right">
-                                                <div className="text-[10px] text-gray-400 font-mono mb-1">STATUS</div>
-                                                <div className="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg text-xs font-bold uppercase" style={{ background: "rgba(192,138,46,0.14)", border: "1px solid rgba(192,138,46,0.3)", color: "#E7C98A" }}>
-                                                    <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#C08A2E" }} />
-                                                    Prioridad Alta
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="space-y-4 sm:space-y-6">
-                                            <div className="flex justify-between text-[10px] sm:text-xs text-gray-400 font-mono">
-                                                <span>Pista</span>
-                                                <span>Zona de Almacen</span>
-                                            </div>
-                                            <div className="h-2 rounded-full overflow-hidden relative" style={{ background: "rgba(255,255,255,0.1)" }}>
-                                                <div data-animate="progress-bar" className="absolute left-0 top-0 h-full w-3/4 rounded-full" style={{ background: "#2563EB", boxShadow: "0 0 15px rgba(37,99,235,0.4)" }} />
-                                            </div>
-                                            <div className="grid grid-cols-3 gap-2 sm:gap-4 mt-4 sm:mt-6">
-                                                {[
-                                                     { label: "Compuerta", value: "LIBERADA", color: "#E7C98A" },
-                                                     { label: "Montacarga", value: "OPERANDO", color: "white" },
-                                                     { label: "Carga", value: "EN CUSTODIA", color: "#93C5FD" },
-                                                 ].map((stat) => (
-                                                    <div key={stat.label} data-animate="stat" className="p-2 sm:p-3 rounded-xl text-center" style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.05)" }}>
-                                                        <div className="text-[9px] sm:text-[10px] text-gray-500 uppercase mb-1">{stat.label}</div>
-                                                        <div className="font-display font-bold text-sm sm:text-lg" style={{ color: stat.color }}>{stat.value}</div>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                        <div className="absolute top-1/2 right-4 -translate-y-1/2 pointer-events-none select-none" style={{ opacity: 0.08 }}>
-                                            <span className="material-symbols-outlined text-7xl sm:text-9xl text-white">conveyor_belt</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                            <LifecyclePhase
+                                phase={1}
+                                title="01 Solicitud & compra USA"
+                                visualSrc="/assets/landing-concepts/schematic-fase1.jpg"
+                                desc="Tu empresa define qué necesita traer desde USA (maquinaria pesada, repuestos críticos) y coordinamos proveedor, recolección, documentación base y prioridad operativa desde el origen."
+                                microInteraction="light-pulse"
+                            />
+                            <LifecyclePhase
+                                phase={2}
+                                title="02 Consolidación & embarque aéreo"
+                                visualSrc="/assets/landing-concepts/schematic-fase2.jpg"
+                                desc="La mercancía se recibe, se consolida, se valida documentalmente y se prepara para embarque aéreo con trazabilidad durante todo el tránsito."
+                                microInteraction="none"
+                            />
+                            <LifecyclePhase
+                                phase={3}
+                                title="03 Vuelo prioritario MIA-CCS"
+                                visualSrc="/assets/landing-concepts/schematic-fase3.jpg"
+                                desc="2450 km, ~4h. Monitoreo en tiempo real del vuelo industrial. Notificaciones de posición y estado para tu equipo operativo."
+                                microInteraction="none"
+                            />
+                            <LifecyclePhase
+                                phase={4}
+                                title="04 Descarga montacarga & liberación compuerta"
+                                visualSrc="/assets/landing-concepts/schematic-fase4.jpg"
+                                desc="Al aterrizar, activamos liberación operativa, descarga prioritaria con montacargas y salida coordinada para que la carga llegue en tiempo récord."
+                                microInteraction="crate-slide"
+                                cta={{ label: "Ver video del concepto", href: "/assets/landing-concepts/2.mp4" }}
+                            />
+                            <LifecyclePhase
+                                phase={5}
+                                title="05 Entrega + continuidad operativa"
+                                visualSrc="/assets/landing-concepts/schematic-fase5.jpg"
+                                desc="Carga en custodia sale al destino final. Tu operación no se detiene. Entrega coordinada en Caracas o donde la necesites."
+                                microInteraction="none"
+                            />
+                            <LifecyclePhase
+                                phase={6}
+                                title="06 Trazabilidad post-op"
+                                visualSrc="/assets/landing-concepts/schematic-fase6.jpg"
+                                desc="Todo el ciclo documentado. Manifiestos, fotos de descarga, firmas, estado final. Listo para auditoría o próxima importación."
+                                microInteraction="light-pulse"
+                            />
                         </div>
+
+                        <p className="text-center text-xs text-white/40 mt-6">Desplázate por las fases. La información completa del ciclo de importación de maquinaria pesada y repuestos críticos aparece a medida que avanzas. Estilo esquemático operativo para máxima claridad en la interfaz de control.</p>
                     </div>
                 </section>
 
@@ -341,6 +362,20 @@ export default function LandingPage() {
                 <Footer />
             </main>
             <QuotationModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+
+            {/* Modal simple para video del concepto (integrado sin ser repetitivo en las secciones) */}
+            {showVideoModal && (
+                <div className="fixed inset-0 z-[600] flex items-center justify-center bg-black/80 p-4" onClick={() => setShowVideoModal(false)}>
+                    <div className="bg-[#0A192F] rounded-xl p-4 max-w-4xl w-full" onClick={e => e.stopPropagation()}>
+                        <div className="flex justify-between mb-3">
+                            <div className="text-sm text-[#E7C98A]">Video del concepto: Flujo operativo (estilo del video adjuntado)</div>
+                            <button onClick={() => setShowVideoModal(false)} className="text-white/70 hover:text-white">✕</button>
+                        </div>
+                        <video src="/assets/landing-concepts/reference-video.mp4" controls muted playsInline className="w-full rounded" poster="/assets/landing-concepts/schematic-fase3.jpg" />
+                        <p className="text-xs text-white/50 mt-2">Este es el video exacto que adjuntaste (c18e0bc4...). Lo seguimos para la animación del hero (compuerta que se abre + info emerge + montacarga) y la sección de mapa (schematic + HUDs + este video visible). También tenemos nuestra versión adaptada schematic en 2.mp4.</p>
+                    </div>
+                </div>
+            )}
         </>
     );
 }

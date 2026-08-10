@@ -77,43 +77,7 @@ export default function ScrollAnimationEngine() {
                 triggers.push(st);
             }
 
-            // =====================================================
-            // PROCESS SECTION
-            // =====================================================
-            const processTitleWrap = document.querySelector("[data-section='process'] [data-animate='title-wrap']");
-            if (processTitleWrap) {
-                const st = ScrollTrigger.create({
-                    trigger: processTitleWrap,
-                    start: "top 88%",
-                    once: true,
-                    onEnter: () => {
-                        gsap.fromTo(processTitleWrap, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1.1, ease: "power4.out" });
-                    },
-                });
-                triggers.push(st);
-            }
-
-            const processCards = document.querySelectorAll<HTMLElement>("[data-animate='card']");
-            if (processCards.length) {
-                gsap.set(processCards, { opacity: 0, y: isMobile ? 28 : 60, scale: isMobile ? 1 : 0.95 });
-                processCards.forEach((card, index) => {
-                    const st = ScrollTrigger.create({
-                        trigger: card,
-                        start: `top ${88 - index * 6}%`,
-                        once: true,
-                        onEnter: () => {
-                            gsap.to(card, {
-                                opacity: 1,
-                                y: 0,
-                                scale: 1,
-                                duration: isMobile ? 0.5 : 0.7,
-                                ease: "power2.out",
-                            });
-                        },
-                    });
-                    triggers.push(st);
-                });
-            }
+            // (old process triggers removed as part of clean structure for the new ciclo operativo - per redesign tasks)
 
             // =====================================================
             // URGENCY SECTION
@@ -284,9 +248,9 @@ export default function ScrollAnimationEngine() {
             }
 
             // =====================================================
-            // SECTION DOTS
+            // SECTION DOTS (updated for operational ciclo structure per redesign)
             // =====================================================
-            (["hero", "process", "urgency", "cta"] as const).forEach((sectionId) => {
+            (["hero", "mapa", "ciclo", "cta"] as const).forEach((sectionId) => {
                 const dot = document.querySelector(`[data-section-dot="${sectionId}"]`);
                 const section = document.querySelector(`[data-section="${sectionId}"]`);
                 if (!dot || !section) return;

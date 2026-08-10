@@ -43,6 +43,8 @@ export default function AnimatedHeroScenario() {
             gsap.set([".label-01", ".label-02", ".label-03", ".label-04"], {
                 opacity: 0, x: -10,
             });
+            // New progressive info layers start hidden (emerge with door open)
+            gsap.set([".hold-info-1", ".hold-info-2", ".hold-info-3"], { opacity: 0 });
 
             if (prefersReducedMotion) {
                 gsap.set(".plane-asm", { x: 0 });
@@ -112,7 +114,21 @@ export default function AnimatedHeroScenario() {
             // Phase 2: Ramp opens (20–40%)
             tl
                 .to(".hold-light", { opacity: 1, duration: 0.9 }, "+=0.3")
-                .to(".cargo-ramp", { rotation: 28, duration: 2.2, ease: "bounce.out" }, "-=0.2")
+                .to(".cargo-ramp", { 
+                    rotation: 28, 
+                    duration: 2.2, 
+                    ease: "bounce.out",
+                    onUpdate: function() {
+                        // Progressive door % drives info layers emerging from hold (video-like sync, per design)
+                        const rot = gsap.getProperty(".cargo-ramp", "rotation") as number;
+                        const p = Math.max(0, Math.min(1, (rot + 45) / 73)); // -45 closed → +28 open → 0..1
+                        gsap.set(".hold-info-1", { opacity: p > 0.22 ? 1 : 0, y: (1 - p) * 16 });
+                        gsap.set(".hold-info-2", { opacity: p > 0.42 ? 1 : 0, y: (1 - p) * 12 });
+                        gsap.set(".hold-info-3", { opacity: p > 0.68 ? 1 : 0, y: (1 - p) * 8 });
+                        // Expose for operational HUD / future sync (per design)
+                        gsap.set(".cargo-plane-container", { "--door-progress": p });
+                    }
+                }, "-=0.2")
                 .to(".label-02", { opacity: 1, x: 0, duration: 0.5 }, "<+=0.5");
 
             // Phase 3+4: Forklifts (40–70%)
@@ -131,13 +147,18 @@ export default function AnimatedHeroScenario() {
                 .to(".c2",  { x: 850, y: 266, duration: 1.2, ease: "power2.in" })
                 .set(".c2",        { opacity: 0 })
                 .set(".fk2-cargo", { opacity: 1 })
-                .to(".fk2", { x: 1200, duration: 2.8, ease: "power2.inOut" });
+                .to(".fk2", { x: 1200, duration: 2.8, ease: "power2.inOut" })
+                // Final info layer appears as unload completes (door fully "open" feel) - onUpdate will also drive it
+                .to(".hold-info-3", { opacity: 1, duration: 0.5 }, "-=1.5");
 
             // Phase 5: Close up (70–85%)
             tl
                 .to(".label-03", { opacity: 1, x: 0, duration: 0.5 }, "<-=1.0")
                 .to(".cargo-ramp", { rotation: -45, duration: 1.5, ease: "power2.inOut" }, "-=0.5")
                 .to(".hold-light", { opacity: 0, duration: 0.7 }, "<")
+                .to(".hold-info-1", { opacity: 0, duration: 0.4 }, "<")
+                .to(".hold-info-2", { opacity: 0, duration: 0.4 }, "<")
+                .to(".hold-info-3", { opacity: 0, duration: 0.4 }, "<")
                 .to(".label-03", { opacity: 0, x: -10, duration: 0.3 }, "+=0.3");
 
             // Phase 6: Depart (85–100%)
@@ -148,15 +169,15 @@ export default function AnimatedHeroScenario() {
                 .to(".eng-glow",  { opacity: 0, duration: 0.8 }, "-=1.3")
                 .to(".label-04", { opacity: 0, x: -10, duration: 0.5 }, "-=0.8");
 
-            // ScrollTrigger: pin hero, scrub animation to scroll
+            // ScrollTrigger: scrub the cargo door + unload animation when this visual is in view.
+            // Adapted to current page flow (no long pin of whole hero that would push tracking/mapa/fases far down).
+            // Follows the video exactly: ramp opens → hold info emerges in sync (onUpdate door p) → montacargas unload crates → close.
             ScrollTrigger.create({
-                trigger: "#hero-section",
-                start: "top top",
-                end: "+=280%",
-                pin: true,
-                scrub: 1.2,
+                trigger: containerRef.current,
+                start: "top 85%",
+                end: "bottom 15%",
+                scrub: 1.1,
                 animation: tl,
-                anticipatePin: 1,
             });
 
         }, containerRef);
@@ -469,6 +490,22 @@ export default function AnimatedHeroScenario() {
                         L 642 280
                         Z
                     " fill="url(#ahsHold)" opacity="0" />
+
+                    {/* === NUEVAS CAPAS DE INFO PROGRESIVAS (aparecen a medida que la compuerta/ramp se abre - como en tu video) === */}
+                    {/* Info layer 1: "COMPUERTA LIBERADA" - emerge del hold cuando ramp abre */}
+                    <g className="hold-info-1" opacity="0">
+                        <rect x="660" y="175" width="95" height="22" rx="3" fill="#0a192f" stroke="#C08A2E" strokeWidth="1" />
+                        <text x="707" y="190" fill="#E7C98A" fontSize="9" fontWeight="700" textAnchor="middle" letterSpacing="1">COMPUERTA LIBERADA</text>
+                    </g>
+                    {/* Info layer 2: Montacarga + MACH.IND - synced al unload */}
+                    <g className="hold-info-2" opacity="0">
+                        <rect x="655" y="200" width="105" height="18" rx="2" fill="#020a14" stroke="#2563EB" strokeWidth="0.8" />
+                        <text x="707" y="212" fill="#93c5fd" fontSize="7.5" fontWeight="600" textAnchor="middle">MONTACARGA OPERANDO • MACH.IND</text>
+                    </g>
+                    {/* Info layer 3: ruta y prioridad - final reveal */}
+                    <g className="hold-info-3" opacity="0">
+                        <text x="707" y="240" fill="#C08A2E" fontSize="7" fontWeight="700" textAnchor="middle" letterSpacing="0.5">MIA → CCS • 2450km • PRIORIDAD AOG</text>
+                    </g>
 
                     {/* Interior structural ribs */}
                     {[0, 1, 2, 3, 4].map(i => (
